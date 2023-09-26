@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react"
 
-const LK: FunctionComponent = () => {
+const Profile: FunctionComponent = () => {
     return (
         <div>
             LK
@@ -8,4 +8,4 @@ const LK: FunctionComponent = () => {
     )
 }
 
-export default LK
+export default Profile
