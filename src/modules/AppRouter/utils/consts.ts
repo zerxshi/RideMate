@@ -1,0 +1,5 @@
+export const MAIN_PAGE_ROUTE = "/"
+export const LOGIN_ROUTE = "/login"
+export const LK_ROUTE = "/lk"
+export const CARS_ROUTE = "/cars"
+export const TIMER_ROUTE = "/timer"
