@@ -1,8 +1,16 @@
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import CarsDropdownMenuItem from "@/modules/AppHeader/components/CarsDropdownMenuItem"
 
 const CarsDropdownMenu: FC = () => {
+    const [carClasses, setCarClasses] = useState<string[]>([
+        "B-segment",
+        "E-segment",
+        "F-segment",
+        "Sports cars",
+        "SUVs and crossovers",
+    ])
+
     return (
         <div
             aria-label="cars-classes-dropdown-menu"
@@ -18,14 +26,12 @@ const CarsDropdownMenu: FC = () => {
 
             <nav
                 aria-label="cars-classes-navigation"
-                className="w-[500px] rounded-xl hidden bg-my-gray absolute z-10  shadow-xl -left-40 animate-growOut origin-top-center group-hover:block"
+                className="absolute z-10 hidden -translate-x-1/2 shadow-xl w-max rounded-xl bg-my-gray left-1/2 animate-growOut origin-top-center group-hover:block"
             >
                 <ul className="flex flex-col gap-6 p-3">
-                    <CarsDropdownMenuItem />
-                    <CarsDropdownMenuItem />
-                    <CarsDropdownMenuItem />
-                    <CarsDropdownMenuItem />
-                    <CarsDropdownMenuItem />
+                    {carClasses.map((title) => (
+                        <CarsDropdownMenuItem key={title} title={title} />
+                    ))}
                 </ul>
             </nav>
         </div>
