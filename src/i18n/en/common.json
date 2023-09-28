@@ -2,6 +2,9 @@
     "button": {
         "save": "Save",
         "edit": "Edit",
-        "accept": "Accept"
+        "accept": "Accept",
+        "username": "Username",
+        "logout": "Logout",
+        "loginOrRegister": "Login/Register"
     }
 }

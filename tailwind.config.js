@@ -11,6 +11,22 @@ export default {
             width: {
                 1800: "1800px",
             },
+            transformOrigin: {
+                "top-center": "top center",
+            },
+            keyframes: {
+                growOut: {
+                    "0%": {
+                        transform: "scale(0)",
+                    },
+                    "100%": {
+                        transform: "scale(1)",
+                    },
+                },
+            },
+            animation: {
+                growOut: "growOut 300ms ease-in-out",
+            },
         },
     },
     plugins: [],
