@@ -16,8 +16,8 @@ const CarsDropdownMenu: FC = () => {
             aria-label="cars-classes-dropdown-menu"
             className="relative inline-block group"
         >
-            <button type="button">
-                <b className="text-5xl text-my-white ">Ride Mate</b>
+            <button type="button" className="flex flex-col items-center">
+                <b className="text-3xl text-my-white ">Ride Mate</b>
                 <FontAwesomeIcon
                     icon="fa-solid fa-angle-down"
                     className="text-2xl text-my-white"

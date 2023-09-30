@@ -5,6 +5,7 @@
         "accept": "Accept",
         "username": "Username",
         "logout": "Logout",
-        "loginOrRegister": "Login/Register"
+        "loginOrRegister": "Login/Register",
+        "selectCar": "Select a car"
     }
 }

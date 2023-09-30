@@ -3,8 +3,11 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import CarouselSlide from "./CarouselSlide"
+import { useTranslation } from "react-i18next"
 
 const RecCarousel: FC = () => {
+    const { t } = useTranslation("mainPage")
+
     interface ICarouselItem {
         imageSrc: string
         carName: string
@@ -42,9 +45,9 @@ const RecCarousel: FC = () => {
     }
 
     return (
-        <section className="m-auto mt-5 w-1800">
+        <section className="m-auto mt-10 w-1500">
             <h2 className="mb-4 text-3xl font-bold text-center text-my-white">
-                Recommended cars
+                {t("headers.recommendedCars")}
             </h2>
             <Slider {...settings}>
                 {carouselItems.map((item) => (
