@@ -10,7 +10,7 @@ const CarsDropdownMenuItem: FC<MenuItemProps> = ({ title }) => {
     return (
         <li>
             <Link to="/cars" className="flex justify-center">
-                <b className="text-3xl text-my-white">{title}</b>
+                <b className="text-2xl text-my-white">{title}</b>
             </Link>
         </li>
     )

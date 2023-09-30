@@ -7,16 +7,16 @@ import { useTranslation } from "react-i18next"
 
 const Header: FC = () => {
     const isAuth = true
-    const { t } = useTranslation(["common"])
+    const { t } = useTranslation("common")
 
     return (
         <header className="flex justify-center bg-my-gray">
             <nav
                 aria-label="primary-navigation"
-                className="flex items-center justify-between w-1800"
+                className="flex items-center justify-between w-1500"
             >
                 <Link to="/">
-                    <img src={logo} alt="rideMate logo" className="w-40 p-3" />
+                    <img src={logo} alt="rideMate logo" className="p-3 w-36" />
                 </Link>
 
                 <CarsDropdownMenu />

@@ -7,9 +7,10 @@ export default {
                 "my-dark": "#222222",
                 "my-gray": "#2e2e2e",
                 "my-white": "#fbfbfb",
+                "my-copper": "#d28536",
             },
             width: {
-                1800: "1800px",
+                1500: "1500px",
             },
             transformOrigin: {
                 "top-center": "top center",

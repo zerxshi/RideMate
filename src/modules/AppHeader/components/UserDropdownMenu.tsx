@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import { Link, useNavigate } from "react-router-dom"
 
 const UserDropdownMenu: FC = () => {
-    const { t } = useTranslation(["common"])
+    const { t } = useTranslation("common")
 
     const navigate = useNavigate()
     const handleClick = () => {
@@ -17,7 +17,7 @@ const UserDropdownMenu: FC = () => {
             className="relative inline-block group"
         >
             <Link className="flex flex-col" to="/profile">
-                <b className="text-3xl text-my-white">{t("button.username")}</b>
+                <b className="text-2xl text-my-white">{t("button.username")}</b>
                 <FontAwesomeIcon
                     icon="fa-solid fa-angle-down"
                     className="text-2xl text-my-white"
