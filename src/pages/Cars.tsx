@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from "react"
 
 const Cars: FunctionComponent = () => {
-    return (
-        <div>
-            cars
-        </div>
-    )
+    return <main>cars</main>
 }
 
 export default Cars

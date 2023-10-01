@@ -1,0 +1,11 @@
+{
+    "buttons": {
+        "login": "Login",
+        "register": "Register"
+    },
+    "inputs": {
+        "email": "Email",
+        "name": "Name",
+        "password": "Password"
+    }
+}

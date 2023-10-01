@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from "react"
 
 const CarID: FunctionComponent = () => {
-    return (
-        <div>
-            cardID
-        </div>
-    )
+    return <main>cardID</main>
 }
 
 export default CarID

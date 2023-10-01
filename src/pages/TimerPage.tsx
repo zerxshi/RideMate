@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from "react"
 
 const TimerPage: FunctionComponent = () => {
-    return (
-        <div>
-            timer
-        </div>
-    )
+    return <main>timer</main>
 }
 
 export default TimerPage

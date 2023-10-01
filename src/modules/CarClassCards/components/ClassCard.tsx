@@ -14,7 +14,7 @@ const ClassCard: FC<ClassCardProps> = ({
     classDescription,
     textPosition,
 }) => {
-    const { t } = useTranslation(["mainPage", "common"])
+    const { t } = useTranslation("mainPage")
 
     return (
         <article
@@ -37,9 +37,9 @@ const ClassCard: FC<ClassCardProps> = ({
                     type="button"
                     className={`${
                         textPosition ? "self-end" : "self-start"
-                    } w-max p-1 text-xl font-bold rounded-lg shadow-lg text-my-white bg-my-copper`}
+                    } w-max p-1 text-xl font-bold rounded-lg shadow-lg text-my-white bg-my-copper active:scale-95`}
                 >
-                    {t("button.selectCar", { ns: "common" })}
+                    {t("buttons.selectCar")}
                 </button>
             </div>
         </article>

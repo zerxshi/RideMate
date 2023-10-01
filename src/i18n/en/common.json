@@ -1,11 +1,7 @@
 {
-    "button": {
+    "buttons": {
         "save": "Save",
         "edit": "Edit",
-        "accept": "Accept",
-        "username": "Username",
-        "logout": "Logout",
-        "loginOrRegister": "Login/Register",
-        "selectCar": "Select a car"
+        "accept": "Accept"
     }
 }

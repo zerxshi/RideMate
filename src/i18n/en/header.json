@@ -1,0 +1,7 @@
+{
+    "buttons": {
+        "username": "Username",
+        "logout": "Logout",
+        "loginOrRegister": "Login/Register"
+    }
+}

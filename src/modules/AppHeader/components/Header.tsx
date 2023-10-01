@@ -6,8 +6,8 @@ import UserDropdownMenu from "./UserDropdownMenu"
 import { useTranslation } from "react-i18next"
 
 const Header: FC = () => {
-    const isAuth = true
-    const { t } = useTranslation("common")
+    const isAuth = false
+    const { t } = useTranslation("header")
 
     return (
         <header className="flex justify-center bg-my-gray">
@@ -25,8 +25,8 @@ const Header: FC = () => {
                     <UserDropdownMenu />
                 ) : (
                     <Link to="/login">
-                        <b className="text-3xl text-my-white">
-                            {t("button.loginOrRegister")}
+                        <b className="text-2xl text-my-white">
+                            {t("buttons.loginOrRegister")}
                         </b>
                     </Link>
                 )}

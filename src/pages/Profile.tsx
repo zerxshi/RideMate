@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from "react"
 
 const Profile: FunctionComponent = () => {
-    return (
-        <div>
-            LK
-        </div>
-    )
+    return <main>LK</main>
 }
 
 export default Profile
