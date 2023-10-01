@@ -1,10 +1,11 @@
+import { LoginForm } from "@/modules/LoginForm"
 import React, { FunctionComponent } from "react"
 
 const Login: FunctionComponent = () => {
     return (
-        <div>
-            Login
-        </div>
+        <main>
+            <LoginForm />
+        </main>
     )
 }
 

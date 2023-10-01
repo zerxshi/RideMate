@@ -3,6 +3,9 @@
         "recommendedCars": "Рекомендованные автомобили",
         "segmentsDescription": "Описание сегментов автомобилей"
     },
+    "buttons": {
+        "selectCar": "Выбрать машину"
+    },
     "carClassTitles": {
         "sSegment": "S-сегмент",
         "crossoverAndSuvSegment": "Внедорожники и кроссоверы",

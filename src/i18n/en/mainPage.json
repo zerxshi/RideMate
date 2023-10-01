@@ -3,6 +3,9 @@
         "recommendedCars": "Recommended cars",
         "segmentsDescription": "Description of car segments"
     },
+    "buttons": {
+        "selectCar": "Select a car"
+    },
     "carClassTitles": {
         "sSegment": "S-segment",
         "crossoverAndSuvSegment": "SUVs and Crossovers",
