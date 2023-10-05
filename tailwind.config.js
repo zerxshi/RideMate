@@ -6,8 +6,11 @@ export default {
             colors: {
                 "my-dark": "#222222",
                 "my-gray": "#2e2e2e",
+                "my-blue": "#aaf5ff",
                 "my-white": "#fbfbfb",
                 "my-copper": "#d28536",
+                "my-dark2": "#303030",
+                "my-gray2": "#6d9398",
             },
             width: {
                 1500: "1500px",
