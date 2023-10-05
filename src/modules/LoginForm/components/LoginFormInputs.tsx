@@ -9,6 +9,8 @@ interface FormInputProps {
     passwordValue: string
     setPasswordValue: (value: string) => void
     isLogin: boolean
+    register: () => void
+    login: () => void
 }
 
 const LoginFormInputs: FC<FormInputProps> = ({
@@ -19,6 +21,8 @@ const LoginFormInputs: FC<FormInputProps> = ({
     passwordValue,
     setPasswordValue,
     isLogin,
+    register,
+    login,
 }) => {
     const { t } = useTranslation("loginPage")
 
@@ -54,12 +58,23 @@ const LoginFormInputs: FC<FormInputProps> = ({
                 placeholder={t("inputs.password")}
             />
 
-            <button
-                className="self-center px-3 py-1 text-xl font-bold rounded-lg w-max text-my-white bg-my-copper active:scale-95"
-                type="submit"
-            >
-                {isLogin ? t("buttons.login") : t("buttons.register")}
-            </button>
+            {isLogin ? (
+                <button
+                    onClick={login}
+                    className="self-center px-3 py-1 text-xl font-bold rounded-lg w-max text-my-white bg-my-copper active:scale-95"
+                    type="submit"
+                >
+                    {t("buttons.login")}
+                </button>
+            ) : (
+                <button
+                    onClick={register}
+                    className="self-center px-3 py-1 text-xl font-bold rounded-lg w-max text-my-white bg-my-copper active:scale-95"
+                    type="submit"
+                >
+                    {t("buttons.register")}
+                </button>
+            )}
         </div>
     )
 }

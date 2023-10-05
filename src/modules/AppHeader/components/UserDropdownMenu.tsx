@@ -1,15 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
-const UserDropdownMenu: FC = () => {
+interface UserDropDownProps {
+    userName: string
+    // logout: () => void
+}
+
+const UserDropdownMenu: FC<UserDropDownProps> = ({ userName }) => {
     const { t } = useTranslation("header")
-
-    const navigate = useNavigate()
-    const handleClick = () => {
-        navigate("/login")
-    }
 
     return (
         <div
@@ -17,9 +17,7 @@ const UserDropdownMenu: FC = () => {
             className="relative inline-block group"
         >
             <Link className="flex flex-col" to="/profile">
-                <b className="text-2xl text-my-white">
-                    {t("buttons.username")}
-                </b>
+                <b className="text-2xl text-my-white">{userName}</b>
                 <FontAwesomeIcon
                     icon="fa-solid fa-angle-down"
                     className="text-2xl text-my-white"
@@ -27,7 +25,6 @@ const UserDropdownMenu: FC = () => {
             </Link>
 
             <button
-                onClick={handleClick}
                 type="button"
                 className="absolute z-10 hidden p-3 -translate-x-1/2 shadow-xl left-1/2 bg-my-gray rounded-xl animate-growOut origin-top-center group-hover:block"
             >

@@ -4,10 +4,19 @@ import { Link } from "react-router-dom"
 import CarsDropdownMenu from "@/modules/AppHeader/components/CarsDropdownMenu"
 import UserDropdownMenu from "./UserDropdownMenu"
 import { useTranslation } from "react-i18next"
-
+import { authAPI } from "@/modules/LoginForm"
+import { useAppDispatch, useAppSelector } from "@/hooks/useTypedStore"
+import { deleteUser } from "@/store/slice/userSlice"
 const Header: FC = () => {
-    const isAuth = false
     const { t } = useTranslation("header")
+    const { isAuth, name } = useAppSelector((state) => state.userReducer)
+    // const dispatch = useAppDispatch()
+    // const [logout, {}] = authAPI.useLogoutMutation()
+
+    // const userLogout = () => {
+    //     logout({})
+    //     dispatch(deleteUser)
+    // }
 
     return (
         <header className="flex justify-center bg-my-gray">
@@ -22,7 +31,7 @@ const Header: FC = () => {
                 <CarsDropdownMenu />
 
                 {isAuth ? (
-                    <UserDropdownMenu />
+                    <UserDropdownMenu userName={name!} />
                 ) : (
                     <Link to="/login">
                         <b className="text-2xl text-my-white">
