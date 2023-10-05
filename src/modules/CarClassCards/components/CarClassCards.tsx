@@ -1,17 +1,12 @@
 import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
+import { IClassCard } from "@/modules/CarClassCards/types"
 import ClassCard from "./ClassCard"
 
 const CarClassCards: FC = () => {
     const { t } = useTranslation("mainPage")
 
-    interface classCard {
-        imageSrc: string
-        classTitle: string
-        classDescription: string
-    }
-
-    const classCards: classCard[] = [
+    const classCards: IClassCard[] = [
         {
             imageSrc:
                 "https://avatars.mds.yandex.net/get-verba/1030388/2a000001608db7faabc6f8ded968d00d80a0/cattouchret",
