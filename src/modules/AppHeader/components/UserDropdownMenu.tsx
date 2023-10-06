@@ -5,10 +5,10 @@ import { Link } from "react-router-dom"
 
 interface UserDropDownProps {
     userName: string
-    // logout: () => void
+    logout: () => void
 }
 
-const UserDropdownMenu: FC<UserDropDownProps> = ({ userName }) => {
+const UserDropdownMenu: FC<UserDropDownProps> = ({ userName, logout }) => {
     const { t } = useTranslation("header")
 
     return (
@@ -25,6 +25,7 @@ const UserDropdownMenu: FC<UserDropDownProps> = ({ userName }) => {
             </Link>
 
             <button
+                onClick={logout}
                 type="button"
                 className="absolute z-10 hidden p-3 -translate-x-1/2 shadow-xl left-1/2 bg-my-gray rounded-xl animate-growOut origin-top-center group-hover:block"
             >

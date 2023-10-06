@@ -4,7 +4,10 @@ import { IToken } from "../types"
 
 export const authAPI = createApi({
     reducerPath: "auth",
-    baseQuery: fetchBaseQuery({ baseUrl: BASE_API_URL + "/user" }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: BASE_API_URL + "/user",
+        credentials: "include",
+    }),
     endpoints: (build) => ({
         register: build.mutation<
             IToken,

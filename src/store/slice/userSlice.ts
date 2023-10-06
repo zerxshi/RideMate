@@ -42,6 +42,7 @@ const userSlice = createSlice({
         },
         deleteUser: (state) => {
             state.email = null
+            state.name = null
             state.id = null
             state.role = null
             state.isAuth = false

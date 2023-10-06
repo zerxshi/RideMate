@@ -10,13 +10,13 @@ import { deleteUser } from "@/store/slice/userSlice"
 const Header: FC = () => {
     const { t } = useTranslation("header")
     const { isAuth, name } = useAppSelector((state) => state.userReducer)
-    // const dispatch = useAppDispatch()
-    // const [logout, {}] = authAPI.useLogoutMutation()
+    const dispatch = useAppDispatch()
+    const [logout, {}] = authAPI.useLogoutMutation()
 
-    // const userLogout = () => {
-    //     logout({})
-    //     dispatch(deleteUser)
-    // }
+    const userLogout = () => {
+        logout({})
+        dispatch(deleteUser())
+    }
 
     return (
         <header className="flex justify-center bg-my-gray">
@@ -31,7 +31,7 @@ const Header: FC = () => {
                 <CarsDropdownMenu />
 
                 {isAuth ? (
-                    <UserDropdownMenu userName={name!} />
+                    <UserDropdownMenu userName={name!} logout={userLogout} />
                 ) : (
                     <Link to="/login">
                         <b className="text-2xl text-my-white">
