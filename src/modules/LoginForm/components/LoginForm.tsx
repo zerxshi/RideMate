@@ -5,31 +5,48 @@ import LoginFormButtons from "./LoginFormButtons"
 import LoginFormInputs from "./LoginFormInputs"
 import { setUser } from "@/store/slice/userSlice"
 import { useNavigate } from "react-router-dom"
+import userImg from "@/assets/images/userImg.png"
 
 const LoginForm: FC = () => {
     const [emailValue, setEmailValue] = useState<string>("")
     const [nameValue, setNameValue] = useState<string>("")
     const [passwordValue, setPasswordValue] = useState<string>("")
+    const [confirmPasswordValue, setConfirmPasswordValue] = useState<string>("")
     const [isLogin, setIsLogin] = useState<boolean>(true)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const [register, {}] = authAPI.useRegisterMutation()
     const [login, {}] = authAPI.useLoginMutation()
 
+    const clearInputs = (): void => {
+        setEmailValue("")
+        setNameValue("")
+        setPasswordValue("")
+    }
+
     const signUp = async () => {
-        const result = await register({
-            email: emailValue,
-            name: nameValue,
-            password: passwordValue,
-        })
-        console.log(result)
-        //@ts-ignore
-        if (result && result.data) {
+        if (isLogin) {
+            setIsLogin(false)
+            clearInputs()
+            return
+        }
+        if (passwordValue === confirmPasswordValue) {
+            const result = await register({
+                email: emailValue,
+                name: nameValue,
+                password: passwordValue,
+            })
+            console.log(result)
             //@ts-ignore
-            localStorage.setItem("accessToken", result.data.token)
-            //@ts-ignore
-            dispatch(setUser(result.data.token))
-            navigate("/")
+            if (result && result.data) {
+                //@ts-ignore
+                localStorage.setItem("accessToken", result.data.token)
+                //@ts-ignore
+                dispatch(setUser(result.data.token))
+                navigate("/")
+            }
+        } else {
+            return
         }
     }
 
@@ -54,9 +71,13 @@ const LoginForm: FC = () => {
             onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
                 e.preventDefault()
             }
-            className="absolute flex flex-col gap-5 p-4 -translate-x-1/2 -translate-y-1/2 w-96 bg-my-gray rounded-xl top-1/2 left-1/2"
+            className="flex flex-col gap-4 p-4 w-[605px] bg-my-gray rounded-xl"
         >
-            <LoginFormButtons isLogin={isLogin} setIsLogin={setIsLogin} />
+            <img
+                src={userImg}
+                alt="user image"
+                className="self-center w-40 h-40"
+            />
             <LoginFormInputs
                 emailValue={emailValue}
                 setEmailValue={setEmailValue}
@@ -64,6 +85,12 @@ const LoginForm: FC = () => {
                 setNameValue={setNameValue}
                 passwordValue={passwordValue}
                 setPasswordValue={setPasswordValue}
+                confirmPasswordValue={confirmPasswordValue}
+                setConfirmPasswordValue={setConfirmPasswordValue}
+                isLogin={isLogin}
+            />
+
+            <LoginFormButtons
                 isLogin={isLogin}
                 register={signUp}
                 login={signIn}

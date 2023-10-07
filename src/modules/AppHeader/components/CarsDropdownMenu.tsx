@@ -26,7 +26,7 @@ const CarsDropdownMenu: FC = () => {
 
             <nav
                 aria-label="cars-classes-navigation"
-                className="absolute z-10 hidden -translate-x-1/2 shadow-xl w-max rounded-xl bg-my-gray left-1/2 animate-growOut origin-top-center group-hover:block"
+                className="absolute z-10 hidden -translate-x-1/2 shadow-xl w-max rounded-xl bg-my-gray left-1/2 animate-growOut origin-top-center group-hover:block group-hover:"
             >
                 <ul className="flex flex-col gap-6 p-3">
                     {carClasses.map((title) => (
