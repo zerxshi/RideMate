@@ -79,9 +79,12 @@ const LoginFormInputs: FC<FormInputProps> = ({
             />
 
             {isLogin && (
-                <b className="self-end font-black text-my-dark">
+                <button
+                    type="button"
+                    className="self-end font-black text-my-dark"
+                >
                     {t("phrases.forgotPassword")}
-                </b>
+                </button>
             )}
         </div>
     )
