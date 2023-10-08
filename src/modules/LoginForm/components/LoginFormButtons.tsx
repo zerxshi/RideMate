@@ -5,14 +5,12 @@ interface FormButtonProps {
     isLogin: boolean
     register: () => void
     login: () => void
-    handleSetLogin: () => void
-    handleSetRegistration: () => void
+    handleChangeIsLogin: () => void
 }
 
 const LoginFormButtons: FC<FormButtonProps> = ({
     isLogin,
-    handleSetLogin,
-    handleSetRegistration,
+    handleChangeIsLogin,
     register,
     login,
 }) => {
@@ -41,7 +39,7 @@ const LoginFormButtons: FC<FormButtonProps> = ({
             </button>
 
             <button
-                onClick={handleSetLogin}
+                onClick={handleChangeIsLogin}
                 className={`w-full text-2xl font-bold border-4 opacity-50 h-14 rounded-2xl border-my-dark text-my-dark ${
                     isLogin ? "hidden" : "animate-slideDown"
                 }`}
@@ -51,7 +49,7 @@ const LoginFormButtons: FC<FormButtonProps> = ({
             </button>
 
             <button
-                onClick={handleSetRegistration}
+                onClick={handleChangeIsLogin}
                 className={`w-full h-14 text-2xl font-bold rounded-2xl border-my-dark border-4 text-my-dark opacity-50 ${
                     isLogin ? "animate-slideUp" : "hidden"
                 }`}

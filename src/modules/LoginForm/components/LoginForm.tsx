@@ -24,14 +24,9 @@ const LoginForm: FC = () => {
         setPasswordValue("")
     }
 
-    const handleSetLogin = () => {
+    const handleChangeIsLogin = () => {
         clearInputs()
-        setIsLogin(true)
-    }
-
-    const handleSetRegistration = () => {
-        clearInputs()
-        setIsLogin(false)
+        setIsLogin((prev) => !isLogin)
     }
 
     const signUp = async () => {
@@ -101,8 +96,7 @@ const LoginForm: FC = () => {
                 isLogin={isLogin}
                 register={signUp}
                 login={signIn}
-                handleSetLogin={handleSetLogin}
-                handleSetRegistration={handleSetRegistration}
+                handleChangeIsLogin={handleChangeIsLogin}
             />
         </form>
     )
