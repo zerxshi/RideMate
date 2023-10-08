@@ -19,7 +19,7 @@ const Header: FC = () => {
     }
 
     return (
-        <header className="flex justify-center bg-my-gray">
+        <header className="sticky top-0 z-10 flex justify-center bg-my-gray2">
             <nav
                 aria-label="primary-navigation"
                 className="flex items-center justify-between w-1500"

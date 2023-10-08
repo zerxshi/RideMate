@@ -1,11 +1,17 @@
 {
     "buttons": {
-        "login": "Войти",
-        "register": "Зарегистрироваться"
+        "login": "ВОЙТИ",
+        "register": "ЗАРЕГИСТРИРОВАТЬСЯ"
     },
     "inputs": {
         "email": "Почта",
         "name": "Имя",
-        "password": "Пароль"
+        "password": "Пароль",
+        "confirmPassword": "Подтвердите пароль"
+    },
+    "phrases": {
+        "signIn": "ВОЙТИ",
+        "registration": "РЕГИСТРАЦИЯ",
+        "forgotPassword": "ЗАБЫЛИ  ПАРОЛЬ?"
     }
 }

@@ -4,10 +4,12 @@ export default {
     theme: {
         extend: {
             colors: {
-                "my-dark": "#222222",
-                "my-gray": "#2e2e2e",
+                "my-dark": "#303030",
+                "my-blue": "#aaf5ff",
                 "my-white": "#fbfbfb",
                 "my-copper": "#d28536",
+                "my-dark2": "#222222",
+                "my-gray2": "#2e2e2e",
             },
             width: {
                 1500: "1500px",
@@ -18,15 +20,60 @@ export default {
             keyframes: {
                 growOut: {
                     "0%": {
-                        transform: "scale(0)",
+                        transform: "scaleY(0)",
                     },
                     "100%": {
-                        transform: "scale(1)",
+                        transform: "scaleY(1)",
+                    },
+                },
+                append: {
+                    "0%": {
+                        opacity: "0",
+                    },
+                    "100%": {
+                        opacity: "1",
+                    },
+                },
+                slideDown: {
+                    "0%": {
+                        transform: "translateY(-100%)",
+                    },
+                    "100%": {
+                        transform: "translateY(0)",
+                    },
+                },
+                slideDownImg: {
+                    "0%": {
+                        transform: "translateY(-70%)",
+                    },
+                    "100%": {
+                        transform: "translateY(0)",
+                    },
+                },
+                slideUp: {
+                    "0%": {
+                        transform: "translateY(100%)",
+                    },
+                    "100%": {
+                        transform: "translateY(0)",
+                    },
+                },
+                labelSlideUp: {
+                    "0%": {
+                        transform: "translateY(100%)",
+                    },
+                    "100%": {
+                        transform: "translateY(0)",
                     },
                 },
             },
             animation: {
                 growOut: "growOut 300ms ease-in-out",
+                append: "append 500ms ease-in-out",
+                slideDown: "slideDown 300ms ease-in-out",
+                slideDownImg: "slideDownImg 300ms ease-in-out",
+                slideUp: "slideUp 300ms ease-in-out",
+                labelSlideUp: "labelSlideUp 300ms ease-in-out",
             },
         },
     },

@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
+import LoginInputBlock from "./LoginInputBlock"
+import RegisterInputBlock from "./RegisterInputBlock"
 
 interface FormInputProps {
     emailValue: string
@@ -8,9 +10,9 @@ interface FormInputProps {
     setNameValue: (value: string) => void
     passwordValue: string
     setPasswordValue: (value: string) => void
+    confirmPasswordValue: string
+    setConfirmPasswordValue: (value: string) => void
     isLogin: boolean
-    register: () => void
-    login: () => void
 }
 
 const LoginFormInputs: FC<FormInputProps> = ({
@@ -20,59 +22,74 @@ const LoginFormInputs: FC<FormInputProps> = ({
     setNameValue,
     passwordValue,
     setPasswordValue,
+    confirmPasswordValue,
+    setConfirmPasswordValue,
     isLogin,
-    register,
-    login,
 }) => {
     const { t } = useTranslation("loginPage")
 
     return (
-        <div className="flex flex-col gap-5">
-            <input
-                className="p-2 font-medium rounded-lg bg-my-dark text-my-white placeholder:text-my-white"
-                value={emailValue}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setEmailValue(e.target.value)
-                }
-                type="email"
-                placeholder={t("inputs.email")}
-            />
-            {!isLogin && (
-                <input
-                    className="p-2 font-medium rounded-lg bg-my-dark text-my-white placeholder:text-my-white"
-                    value={nameValue}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setNameValue(e.target.value)
-                    }
-                    type="text"
-                    placeholder={t("inputs.name")}
-                />
-            )}
-            <input
-                className="p-2 font-medium rounded-lg bg-my-dark text-my-white placeholder:text-my-white"
-                value={passwordValue}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setPasswordValue(e.target.value)
-                }
-                type="password"
-                placeholder={t("inputs.password")}
+        <div className="flex flex-col gap-4 ">
+            <b
+                className={`text-3xl text-my-dark ${
+                    isLogin ? "animate-slideDown" : "hidden"
+                }`}
+            >
+                {t("phrases.signIn")}
+            </b>
+
+            <b
+                className={`text-3xl text-my-dark ${
+                    isLogin ? "hidden" : "animate-append"
+                }`}
+            >
+                {t("phrases.registration")}
+            </b>
+
+            <RegisterInputBlock
+                isLogin={isLogin}
+                inputValue={nameValue}
+                setInputValue={setNameValue}
+                inputId={"name"}
+                inputType={"text"}
+                labelTitle={"Name"}
             />
 
-            {isLogin ? (
+            <LoginInputBlock
+                isLogin={isLogin}
+                inputValue={emailValue}
+                setInputValue={setEmailValue}
+                inputId={"email"}
+                inputType={"email"}
+                labelTitle={"Email"}
+            />
+
+            <LoginInputBlock
+                isLogin={isLogin}
+                inputValue={passwordValue}
+                setInputValue={setPasswordValue}
+                inputId={"password"}
+                inputType={"password"}
+                labelTitle={"Password"}
+            />
+
+            <RegisterInputBlock
+                isLogin={isLogin}
+                inputValue={confirmPasswordValue}
+                setInputValue={setConfirmPasswordValue}
+                inputId={"confirmPassword"}
+                inputType={"password"}
+                labelTitle={"Confirm password"}
+            />
+
+            {isLogin && (
                 <button
-                    onClick={login}
-                    className="self-center px-3 py-1 text-xl font-bold rounded-lg w-max text-my-white bg-my-copper active:scale-95"
-                    type="submit"
+                    type="button"
+                    className={`self-end font-black text-my-dark ${
+                        isLogin && "animate-slideUp"
+                    }`}
                 >
-                    {t("buttons.login")}
-                </button>
-            ) : (
-                <button
-                    onClick={register}
-                    className="self-center px-3 py-1 text-xl font-bold rounded-lg w-max text-my-white bg-my-copper active:scale-95"
-                    type="submit"
-                >
-                    {t("buttons.register")}
+                    {t("phrases.forgotPassword")}
                 </button>
             )}
         </div>

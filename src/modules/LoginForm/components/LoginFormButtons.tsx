@@ -3,27 +3,55 @@ import { useTranslation } from "react-i18next"
 
 interface FormButtonProps {
     isLogin: boolean
-    setIsLogin: (value: boolean) => void
+    register: () => void
+    login: () => void
+    handleChangeIsLogin: () => void
 }
 
-const LoginFormButtons: FC<FormButtonProps> = ({ isLogin, setIsLogin }) => {
+const LoginFormButtons: FC<FormButtonProps> = ({
+    isLogin,
+    handleChangeIsLogin,
+    register,
+    login,
+}) => {
     const { t } = useTranslation("loginPage")
 
     return (
-        <div className="flex justify-center gap-14">
+        <div className="flex flex-col items-center gap-5">
             <button
-                onClick={() => setIsLogin(true)}
-                className={`w-max px-3 py-1 text-xl font-bold rounded-lg text-my-white active:scale-95  ${
-                    isLogin ? "bg-my-copper" : "border border-my-copper"
+                onClick={login}
+                className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark ${
+                    isLogin ? "animate-slideUp" : "hidden"
                 }`}
                 type="button"
             >
                 {t("buttons.login")}
             </button>
+
             <button
-                onClick={() => setIsLogin(false)}
-                className={`w-max px-3 py-1 text-xl font-bold rounded-lg text-my-white active:scale-95  ${
-                    isLogin ? "border border-my-copper" : "bg-my-copper"
+                onClick={register}
+                className={`w-full h-14 text-2xl font-bold rounded-2xl text-my-blue bg-my-dark ${
+                    isLogin ? "hidden" : "animate-slideDown"
+                }`}
+                type="button"
+            >
+                {t("buttons.register")}
+            </button>
+
+            <button
+                onClick={handleChangeIsLogin}
+                className={`w-full text-2xl font-bold border-4 opacity-50 h-14 rounded-2xl border-my-dark text-my-dark ${
+                    isLogin ? "hidden" : "animate-slideDown"
+                }`}
+                type="button"
+            >
+                {t("buttons.login")}
+            </button>
+
+            <button
+                onClick={handleChangeIsLogin}
+                className={`w-full h-14 text-2xl font-bold rounded-2xl border-my-dark border-4 text-my-dark opacity-50 ${
+                    isLogin ? "animate-slideUp" : "hidden"
                 }`}
                 type="button"
             >
