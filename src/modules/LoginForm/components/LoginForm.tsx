@@ -24,12 +24,17 @@ const LoginForm: FC = () => {
         setPasswordValue("")
     }
 
+    const handleSetLogin = () => {
+        clearInputs()
+        setIsLogin(true)
+    }
+
+    const handleSetRegistration = () => {
+        clearInputs()
+        setIsLogin(false)
+    }
+
     const signUp = async () => {
-        if (isLogin) {
-            setIsLogin(false)
-            clearInputs()
-            return
-        }
         if (passwordValue === confirmPasswordValue) {
             const result = await register({
                 email: emailValue,
@@ -76,7 +81,9 @@ const LoginForm: FC = () => {
             <img
                 src={userImg}
                 alt="user image"
-                className="self-center w-40 h-40"
+                className={`self-center w-40 h-40 animate ${
+                    isLogin ? "animate-slideDownImg" : "animate-slideUp"
+                }`}
             />
             <LoginFormInputs
                 emailValue={emailValue}
@@ -94,6 +101,8 @@ const LoginForm: FC = () => {
                 isLogin={isLogin}
                 register={signUp}
                 login={signIn}
+                handleSetLogin={handleSetLogin}
+                handleSetRegistration={handleSetRegistration}
             />
         </form>
     )

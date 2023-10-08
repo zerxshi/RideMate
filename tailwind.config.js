@@ -42,11 +42,38 @@ export default {
                         transform: "translateY(0)",
                     },
                 },
+                slideDownImg: {
+                    "0%": {
+                        transform: "translateY(-70%)",
+                    },
+                    "100%": {
+                        transform: "translateY(0)",
+                    },
+                },
+                slideUp: {
+                    "0%": {
+                        transform: "translateY(100%)",
+                    },
+                    "100%": {
+                        transform: "translateY(0)",
+                    },
+                },
+                labelSlideUp: {
+                    "0%": {
+                        transform: "translateY(100%)",
+                    },
+                    "100%": {
+                        transform: "translateY(0)",
+                    },
+                },
             },
             animation: {
                 growOut: "growOut 300ms ease-in-out",
                 append: "append 500ms ease-in-out",
                 slideDown: "slideDown 300ms ease-in-out",
+                slideDownImg: "slideDownImg 300ms ease-in-out",
+                slideUp: "slideUp 300ms ease-in-out",
+                labelSlideUp: "labelSlideUp 300ms ease-in-out",
             },
         },
     },

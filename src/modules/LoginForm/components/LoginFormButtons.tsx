@@ -5,10 +5,14 @@ interface FormButtonProps {
     isLogin: boolean
     register: () => void
     login: () => void
+    handleSetLogin: () => void
+    handleSetRegistration: () => void
 }
 
 const LoginFormButtons: FC<FormButtonProps> = ({
     isLogin,
+    handleSetLogin,
+    handleSetRegistration,
     register,
     login,
 }) => {
@@ -16,22 +20,40 @@ const LoginFormButtons: FC<FormButtonProps> = ({
 
     return (
         <div className="flex flex-col items-center gap-5">
-            {isLogin && (
-                <button
-                    onClick={login}
-                    className="w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark"
-                    type="button"
-                >
-                    {t("buttons.login")}
-                </button>
-            )}
+            <button
+                onClick={login}
+                className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark ${
+                    isLogin ? "animate-slideUp" : "hidden"
+                }`}
+                type="button"
+            >
+                {t("buttons.login")}
+            </button>
 
             <button
                 onClick={register}
-                className={`w-full h-14 text-2xl font-bold rounded-2xl   ${
-                    isLogin
-                        ? "border-my-dark border-4 text-my-dark opacity-50"
-                        : "bg-my-dark text-my-blue animate-slideDown"
+                className={`w-full h-14 text-2xl font-bold rounded-2xl text-my-blue bg-my-dark ${
+                    isLogin ? "hidden" : "animate-slideDown"
+                }`}
+                type="button"
+            >
+                {t("buttons.register")}
+            </button>
+
+            <button
+                onClick={handleSetLogin}
+                className={`w-full text-2xl font-bold border-4 opacity-50 h-14 rounded-2xl border-my-dark text-my-dark ${
+                    isLogin ? "hidden" : "animate-slideDown"
+                }`}
+                type="button"
+            >
+                {t("buttons.login")}
+            </button>
+
+            <button
+                onClick={handleSetRegistration}
+                className={`w-full h-14 text-2xl font-bold rounded-2xl border-my-dark border-4 text-my-dark opacity-50 ${
+                    isLogin ? "animate-slideUp" : "hidden"
                 }`}
                 type="button"
             >

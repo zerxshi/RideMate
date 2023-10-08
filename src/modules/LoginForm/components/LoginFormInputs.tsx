@@ -29,8 +29,12 @@ const LoginFormInputs: FC<FormInputProps> = ({
     const { t } = useTranslation("loginPage")
 
     return (
-        <div className="flex flex-col gap-4">
-            <b className={`text-3xl text-my-dark ${!isLogin && "hidden"}`}>
+        <div className="flex flex-col gap-4 ">
+            <b
+                className={`text-3xl text-my-dark ${
+                    isLogin ? "animate-slideDown" : "hidden"
+                }`}
+            >
                 {t("phrases.signIn")}
             </b>
 
@@ -81,7 +85,9 @@ const LoginFormInputs: FC<FormInputProps> = ({
             {isLogin && (
                 <button
                     type="button"
-                    className="self-end font-black text-my-dark"
+                    className={`self-end font-black text-my-dark ${
+                        isLogin && "animate-slideUp"
+                    }`}
                 >
                     {t("phrases.forgotPassword")}
                 </button>

@@ -21,7 +21,11 @@ const LoginInputBlock: FC<LoginInputProps> = ({
     const { t } = useTranslation("loginPage")
 
     return (
-        <div className={`flex flex-col ${isLogin ? "" : "animate-slideDown"}`}>
+        <div
+            className={`flex flex-col ${
+                isLogin ? "animate-slideUp" : "animate-slideDown"
+            }`}
+        >
             <label
                 className={`text-xl font-bold text-my-dark -translate-y-3 translate-x-4  bg-my-blue ${
                     inputValue
