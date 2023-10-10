@@ -36,11 +36,8 @@ export const useSignIn: useSignIn = (validateFn, emailValue, passwordValue) => {
             password: passwordValue,
         })
 
-        //@ts-ignore
-        if (result && result.data) {
-            //@ts-ignore
+        if ("data" in result) {
             localStorage.setItem("accessToken", result.data.token)
-            //@ts-ignore
             dispatch(setUser(result.data.token))
             navigate("/")
         }
