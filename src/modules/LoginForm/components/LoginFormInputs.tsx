@@ -5,25 +5,19 @@ import RegisterInputBlock from "./RegisterInputBlock"
 
 interface FormInputProps {
     emailValue: string
-    setEmailValue: (value: string) => void
     nameValue: string
-    setNameValue: (value: string) => void
     passwordValue: string
-    setPasswordValue: (value: string) => void
     confirmPasswordValue: string
-    setConfirmPasswordValue: (value: string) => void
+    setInputValue: (inputId: string, value: string) => void
     isLogin: boolean
 }
 
 const LoginFormInputs: FC<FormInputProps> = ({
     emailValue,
-    setEmailValue,
     nameValue,
-    setNameValue,
     passwordValue,
-    setPasswordValue,
     confirmPasswordValue,
-    setConfirmPasswordValue,
+    setInputValue,
     isLogin,
 }) => {
     const { t } = useTranslation("loginPage")
@@ -49,7 +43,7 @@ const LoginFormInputs: FC<FormInputProps> = ({
             <RegisterInputBlock
                 isLogin={isLogin}
                 inputValue={nameValue}
-                setInputValue={setNameValue}
+                setInputValue={setInputValue}
                 inputId={"name"}
                 inputType={"text"}
                 labelTitle={"Name"}
@@ -58,7 +52,7 @@ const LoginFormInputs: FC<FormInputProps> = ({
             <LoginInputBlock
                 isLogin={isLogin}
                 inputValue={emailValue}
-                setInputValue={setEmailValue}
+                setInputValue={setInputValue}
                 inputId={"email"}
                 inputType={"email"}
                 labelTitle={"Email"}
@@ -67,7 +61,7 @@ const LoginFormInputs: FC<FormInputProps> = ({
             <LoginInputBlock
                 isLogin={isLogin}
                 inputValue={passwordValue}
-                setInputValue={setPasswordValue}
+                setInputValue={setInputValue}
                 inputId={"password"}
                 inputType={"password"}
                 labelTitle={"Password"}
@@ -76,22 +70,11 @@ const LoginFormInputs: FC<FormInputProps> = ({
             <RegisterInputBlock
                 isLogin={isLogin}
                 inputValue={confirmPasswordValue}
-                setInputValue={setConfirmPasswordValue}
+                setInputValue={setInputValue}
                 inputId={"confirmPassword"}
                 inputType={"password"}
                 labelTitle={"Confirm password"}
             />
-
-            {isLogin && (
-                <button
-                    type="button"
-                    className={`self-end font-black text-my-dark ${
-                        isLogin && "animate-slideUp"
-                    }`}
-                >
-                    {t("phrases.forgotPassword")}
-                </button>
-            )}
         </div>
     )
 }

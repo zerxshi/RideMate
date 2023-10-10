@@ -17,6 +17,9 @@ export default {
             transformOrigin: {
                 "top-center": "top center",
             },
+            scale: {
+                99: "0.99",
+            },
             keyframes: {
                 growOut: {
                     "0%": {
@@ -44,21 +47,13 @@ export default {
                 },
                 slideDownImg: {
                     "0%": {
-                        transform: "translateY(-70%)",
+                        transform: "translateY(-30%)",
                     },
                     "100%": {
                         transform: "translateY(0)",
                     },
                 },
                 slideUp: {
-                    "0%": {
-                        transform: "translateY(100%)",
-                    },
-                    "100%": {
-                        transform: "translateY(0)",
-                    },
-                },
-                labelSlideUp: {
                     "0%": {
                         transform: "translateY(100%)",
                     },
@@ -73,7 +68,6 @@ export default {
                 slideDown: "slideDown 300ms ease-in-out",
                 slideDownImg: "slideDownImg 300ms ease-in-out",
                 slideUp: "slideUp 300ms ease-in-out",
-                labelSlideUp: "labelSlideUp 300ms ease-in-out",
             },
         },
     },

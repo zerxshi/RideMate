@@ -5,12 +5,12 @@ interface FormButtonProps {
     isLogin: boolean
     register: () => void
     login: () => void
-    handleChangeIsLogin: () => void
+    handleToggleIsLogin: () => void
 }
 
 const LoginFormButtons: FC<FormButtonProps> = ({
     isLogin,
-    handleChangeIsLogin,
+    handleToggleIsLogin,
     register,
     login,
 }) => {
@@ -18,9 +18,20 @@ const LoginFormButtons: FC<FormButtonProps> = ({
 
     return (
         <div className="flex flex-col items-center gap-5">
+            {isLogin && (
+                <button
+                    type="button"
+                    className={`self-end font-black text-my-dark active:scale-99 ${
+                        isLogin && "animate-slideUp"
+                    }`}
+                >
+                    {t("phrases.forgotPassword")}
+                </button>
+            )}
+
             <button
                 onClick={login}
-                className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark ${
+                className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
                     isLogin ? "animate-slideUp" : "hidden"
                 }`}
                 type="button"
@@ -30,7 +41,7 @@ const LoginFormButtons: FC<FormButtonProps> = ({
 
             <button
                 onClick={register}
-                className={`w-full h-14 text-2xl font-bold rounded-2xl text-my-blue bg-my-dark ${
+                className={`w-full h-14 text-2xl font-bold rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
                     isLogin ? "hidden" : "animate-slideDown"
                 }`}
                 type="button"
@@ -39,8 +50,8 @@ const LoginFormButtons: FC<FormButtonProps> = ({
             </button>
 
             <button
-                onClick={handleChangeIsLogin}
-                className={`w-full text-2xl font-bold border-4 opacity-50 h-14 rounded-2xl border-my-dark text-my-dark ${
+                onClick={handleToggleIsLogin}
+                className={`w-full text-2xl font-bold border-4 opacity-50 h-14 rounded-2xl border-my-dark text-my-dark active:scale-99 ${
                     isLogin ? "hidden" : "animate-slideDown"
                 }`}
                 type="button"
@@ -49,8 +60,8 @@ const LoginFormButtons: FC<FormButtonProps> = ({
             </button>
 
             <button
-                onClick={handleChangeIsLogin}
-                className={`w-full h-14 text-2xl font-bold rounded-2xl border-my-dark border-4 text-my-dark opacity-50 ${
+                onClick={handleToggleIsLogin}
+                className={`w-full h-14 text-2xl font-bold rounded-2xl border-my-dark border-4 text-my-dark opacity-50 active:scale-99 ${
                     isLogin ? "animate-slideUp" : "hidden"
                 }`}
                 type="button"
