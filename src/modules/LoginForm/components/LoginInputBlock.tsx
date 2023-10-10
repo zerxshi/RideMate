@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 interface LoginInputProps {
     isLogin: boolean
     inputValue: string
-    setInputValue: (value: string) => void
+    setInputValue: (id: string, value: string) => void
     labelTitle: string
     inputId: string
     inputType: string
@@ -40,7 +40,7 @@ const LoginInputBlock: FC<LoginInputProps> = ({
                 className="p-2 text-2xl font-bold bg-transparent border-4 h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"
                 value={inputValue}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setInputValue(e.target.value)
+                    setInputValue(inputId, e.target.value)
                 }
                 id={inputId}
                 type={inputType}

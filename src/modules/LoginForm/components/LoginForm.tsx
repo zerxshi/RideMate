@@ -1,69 +1,99 @@
-import { useAppDispatch, useAppSelector } from "@/hooks/useTypedStore"
 import React, { FC, useState } from "react"
-import { authAPI } from "../API/authAPI"
 import LoginFormButtons from "./LoginFormButtons"
 import LoginFormInputs from "./LoginFormInputs"
-import { setUser } from "@/store/slice/userSlice"
-import { useNavigate } from "react-router-dom"
 import userImg from "@/assets/images/userImg.png"
+import { useTranslation } from "react-i18next"
+import FormValidationBlock from "./FormValidationBlock"
+import { IError } from "@/modules/LoginForm/types"
+import { useSignUp } from "../hooks/useSignUp"
+import { useSignIn } from "./../hooks/useSignIn"
 
 const LoginForm: FC = () => {
+    const { t } = useTranslation("loginPage")
+
     const [emailValue, setEmailValue] = useState<string>("")
     const [nameValue, setNameValue] = useState<string>("")
     const [passwordValue, setPasswordValue] = useState<string>("")
     const [confirmPasswordValue, setConfirmPasswordValue] = useState<string>("")
     const [isLogin, setIsLogin] = useState<boolean>(true)
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate()
-    const [register, {}] = authAPI.useRegisterMutation()
-    const [login, {}] = authAPI.useLoginMutation()
+    const [validationError, setValidationError] = useState<string>("")
+
+    const validateForm = () => {
+        let error: string = ""
+
+        if (isLogin && (!emailValue || !passwordValue)) {
+            error = t("errors.fillInFields")
+        }
+        if (
+            !isLogin &&
+            (!emailValue ||
+                !passwordValue ||
+                !nameValue ||
+                !confirmPasswordValue)
+        ) {
+            error = t("errors.fillInFields")
+        }
+        if (!isLogin && passwordValue !== confirmPasswordValue) {
+            error = t("errors.passwordsMatch")
+        }
+
+        setValidationError(error)
+        return error
+    }
+
+    const [signUp, IsRegistrationError, registrationError, registrationReset] =
+        useSignUp(validateForm, emailValue, nameValue, passwordValue)
+    const [signIn, IsLoginError, loginError, loginReset] = useSignIn(
+        validateForm,
+        emailValue,
+        passwordValue,
+    )
+
+    const setInputValue = (inputId: string, value: string) => {
+        switch (inputId) {
+            case "name":
+                setNameValue(value)
+                setValidationError("")
+                loginReset()
+                registrationReset()
+                break
+
+            case "email":
+                setEmailValue(value)
+                setValidationError("")
+                loginReset()
+                registrationReset()
+                break
+
+            case "password":
+                setPasswordValue(value)
+                setValidationError("")
+                loginReset()
+                registrationReset()
+                break
+
+            case "confirmPassword":
+                setConfirmPasswordValue(value)
+                setValidationError("")
+                loginReset()
+                registrationReset()
+                break
+        }
+    }
 
     const clearInputs = (): void => {
         setEmailValue("")
         setNameValue("")
         setPasswordValue("")
+        setConfirmPasswordValue("")
     }
 
-    const handleChangeIsLogin = () => {
+    const handleToggleIsLogin = () => {
         clearInputs()
+        setValidationError("")
+        loginReset()
+        registrationReset()
         setIsLogin((prev) => !isLogin)
-    }
-
-    const signUp = async () => {
-        if (passwordValue === confirmPasswordValue) {
-            const result = await register({
-                email: emailValue,
-                name: nameValue,
-                password: passwordValue,
-            })
-            console.log(result)
-            //@ts-ignore
-            if (result && result.data) {
-                //@ts-ignore
-                localStorage.setItem("accessToken", result.data.token)
-                //@ts-ignore
-                dispatch(setUser(result.data.token))
-                navigate("/")
-            }
-        } else {
-            return
-        }
-    }
-
-    const signIn = async () => {
-        const result = await login({
-            email: emailValue,
-            password: passwordValue,
-        })
-        console.log(result)
-        //@ts-ignore
-        if (result && result.data) {
-            //@ts-ignore
-            localStorage.setItem("accessToken", result.data.token)
-            //@ts-ignore
-            dispatch(setUser(result.data.token))
-            navigate("/")
-        }
     }
 
     return (
@@ -82,21 +112,24 @@ const LoginForm: FC = () => {
             />
             <LoginFormInputs
                 emailValue={emailValue}
-                setEmailValue={setEmailValue}
                 nameValue={nameValue}
-                setNameValue={setNameValue}
                 passwordValue={passwordValue}
-                setPasswordValue={setPasswordValue}
                 confirmPasswordValue={confirmPasswordValue}
-                setConfirmPasswordValue={setConfirmPasswordValue}
+                setInputValue={setInputValue}
                 isLogin={isLogin}
             />
-
+            <FormValidationBlock
+                validationError={validationError}
+                isLoginError={IsLoginError}
+                isRegistrationError={IsRegistrationError}
+                loginError={loginError as IError}
+                registrationError={registrationError as IError}
+            />
             <LoginFormButtons
                 isLogin={isLogin}
                 register={signUp}
                 login={signIn}
-                handleChangeIsLogin={handleChangeIsLogin}
+                handleToggleIsLogin={handleToggleIsLogin}
             />
         </form>
     )

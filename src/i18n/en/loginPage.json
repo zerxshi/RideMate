@@ -13,5 +13,12 @@
         "signIn": "SIGN IN",
         "registration": "REGISTRATION",
         "forgotPassword": "FORGOT PASSWORD?"
+    },
+    "errors": {
+        "fillInFields": "Please fill in all fields",
+        "passwordsMatch": "Passwords don't match",
+        "incorrectPassword": "Incorrect password",
+        "userExists": "Users with the same email address already exist",
+        "userDoesntExist": "User with this email address does not exist"
     }
 }
