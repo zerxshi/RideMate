@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { authAPI } from "../API/authAPI"
+import { authAPI } from "@/modules/LoginForm/API/authAPI"
 import { useAppDispatch } from "@/hooks/useTypedStore"
 import { setUser } from "@/store/slice/userSlice"
 import { SerializedError } from "@reduxjs/toolkit"
@@ -19,7 +19,7 @@ type useSignIn = (
 export const useSignIn: useSignIn = (validateFn, emailValue, passwordValue) => {
     const [
         login,
-        { isError: IsLoginError, error: loginError, reset: loginReset },
+        { isError: isLoginError, error: loginError, reset: loginReset },
     ] = authAPI.useLoginMutation()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -43,5 +43,5 @@ export const useSignIn: useSignIn = (validateFn, emailValue, passwordValue) => {
         }
     }
 
-    return [signIn, IsLoginError, loginError, loginReset]
+    return [signIn, isLoginError, loginError, loginReset]
 }

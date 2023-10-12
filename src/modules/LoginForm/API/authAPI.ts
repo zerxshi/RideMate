@@ -1,6 +1,6 @@
 import { BASE_API_URL } from "@/utils/consts"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { IToken } from "../types"
+import { IToken } from "@/modules/LoginForm/types"
 
 export const authAPI = createApi({
     reducerPath: "auth",

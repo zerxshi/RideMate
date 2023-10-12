@@ -12,7 +12,9 @@
     "phrases": {
         "signIn": "SIGN IN",
         "registration": "REGISTRATION",
-        "forgotPassword": "FORGOT PASSWORD?"
+        "forgotPassword": "FORGOT PASSWORD?",
+        "registrationSuccess": "Registration completed successfully",
+        "goToHome": "Go to home page"
     },
     "errors": {
         "fillInFields": "Please fill in all fields",
