@@ -12,7 +12,7 @@
     "phrases": {
         "signIn": "ВОЙТИ",
         "registration": "РЕГИСТРАЦИЯ",
-        "forgotPassword": "ЗАБЫЛИ  ПАРОЛЬ?",
+        "forgotPassword": "ЗАБЫЛИ ПАРОЛЬ?",
         "registrationSuccess": "Регистрация прошла успешно",
         "goToHome": "Перейти на главную страницу"
     },
