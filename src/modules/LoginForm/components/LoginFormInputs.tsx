@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
-import LoginInputBlock from "./LoginInputBlock"
-import RegisterInputBlock from "./RegisterInputBlock"
+import LoginInputBlock from "@/modules/LoginForm/components/LoginInputBlock"
+import RegisterInputBlock from "@/modules/LoginForm/components/RegisterInputBlock"
 
 interface FormInputProps {
     emailValue: string

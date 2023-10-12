@@ -21,7 +21,7 @@ const LoginFormButtons: FC<FormButtonProps> = ({
             {isLogin && (
                 <button
                     type="button"
-                    className={`self-end font-black text-my-dark active:scale-99 ${
+                    className={`self-end font-bold text-lg text-my-dark active:scale-99 ${
                         isLogin && "animate-slideUp"
                     }`}
                 >

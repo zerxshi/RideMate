@@ -22,7 +22,7 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
     return (
         <div>
             <strong
-                className={`ml-3 font-black text-my-dark ${
+                className={`ml-3 font-bold text-my-dark text-lg ${
                     validationError ? "animate-append" : "hidden"
                 }`}
             >
@@ -30,7 +30,7 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
             </strong>
 
             <strong
-                className={`ml-3 font-black text-my-dark ${
+                className={`ml-3 font-bold text-my-dark text-lg ${
                     isLoginError ? "animate-append" : "hidden"
                 }`}
             >
@@ -38,7 +38,7 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
             </strong>
 
             <strong
-                className={`ml-3 font-black text-my-dark ${
+                className={`ml-3 font-bold text-my-dark text-lg ${
                     isRegistrationError ? "animate-append" : "hidden"
                 }`}
             >

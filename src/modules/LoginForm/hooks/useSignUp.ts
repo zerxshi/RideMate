@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router-dom"
-import { authAPI } from "../API/authAPI"
+import { authAPI } from "@/modules/LoginForm/API/authAPI"
 import { useAppDispatch } from "@/hooks/useTypedStore"
 import { setUser } from "@/store/slice/userSlice"
 import { SerializedError } from "@reduxjs/toolkit"
@@ -12,6 +11,7 @@ type useSignUp = (
     passwordValue: string,
 ) => [
     () => Promise<void>,
+    boolean,
     boolean,
     FetchBaseQueryError | SerializedError | undefined,
     () => void,
@@ -26,13 +26,13 @@ export const useSignUp: useSignUp = (
     const [
         register,
         {
-            isError: IsRegistrationError,
+            isError: isRegistrationError,
+            isSuccess: IsRegistrationSuccess,
             error: registrationError,
             reset: registrationReset,
         },
     ] = authAPI.useRegisterMutation()
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
 
     const signUp = async (): Promise<void> => {
         const error: string = validateFn()
@@ -50,9 +50,14 @@ export const useSignUp: useSignUp = (
         if ("data" in result) {
             localStorage.setItem("accessToken", result.data.token)
             dispatch(setUser(result.data.token))
-            navigate("/")
         }
     }
 
-    return [signUp, IsRegistrationError, registrationError, registrationReset]
+    return [
+        signUp,
+        isRegistrationError,
+        IsRegistrationSuccess,
+        registrationError,
+        registrationReset,
+    ]
 }

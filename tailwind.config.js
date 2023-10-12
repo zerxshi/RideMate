@@ -45,6 +45,16 @@ export default {
                         transform: "translateY(0)",
                     },
                 },
+                slideDown400: {
+                    "0%": {
+                        opacity: "0",
+                        transform: "translateY(-400%)",
+                    },
+                    "100%": {
+                        opacity: "1",
+                        transform: "translateY(0)",
+                    },
+                },
                 slideDownImg: {
                     "0%": {
                         transform: "translateY(-30%)",
@@ -61,13 +71,26 @@ export default {
                         transform: "translateY(0)",
                     },
                 },
+                slideUp400: {
+                    "0%": {
+                        opacity: "0",
+                        transform: "translateY(400%)",
+                    },
+                    "100%": {
+                        opacity: "1",
+                        transform: "translateY(0)",
+                    },
+                },
             },
             animation: {
                 growOut: "growOut 300ms ease-in-out",
                 append: "append 500ms ease-in-out",
+                remove: "remove 500ms ease-in-out",
                 slideDown: "slideDown 300ms ease-in-out",
                 slideDownImg: "slideDownImg 300ms ease-in-out",
                 slideUp: "slideUp 300ms ease-in-out",
+                slideDown400: "slideDown400 500ms ease-in-out",
+                slideUp400: "slideUp400 500ms ease-in-out",
             },
         },
     },
