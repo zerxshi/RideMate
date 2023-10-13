@@ -112,11 +112,7 @@ const LoginForm: FC = () => {
 
     return (
         <section>
-            {isRegistrationSuccess && (
-                <RegistrationSuccess
-                    isRegistrationSuccess={isRegistrationSuccess}
-                />
-            )}
+            {isRegistrationSuccess && <RegistrationSuccess />}
 
             {isFormVisible && (
                 <form
