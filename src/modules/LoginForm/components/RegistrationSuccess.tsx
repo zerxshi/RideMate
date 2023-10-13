@@ -3,13 +3,7 @@ import tickImg from "@/assets/images/tickImg.png"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
-interface RegSuccessProps {
-    isRegistrationSuccess: boolean
-}
-
-const RegistrationSuccess: FC<RegSuccessProps> = ({
-    isRegistrationSuccess,
-}) => {
+const RegistrationSuccess: FC = () => {
     const { t } = useTranslation("loginPage")
 
     return (
