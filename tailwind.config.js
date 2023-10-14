@@ -13,6 +13,7 @@ export default {
             },
             width: {
                 1500: "1500px",
+                605: "605px",
             },
             transformOrigin: {
                 "top-center": "top center",

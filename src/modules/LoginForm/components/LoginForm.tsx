@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react"
-import LoginFormButtons from "@/modules/LoginForm/components/LoginFormButtons"
-import LoginFormInputs from "@/modules/LoginForm/components/LoginFormInputs"
+import FormButtons from "@/modules/LoginForm/components/FormButtons"
+import FormInputs from "@/modules/LoginForm/components/FormInputs"
 import userImg from "@/assets/images/userImg.png"
 import { useTranslation } from "react-i18next"
 import FormValidationBlock from "@/modules/LoginForm/components/FormValidationBlock"
@@ -111,15 +111,14 @@ const LoginForm: FC = () => {
     }
 
     return (
-        <section>
+        <section className="w-605">
             {isRegistrationSuccess && <RegistrationSuccess />}
-
             {isFormVisible && (
                 <form
                     onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
                         e.preventDefault()
                     }
-                    className={`flex flex-col gap-4 p-4 w-[605px] bg-my-gray rounded-xl ${
+                    className={`flex flex-col gap-4 p-4 bg-my-gray rounded-xl ${
                         isRegistrationSuccess && "animate-remove"
                     }`}
                     onAnimationEnd={handleAnimationEnd}
@@ -131,7 +130,7 @@ const LoginForm: FC = () => {
                             isLogin ? "animate-slideDownImg" : "animate-slideUp"
                         }`}
                     />
-                    <LoginFormInputs
+                    <FormInputs
                         emailValue={emailValue}
                         nameValue={nameValue}
                         passwordValue={passwordValue}
@@ -146,7 +145,7 @@ const LoginForm: FC = () => {
                         loginError={loginError as IError}
                         registrationError={registrationError as IError}
                     />
-                    <LoginFormButtons
+                    <FormButtons
                         isLogin={isLogin}
                         register={signUp}
                         login={signIn}

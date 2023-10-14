@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
 import LoginInputBlock from "@/modules/LoginForm/components/LoginInputBlock"
 import RegisterInputBlock from "@/modules/LoginForm/components/RegisterInputBlock"
@@ -12,7 +12,7 @@ interface FormInputProps {
     isLogin: boolean
 }
 
-const LoginFormInputs: FC<FormInputProps> = ({
+const FormInputs: FC<FormInputProps> = ({
     emailValue,
     nameValue,
     passwordValue,
@@ -79,4 +79,4 @@ const LoginFormInputs: FC<FormInputProps> = ({
     )
 }
 
-export default LoginFormInputs
+export default FormInputs

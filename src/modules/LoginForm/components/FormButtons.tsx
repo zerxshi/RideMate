@@ -1,5 +1,6 @@
 import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
 
 interface FormButtonProps {
     isLogin: boolean
@@ -8,7 +9,7 @@ interface FormButtonProps {
     handleToggleIsLogin: () => void
 }
 
-const LoginFormButtons: FC<FormButtonProps> = ({
+const FormButtons: FC<FormButtonProps> = ({
     isLogin,
     handleToggleIsLogin,
     register,
@@ -19,14 +20,14 @@ const LoginFormButtons: FC<FormButtonProps> = ({
     return (
         <div className="flex flex-col items-center gap-5">
             {isLogin && (
-                <button
-                    type="button"
+                <Link
+                    to="/recovery"
                     className={`self-end font-bold text-lg text-my-dark active:scale-99 ${
                         isLogin && "animate-slideUp"
                     }`}
                 >
-                    {t("phrases.forgotPassword")}
-                </button>
+                    {t("buttons.forgotPassword")}
+                </Link>
             )}
 
             <button
@@ -72,4 +73,4 @@ const LoginFormButtons: FC<FormButtonProps> = ({
     )
 }
 
-export default LoginFormButtons
+export default FormButtons
