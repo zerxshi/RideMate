@@ -1,20 +1,29 @@
 {
     "buttons": {
         "login": "ВОЙТИ",
-        "register": "ЗАРЕГИСТРИРОВАТЬСЯ"
+        "register": "ЗАРЕГИСТРИРОВАТЬСЯ",
+        "forgotPassword": "ЗАБЫЛИ ПАРОЛЬ?",
+        "getCode": "Получить код",
+        "changePassword": "Поменять пароль",
+        "confirm": "Подтвердить"
+    },
+    "links": {
+        "goToHome": "Перейти на главную страницу"
     },
     "inputs": {
         "email": "Почта",
         "name": "Имя",
         "password": "Пароль",
-        "confirmPassword": "Подтвердите пароль"
+        "confirmPassword": "Подтвердите пароль",
+        "newPassword": "Новый пароль",
+        "code": "Код"
     },
     "phrases": {
         "signIn": "ВОЙТИ",
         "registration": "РЕГИСТРАЦИЯ",
-        "forgotPassword": "ЗАБЫЛИ ПАРОЛЬ?",
         "registrationSuccess": "Регистрация прошла успешно",
-        "goToHome": "Перейти на главную страницу"
+        "passwordRecovery": "Восстановление пароля",
+        "passwordChangeSuccess": "Пароль был успешно изменен"
     },
     "errors": {
         "fillInFields": "Пожалуйста, заполните все поля",
