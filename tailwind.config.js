@@ -37,6 +37,16 @@ export default {
                         opacity: "1",
                     },
                 },
+                remove: {
+                    "0%": {
+                        opacity: "1",
+                        transform: "translateY(0)",
+                    },
+                    "100%": {
+                        opacity: "0",
+                        transform: "translateY(200%)",
+                    },
+                },
                 slideDown: {
                     "0%": {
                         transform: "translateY(-100%)",

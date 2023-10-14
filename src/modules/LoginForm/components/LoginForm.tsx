@@ -18,6 +18,13 @@ const LoginForm: FC = () => {
     const [confirmPasswordValue, setConfirmPasswordValue] = useState<string>("")
     const [isLogin, setIsLogin] = useState<boolean>(true)
     const [validationError, setValidationError] = useState<string>("")
+    const [isFormVisible, setIsFormVisible] = useState<boolean>(true)
+
+    const handleAnimationEnd = (e: React.AnimationEvent<HTMLFormElement>) => {
+        if (e.animationName === "remove") {
+            setIsFormVisible(false)
+        }
+    }
 
     const validateForm = () => {
         let error: string = ""
@@ -105,16 +112,17 @@ const LoginForm: FC = () => {
 
     return (
         <section>
-            {isRegistrationSuccess ? (
-                <RegistrationSuccess
-                    isRegistrationSuccess={isRegistrationSuccess}
-                />
-            ) : (
+            {isRegistrationSuccess && <RegistrationSuccess />}
+
+            {isFormVisible && (
                 <form
                     onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
                         e.preventDefault()
                     }
-                    className="flex flex-col gap-4 p-4 w-[605px] bg-my-gray rounded-xl"
+                    className={`flex flex-col gap-4 p-4 w-[605px] bg-my-gray rounded-xl ${
+                        isRegistrationSuccess && "animate-remove"
+                    }`}
+                    onAnimationEnd={handleAnimationEnd}
                 >
                     <img
                         src={userImg}
