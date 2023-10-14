@@ -7,7 +7,7 @@ const RegistrationSuccess: FC = () => {
     const { t } = useTranslation("loginPage")
 
     return (
-        <section className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-[605px]">
+        <section className="absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 ">
             <img src={tickImg} alt="tickImg" className="w-32 animate-append" />
             <b className="mb-10 text-3xl text-my-dark animate-slideDown400">
                 {t("phrases.registrationSuccess")}
@@ -16,7 +16,7 @@ const RegistrationSuccess: FC = () => {
                 to="/"
                 className="flex items-center justify-center w-full text-2xl font-bold text-center h-14 rounded-2xl bg-my-dark text-my-blue active:scale-99 animate-slideUp400"
             >
-                {t("phrases.goToHome")}
+                {t("links.goToHome")}
             </Link>
         </section>
     )

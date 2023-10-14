@@ -111,15 +111,14 @@ const LoginForm: FC = () => {
     }
 
     return (
-        <section>
+        <section className="w-605">
             {isRegistrationSuccess && <RegistrationSuccess />}
-
             {isFormVisible && (
                 <form
                     onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
                         e.preventDefault()
                     }
-                    className={`flex flex-col gap-4 p-4 w-[605px] bg-my-gray rounded-xl ${
+                    className={`flex flex-col gap-4 p-4 bg-my-gray rounded-xl ${
                         isRegistrationSuccess && "animate-remove"
                     }`}
                     onAnimationEnd={handleAnimationEnd}

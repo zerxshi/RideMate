@@ -25,7 +25,7 @@ const LoginFormButtons: FC<FormButtonProps> = ({
                         isLogin && "animate-slideUp"
                     }`}
                 >
-                    {t("phrases.forgotPassword")}
+                    {t("buttons.forgotPassword")}
                 </button>
             )}
 
