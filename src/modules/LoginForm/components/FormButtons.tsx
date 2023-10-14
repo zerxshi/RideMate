@@ -9,7 +9,7 @@ interface FormButtonProps {
     handleToggleIsLogin: () => void
 }
 
-const LoginFormButtons: FC<FormButtonProps> = ({
+const FormButtons: FC<FormButtonProps> = ({
     isLogin,
     handleToggleIsLogin,
     register,
@@ -73,4 +73,4 @@ const LoginFormButtons: FC<FormButtonProps> = ({
     )
 }
 
-export default LoginFormButtons
+export default FormButtons

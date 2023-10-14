@@ -12,7 +12,7 @@ interface FormInputProps {
     isLogin: boolean
 }
 
-const LoginFormInputs: FC<FormInputProps> = ({
+const FormInputs: FC<FormInputProps> = ({
     emailValue,
     nameValue,
     passwordValue,
@@ -79,4 +79,4 @@ const LoginFormInputs: FC<FormInputProps> = ({
     )
 }
 
-export default LoginFormInputs
+export default FormInputs
