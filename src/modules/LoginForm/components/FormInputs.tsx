@@ -1,7 +1,6 @@
 import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
-import LoginInputBlock from "@/modules/LoginForm/components/LoginInputBlock"
-import RegisterInputBlock from "@/modules/LoginForm/components/RegisterInputBlock"
+import InputBlock from "@/components/InputBlock"
 
 interface FormInputProps {
     emailValue: string
@@ -24,51 +23,52 @@ const FormInputs: FC<FormInputProps> = ({
 
     return (
         <div className="flex flex-col gap-4 ">
-            <b
-                className={`text-3xl text-my-dark ${
+            <h2
+                className={`text-3xl text-my-dark font-bold ${
                     isLogin ? "animate-slideDown" : "hidden"
                 }`}
             >
                 {t("phrases.signIn")}
-            </b>
+            </h2>
 
-            <b
-                className={`text-3xl text-my-dark ${
+            <h2
+                className={`text-3xl text-my-dark font-bold ${
                     isLogin ? "hidden" : "animate-append"
                 }`}
             >
                 {t("phrases.registration")}
-            </b>
+            </h2>
 
-            <RegisterInputBlock
-                isLogin={isLogin}
+            <InputBlock
+                isCondition={isLogin}
+                animations={["hidden", "animate-append"]}
                 inputValue={nameValue}
                 setInputValue={setInputValue}
                 inputId={"name"}
                 inputType={"text"}
                 labelTitle={"Name"}
             />
-
-            <LoginInputBlock
-                isLogin={isLogin}
+            <InputBlock
+                isCondition={isLogin}
+                animations={["animate-slideUp", "animate-slideDown"]}
                 inputValue={emailValue}
                 setInputValue={setInputValue}
                 inputId={"email"}
                 inputType={"email"}
                 labelTitle={"Email"}
             />
-
-            <LoginInputBlock
-                isLogin={isLogin}
+            <InputBlock
+                isCondition={isLogin}
+                animations={["animate-slideUp", "animate-slideDown"]}
                 inputValue={passwordValue}
                 setInputValue={setInputValue}
                 inputId={"password"}
                 inputType={"password"}
                 labelTitle={"Password"}
             />
-
-            <RegisterInputBlock
-                isLogin={isLogin}
+            <InputBlock
+                isCondition={isLogin}
+                animations={["hidden", "animate-append"]}
                 inputValue={confirmPasswordValue}
                 setInputValue={setInputValue}
                 inputId={"confirmPassword"}

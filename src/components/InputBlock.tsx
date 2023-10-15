@@ -1,8 +1,9 @@
 import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
 
-interface LoginInputProps {
-    isLogin: boolean
+interface InputBlockProps {
+    isCondition: boolean
+    animations: [string, string]
     inputValue: string
     setInputValue: (id: string, value: string) => void
     labelTitle: string
@@ -10,8 +11,9 @@ interface LoginInputProps {
     inputType: string
 }
 
-const LoginInputBlock: FC<LoginInputProps> = ({
-    isLogin,
+const InputBlock: FC<InputBlockProps> = ({
+    isCondition,
+    animations,
     inputValue,
     setInputValue,
     labelTitle,
@@ -23,7 +25,7 @@ const LoginInputBlock: FC<LoginInputProps> = ({
     return (
         <div
             className={`flex flex-col ${
-                isLogin ? "animate-slideUp" : "animate-slideDown"
+                isCondition ? animations[0] : animations[1]
             }`}
         >
             <label
@@ -50,4 +52,4 @@ const LoginInputBlock: FC<LoginInputProps> = ({
     )
 }
 
-export default LoginInputBlock
+export default InputBlock

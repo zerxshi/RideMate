@@ -18,7 +18,7 @@ const FormButtons: FC<FormButtonProps> = ({
     const { t } = useTranslation("loginPage")
 
     return (
-        <div className="flex flex-col items-center gap-5">
+        <div className="flex flex-col items-center gap-4">
             {isLogin && (
                 <Link
                     to="/recovery"
@@ -35,7 +35,7 @@ const FormButtons: FC<FormButtonProps> = ({
                 className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
                     isLogin ? "animate-slideUp" : "hidden"
                 }`}
-                type="button"
+                type="submit"
             >
                 {t("buttons.login")}
             </button>
@@ -45,7 +45,7 @@ const FormButtons: FC<FormButtonProps> = ({
                 className={`w-full h-14 text-2xl font-bold rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
                     isLogin ? "hidden" : "animate-slideDown"
                 }`}
-                type="button"
+                type="submit"
             >
                 {t("buttons.register")}
             </button>
