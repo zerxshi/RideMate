@@ -4,6 +4,7 @@ import FormButtons from "@/modules/PasswordRecovery/components/FormButtons"
 import FormInputs from "@/modules/PasswordRecovery/components/FormInputs"
 import { FormContext } from "@/modules/PasswordRecovery/hooks/useFormContext"
 import FormValidationBlock from "@/modules/PasswordRecovery/components/FormValidationBlock"
+import RecoverySuccess from "./RecoverySuccess"
 
 const PasswordRecoveryForm = () => {
     const { t } = useTranslation("loginPage")
@@ -18,22 +19,29 @@ const PasswordRecoveryForm = () => {
     const [isCodePage, setIsCodePage] = useState<boolean>(false)
     const [isNewPassPage, setIsNewPassPage] = useState<boolean>(false)
 
+    const [isFakeSuccess, setIsFakeSuccess] = useState<boolean>(false)
+    const [isFormVisible, setIsFormVisible] = useState<boolean>(true)
+
     const setInputValue = (inputId: string, value: string) => {
         switch (inputId) {
             case "email":
                 setEmailValue(value)
+                setValidationError("")
                 break
 
             case "code":
                 setCodeValue(value)
+                setValidationError("")
                 break
 
             case "newPassword":
                 setNewPassValue(value)
+                setValidationError("")
                 break
 
             case "confirmPassword":
                 setConfirmPassValue(value)
+                setValidationError("")
                 break
         }
     }
@@ -77,46 +85,65 @@ const PasswordRecoveryForm = () => {
     }
 
     const handleConfirmChange = () => {
-        validateForm()
+        const error = validateForm()
+        if (!error) {
+            setIsFakeSuccess(true)
+        }
+        return
+    }
+
+    const handleAnimationEnd = (e: React.AnimationEvent<HTMLFormElement>) => {
+        if (e.animationName === "remove") {
+            setIsFormVisible(false)
+        }
     }
 
     return (
         <section className="w-605">
-            <form
-                className="flex flex-col gap-4 "
-                onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
-                    e.preventDefault()
-                }
-            >
-                <h2 className={`text-3xl font-bold text-my-dark`}>
-                    {t("phrases.passwordRecovery")}
-                </h2>
-                <FormContext.Provider
-                    value={{
-                        emailValue,
-                        codeValue,
-                        newPassValue,
-                        confirmPassValue,
-                        setInputValue,
-                        isEmailPage,
-                        isCodePage,
-                        isNewPassPage,
-                        setIsEmailPage,
-                        setIsCodePage,
-                        setIsNewPassPage,
-                    }}
+            {isFakeSuccess && <RecoverySuccess />}
+
+            {isFormVisible && (
+                <form
+                    className={`flex flex-col gap-4 ${
+                        isFakeSuccess && "animate-remove"
+                    }`}
+                    onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                        e.preventDefault()
+                    }
+                    onAnimationEnd={handleAnimationEnd}
                 >
-                    <FormInputs />
+                    <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
+                        {t("phrases.passwordRecovery")}
+                    </h2>
+                    <FormContext.Provider
+                        value={{
+                            emailValue,
+                            codeValue,
+                            newPassValue,
+                            confirmPassValue,
+                            setInputValue,
+                            isEmailPage,
+                            isCodePage,
+                            isNewPassPage,
+                            setIsEmailPage,
+                            setIsCodePage,
+                            setIsNewPassPage,
+                        }}
+                    >
+                        <FormInputs />
 
-                    <FormValidationBlock validationError={validationError} />
+                        <FormValidationBlock
+                            validationError={validationError}
+                        />
 
-                    <FormButtons
-                        handleGetCode={handleGetCode}
-                        handleChangePassword={handleChangePassword}
-                        handleConfirmChange={handleConfirmChange}
-                    />
-                </FormContext.Provider>
-            </form>
+                        <FormButtons
+                            handleGetCode={handleGetCode}
+                            handleChangePassword={handleChangePassword}
+                            handleConfirmChange={handleConfirmChange}
+                        />
+                    </FormContext.Provider>
+                </form>
+            )}
         </section>
     )
 }

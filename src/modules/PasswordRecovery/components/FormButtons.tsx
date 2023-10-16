@@ -18,10 +18,10 @@ const FormButtons: FC<FormButtonsProps> = ({
     const formData = useFormContext()
 
     return (
-        <div className="flex flex-col mt-3">
+        <div className="flex flex-col">
             <button
                 className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
-                    formData.isEmailPage ? "animate-append" : " hidden"
+                    formData.isEmailPage ? "animate-slideUp" : " hidden"
                 }`}
                 type="submit"
                 onClick={handleGetCode}
@@ -41,7 +41,7 @@ const FormButtons: FC<FormButtonsProps> = ({
 
             <button
                 className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
-                    formData.isNewPassPage ? "animate-append" : " hidden"
+                    formData.isNewPassPage ? "animate-slideDown" : " hidden"
                 }`}
                 type="submit"
                 onClick={handleConfirmChange}

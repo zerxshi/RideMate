@@ -36,7 +36,7 @@ const InputBlock: FC<InputBlockProps> = ({
                 }`}
                 htmlFor={inputId}
             >
-                {labelTitle}
+                {t(`inputs.${inputId}`)}
             </label>
             <input
                 className="p-2 text-2xl font-bold bg-transparent border-4 h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"

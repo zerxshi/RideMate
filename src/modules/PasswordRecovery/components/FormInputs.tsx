@@ -14,7 +14,7 @@ const FormInputs: FC = ({}) => {
                 inputValue={formData.emailValue}
                 setInputValue={formData.setInputValue}
                 isCondition={formData.isEmailPage}
-                animations={["append", "hidden"]}
+                animations={["animate-append", "hidden"]}
             />
 
             <InputBlock
@@ -24,7 +24,7 @@ const FormInputs: FC = ({}) => {
                 inputValue={formData.codeValue}
                 setInputValue={formData.setInputValue}
                 isCondition={formData.isCodePage}
-                animations={["append", "hidden"]}
+                animations={["animate-append", "hidden"]}
             />
 
             <InputBlock
@@ -34,7 +34,7 @@ const FormInputs: FC = ({}) => {
                 inputValue={formData.newPassValue}
                 setInputValue={formData.setInputValue}
                 isCondition={formData.isNewPassPage}
-                animations={["append", "hidden"]}
+                animations={["animate-append", "hidden"]}
             />
 
             <InputBlock
@@ -44,7 +44,7 @@ const FormInputs: FC = ({}) => {
                 inputValue={formData.confirmPassValue}
                 setInputValue={formData.setInputValue}
                 isCondition={formData.isNewPassPage}
-                animations={["append", "hidden"]}
+                animations={["animate-append", "hidden"]}
             />
         </div>
     )

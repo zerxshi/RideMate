@@ -8,7 +8,8 @@
         "confirm": "Confirm"
     },
     "links": {
-        "goToHome": "Go to home page"
+        "goToHome": "Go to home page",
+        "goToLogin": "Go to login page"
     },
     "inputs": {
         "email": "Email",
