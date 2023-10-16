@@ -7,7 +7,7 @@ import FormValidationBlock from "@/modules/LoginForm/components/FormValidationBl
 import { IError } from "@/modules/LoginForm/types"
 import { useSignUp } from "@/modules/LoginForm/hooks/useSignUp"
 import { useSignIn } from "@/modules/LoginForm/hooks/useSignIn"
-import RegistrationSuccess from "@/modules/LoginForm/components/RegistrationSuccess"
+import SuccessFeature from "@/components/SuccessFeature"
 
 const LoginForm: FC = () => {
     const { t } = useTranslation("loginPage")
@@ -112,7 +112,13 @@ const LoginForm: FC = () => {
 
     return (
         <section className="w-605">
-            {isRegistrationSuccess && <RegistrationSuccess />}
+            {isRegistrationSuccess && (
+                <SuccessFeature
+                    headerTitle="registrationSuccess"
+                    linkDestination="/"
+                    linkTitle="goToHome"
+                />
+            )}
             {isFormVisible && (
                 <form
                     className={`flex flex-col gap-4  ${
