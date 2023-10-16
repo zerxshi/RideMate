@@ -4,7 +4,7 @@ import FormButtons from "@/modules/PasswordRecovery/components/FormButtons"
 import FormInputs from "@/modules/PasswordRecovery/components/FormInputs"
 import { FormContext } from "@/modules/PasswordRecovery/hooks/useFormContext"
 import FormValidationBlock from "@/modules/PasswordRecovery/components/FormValidationBlock"
-import RecoverySuccess from "./RecoverySuccess"
+import SuccessFeature from "@/components/SuccessFeature"
 
 const PasswordRecoveryForm = () => {
     const { t } = useTranslation("loginPage")
@@ -100,7 +100,13 @@ const PasswordRecoveryForm = () => {
 
     return (
         <section className="w-605">
-            {isFakeSuccess && <RecoverySuccess />}
+            {isFakeSuccess && (
+                <SuccessFeature
+                    headerTitle="passwordChangeSuccess"
+                    linkDestination="/login"
+                    linkTitle="goToLogin"
+                />
+            )}
 
             {isFormVisible && (
                 <form
