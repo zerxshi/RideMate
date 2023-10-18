@@ -1,7 +1,9 @@
 {
-    "buttons": {
+    "links": {
         "username": "Имя пользователя",
-        "logout": "Выйти",
-        "loginOrRegister": "Войти/Зарегистрироваться"
+        "signIn": "ВОЙТИ"
+    },
+    "buttons": {
+        "logout": "Выйти"
     }
 }
