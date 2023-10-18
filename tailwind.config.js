@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            fontFamily: {
+                russo: ["Russo One", "sans-serif"],
+            },
             colors: {
                 "my-dark": "#303030",
                 "my-blue": "#aaf5ff",
@@ -36,6 +40,14 @@ export default {
                     },
                     "100%": {
                         opacity: "1",
+                    },
+                },
+                hide: {
+                    "0%": {
+                        opacity: "1",
+                    },
+                    "100%": {
+                        opacity: "0",
                     },
                 },
                 remove: {
@@ -96,6 +108,7 @@ export default {
             animation: {
                 growOut: "growOut 300ms ease-in-out",
                 append: "append 500ms ease-in-out",
+                hide: "hide 500ms ease-in-out",
                 remove: "remove 500ms ease-in-out",
                 slideDown: "slideDown 300ms ease-in-out",
                 slideDownImg: "slideDownImg 300ms ease-in-out",
