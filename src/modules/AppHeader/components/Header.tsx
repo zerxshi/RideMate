@@ -19,23 +19,29 @@ const Header: FC = () => {
     }
 
     return (
-        <header className="sticky top-0 z-10 flex justify-center bg-my-gray2">
+        <header className="sticky top-0 z-10 flex justify-center h-20 bg-my-dark">
             <nav
                 aria-label="primary-navigation"
-                className="flex items-center justify-between w-1500"
+                className="flex items-center justify-between w-[1150px]"
             >
-                <Link to="/">
-                    <img src={logo} alt="rideMate logo" className="p-3 w-36" />
-                </Link>
+                <div className="flex items-center">
+                    <Link to="/">
+                        <img
+                            src={logo}
+                            alt="rideMate logo"
+                            className="p-3 w-28"
+                        />
+                    </Link>
 
-                <CarsDropdownMenu />
+                    <CarsDropdownMenu />
+                </div>
 
                 {isAuth ? (
                     <UserDropdownMenu userName={name!} logout={userLogout} />
                 ) : (
                     <Link to="/login">
-                        <b className="text-2xl text-my-white">
-                            {t("buttons.loginOrRegister")}
+                        <b className="text-xl font-normal font-russo text-my-blue">
+                            {t("links.signIn")}
                         </b>
                     </Link>
                 )}

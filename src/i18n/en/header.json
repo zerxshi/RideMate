@@ -1,7 +1,9 @@
 {
-    "buttons": {
+    "links": {
         "username": "Username",
-        "logout": "Logout",
-        "loginOrRegister": "Login/Register"
+        "signIn": "SIGN IN"
+    },
+    "buttons": {
+        "logout": "Logout"
     }
 }
