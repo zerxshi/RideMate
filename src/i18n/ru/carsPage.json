@@ -1,0 +1,8 @@
+{
+    "classes": {
+        "allCars": "Все авто",
+        "sClass": "S класс",
+        "bClass": "B класс",
+        "cClass": "C класс"
+    }
+}
