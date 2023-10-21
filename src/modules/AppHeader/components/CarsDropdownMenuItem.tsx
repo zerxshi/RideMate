@@ -9,8 +9,10 @@ interface MenuItemProps {
 const CarsDropdownMenuItem: FC<MenuItemProps> = ({ title }) => {
     return (
         <li>
-            <Link to="/cars" className="flex justify-center">
-                <b className="text-2xl text-my-white">{title}</b>
+            <Link to="/cars" className="flex justify-center active:scale-99">
+                <b className="text-xl font-normal text-white font-russo hover:text-my-blue">
+                    {title}
+                </b>
             </Link>
         </li>
     )
