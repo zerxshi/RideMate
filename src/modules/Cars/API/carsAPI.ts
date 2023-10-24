@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {IResponseCar} from "@/modules/Cars/types";
+import {queryParamsCreate} from "@/modules/Cars/helpers/queryParamsCreate";
 
 export const carsAPI = createApi({
     reducerPath: "carsAPI",
@@ -9,11 +10,12 @@ export const carsAPI = createApi({
     }),
     tagTypes: ["Cars"],
     endpoints: (build) => ({
-        getAllCars: build.query<void, IResponseCar>({
-            query: () => ({
-                url: "/",
-                method: "GET"
-            }),
+        getAllCars: build.query<IResponseCar, string>({
+            query: (params) => {
+                const queryParams = queryParamsCreate(params)
+
+                return `/cars${params ? `?${new URLSearchParams(queryParams).toString()}` : ""}`
+            },
             providesTags: ["Cars"]
         })
     })
