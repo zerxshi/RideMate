@@ -16,5 +16,25 @@ export interface ICar {
 
 export interface IResponseCar {
     count: number
-    row: ICar[]
+    rows: ICar[]
+}
+
+export interface IBrand {
+    id: number
+    name: string
+}
+
+export interface IResponseBrand {
+    count: number
+    rows: IBrand[]
+}
+
+export interface IClass {
+    id: number
+    name: string
+}
+
+export interface IResponseClass {
+    count: number
+    rows: IClass[]
 }
