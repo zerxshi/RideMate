@@ -1,8 +1,18 @@
 {
     "classes": {
-        "allCars": "All cars",
-        "sClass": "S class",
-        "bClass": "B class",
-        "cClass": "C class"
+        "allCars": "ALL CARS",
+        "sClass": "S CLASS",
+        "bClass": "B CLASS",
+        "fClass": "F CLASS",
+        "crossovers": "CROSSOVERS"
+    },
+    "characteristics": {
+        "mileage": "Mileage",
+        "price": "Price",
+        "brand": "Brand",
+        "class": "Class"
+    },
+    "filter": {
+        "sort": "Sorting"
     }
 }
