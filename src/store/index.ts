@@ -5,6 +5,7 @@ import { changeDataAPI } from "@/modules/UserProfile/API/ChangeDataAPI"
 import { carsAPI } from "@/modules/Cars";
 import { brandAPI } from "@/modules/Cars";
 import { classAPI } from "@/modules/Cars";
+import {autoLoginAPI} from "@/API/autoLoginAPI";
 
 const rootReducer = combineReducers({
     userReducer: userSlice,
@@ -12,8 +13,8 @@ const rootReducer = combineReducers({
     [changeDataAPI.reducerPath]: changeDataAPI.reducer,
     [carsAPI.reducerPath]: carsAPI.reducer,
     [brandAPI.reducerPath]: brandAPI.reducer,
-    [classAPI.reducerPath]: classAPI.reducer
-
+    [classAPI.reducerPath]: classAPI.reducer,
+    [autoLoginAPI.reducerPath]: autoLoginAPI.reducer
 })
 
 export const store = configureStore({
@@ -24,7 +25,8 @@ export const store = configureStore({
             changeDataAPI.middleware,
             carsAPI.middleware,
             brandAPI.middleware,
-            classAPI.middleware
+            classAPI.middleware,
+            autoLoginAPI.middleware
         ),
 })
 
