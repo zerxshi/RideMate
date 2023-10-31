@@ -1,0 +1,18 @@
+{
+    "classes": {
+        "allCars": "ALL CARS",
+        "sSegment": "S SEGMENT",
+        "bSegment": "B SEGMENT",
+        "fSegment": "F SEGMENT",
+        "crossovers": "CROSSOVERS"
+    },
+    "characteristics": {
+        "mileage": "Mileage",
+        "price": "Price",
+        "brand": "Brand",
+        "class": "Class"
+    },
+    "filter": {
+        "sortBy": "Sort by"
+    }
+}

@@ -6,6 +6,8 @@ import enMainPage from "@/i18n/en/mainPage.json"
 import ruMainPage from "@/i18n/ru/mainPage.json"
 import enLoginPage from "@/i18n/en/loginPage.json"
 import ruLoginPage from "@/i18n/ru/loginPage.json"
+import enCarsPage from "@/i18n/en/carsPage.json"
+import ruCarsPage from "@/i18n/ru/carsPage.json"
 
 const resources = {
     en: {
@@ -14,12 +16,14 @@ const resources = {
         header: enHeader,
         mainPage: enMainPage,
         loginPage: enLoginPage,
+        carsPage: enCarsPage
     },
     ru: {
         common: ruCommon,
         header: ruHeader,
         mainPage: ruMainPage,
         loginPage: ruLoginPage,
+        carsPage: ruCarsPage
     },
 }
 
