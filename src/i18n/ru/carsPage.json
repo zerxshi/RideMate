@@ -1,0 +1,18 @@
+{
+    "classes": {
+        "allCars": "ВСЕ АВТО",
+        "sSegment": "S СЕГМЕНТ",
+        "bSegment": "B СЕГМЕНТ",
+        "fSegment": "F СЕГМЕНТ",
+        "crossovers": "КРОССОВЕРЫ"
+    },
+    "characteristics": {
+        "mileage": "Пробег",
+        "price": "Цена",
+        "brand": "Бренд",
+        "class": "Класс"
+    },
+    "filter": {
+        "sortBy": "Сортировка по"
+    }
+}
