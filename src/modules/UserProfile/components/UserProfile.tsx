@@ -1,5 +1,6 @@
 import { useAppSelector } from "@/hooks/useTypedStore"
 import React, { useState } from "react"
+import { changeDataAPI } from "../API/ChangeDataAPI"
 import PersonalData from "./PersonalData"
 import RentalHistory from "./RentalHistory"
 
@@ -7,6 +8,10 @@ const UserProfile = () => {
     const { email, name } = useAppSelector((state) => state.userReducer)
     const [isPersonalData, setIsPersonalData] = useState<boolean>(true)
     const [isRentalHistory, setIsRentalHistory] = useState<boolean>(false)
+    const [emailChangeRequest, { isSuccess: isEmailSuccess }] =
+        changeDataAPI.useChangeEmailRequestMutation()
+    const [passwordChangeRequest, { isSuccess: isPasswordSuccess }] =
+        changeDataAPI.useChangePasswordRequestMutation()
 
     const handlePersonalData = () => {
         setIsPersonalData(true)
@@ -16,6 +21,14 @@ const UserProfile = () => {
     const handleRentalHistory = () => {
         setIsRentalHistory(true)
         setIsPersonalData(false)
+    }
+
+    const handleEmailRequest = () => {
+        emailChangeRequest()
+    }
+
+    const handlePasswordRequest = () => {
+        passwordChangeRequest()
     }
 
     return (
@@ -34,7 +47,16 @@ const UserProfile = () => {
                     Rental history
                 </button>
             </div>
-            {isPersonalData && <PersonalData name={name} email={email} />}
+            {isPersonalData && (
+                <PersonalData
+                    name={name}
+                    email={email}
+                    emailChangeRequest={handleEmailRequest}
+                    passwordChangeRequest={handlePasswordRequest}
+                    isEmailSuccess={isEmailSuccess}
+                    isPasswordSuccess={isPasswordSuccess}
+                />
+            )}
             {isRentalHistory && <RentalHistory />}
         </section>
     )
