@@ -12,7 +12,7 @@ const CarFilter: FC<Props> = ({searchParams, setSearchParams}) => {
 
     return (
         <section className={"shadow-2xl p-5"}>
-            {t("filter.sort")}
+            {t("filter.sortBy")}
             <ul>
                 <li>
 
