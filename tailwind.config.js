@@ -17,6 +17,7 @@ export default {
             },
             width: {
                 1500: "1500px",
+                1150: "1150px",
                 605: "605px",
             },
             transformOrigin: {

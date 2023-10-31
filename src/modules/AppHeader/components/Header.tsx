@@ -27,7 +27,7 @@ const Header: FC = () => {
             <header className="sticky top-0 z-10 flex justify-center h-20 bg-my-dark">
                 <nav
                     aria-label="primary-navigation"
-                    className="flex items-center justify-between w-[1150px]"
+                    className="flex items-center justify-between w-1150"
                 >
                     <div className="flex items-center">
                         <Link to="/">
