@@ -27,13 +27,13 @@ export const queryParamsCreate = (stringParams: string) => {
 }
 
 const getClassId = (stringClass: string): number => {
-    if (stringClass === "sClass") {
+    if (stringClass === "sSegment") {
         return 1
     }
-    if (stringClass === "bClass") {
+    if (stringClass === "bSegment") {
         return 2
     }
-    if (stringClass === "fClass") {
+    if (stringClass === "fSegment") {
         return 3
     }
     if (stringClass === "crossovers") {
