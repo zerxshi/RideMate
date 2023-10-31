@@ -13,6 +13,6 @@
         "class": "Class"
     },
     "filter": {
-        "sort": "Sorting"
+        "sortBy": "Sort by"
     }
 }
