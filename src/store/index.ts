@@ -1,6 +1,7 @@
 import { authAPI } from "@/modules/LoginForm"
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import userSlice from "./slice/userSlice"
+import { changeDataAPI } from "@/modules/UserProfile/API/ChangeDataAPI"
 import { carsAPI } from "@/modules/Cars";
 import { brandAPI } from "@/modules/Cars";
 import { classAPI } from "@/modules/Cars";
@@ -8,9 +9,11 @@ import { classAPI } from "@/modules/Cars";
 const rootReducer = combineReducers({
     userReducer: userSlice,
     [authAPI.reducerPath]: authAPI.reducer,
+    [changeDataAPI.reducerPath]: changeDataAPI.reducer,
     [carsAPI.reducerPath]: carsAPI.reducer,
     [brandAPI.reducerPath]: brandAPI.reducer,
     [classAPI.reducerPath]: classAPI.reducer
+
 })
 
 export const store = configureStore({
@@ -18,6 +21,7 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(
             authAPI.middleware,
+            changeDataAPI.middleware,
             carsAPI.middleware,
             brandAPI.middleware,
             classAPI.middleware
