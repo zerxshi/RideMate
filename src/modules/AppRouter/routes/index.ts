@@ -6,6 +6,7 @@ import {
     PROFILE_ROUTE,
     TIMER_ROUTE,
     RECOVERY_ROUTE,
+    EMAIL_CHANGE_ROUTE,
 } from "../utils/consts"
 import MainPage from "@/pages/MainPage"
 import Cars from "@/pages/Cars"
@@ -14,6 +15,7 @@ import TimerPage from "@/pages/TimerPage"
 import Profile from "@/pages/Profile"
 import Login from "@/pages/Login"
 import PasswordRecovery from "@/pages/PasswordRecovery"
+import EmailChange from "@/pages/EmailChange"
 
 interface IPages {
     path: string
@@ -34,4 +36,5 @@ export const privatePages: IPages[] = [
     { path: CARS_ROUTE + "/:id", component: CarID },
     { path: TIMER_ROUTE, component: TimerPage },
     { path: PROFILE_ROUTE, component: Profile },
+    { path: EMAIL_CHANGE_ROUTE, component: EmailChange },
 ]
