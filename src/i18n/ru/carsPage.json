@@ -1,9 +1,9 @@
 {
     "classes": {
         "allCars": "ВСЕ АВТО",
-        "sClass": "S КЛАСС",
-        "bClass": "B КЛАСС",
-        "fClass": "F КЛАСС",
+        "sSegment": "S СЕГМЕНТ",
+        "bSegment": "B СЕГМЕНТ",
+        "fSegment": "F СЕГМЕНТ",
         "crossovers": "КРОССОВЕРЫ"
     },
     "characteristics": {

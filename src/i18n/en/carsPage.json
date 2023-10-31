@@ -1,9 +1,9 @@
 {
     "classes": {
         "allCars": "ALL CARS",
-        "sClass": "S CLASS",
-        "bClass": "B CLASS",
-        "fClass": "F CLASS",
+        "sSegment": "S SEGMENT",
+        "bSegment": "B SEGMENT",
+        "fSegment": "F SEGMENT",
         "crossovers": "CROSSOVERS"
     },
     "characteristics": {
