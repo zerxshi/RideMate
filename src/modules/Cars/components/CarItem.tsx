@@ -19,19 +19,19 @@ const CarItem: FC<Props> = ({car, brand, carClass}) => {
                 className={"w-[329px]"}
             />
            <section className={"w-[100%] grid grid-cols-3 p-5"}>
-               <section>
-                   <p className={"text-2xl"}>
+               <div>
+                   <b className={"text-2xl"}>
                        {car.model}
-                   </p>
+                   </b>
                    <p>{t("characteristics.brand")}: {brand?.name}</p>
-               </section>
-               <section>
+               </div>
+               <div>
                    {t("characteristics.class")}: {carClass?.name}
-               </section>
-               <section className={"flex flex-col justify-between text-end"}>
-                   <p>{t("characteristics.price")}: {car.price}</p>
+               </div>
+               <div className={"flex flex-col justify-between text-end"}>
+                   <b>{t("characteristics.price")}: {car.price}</b>
                    <p>{t("characteristics.mileage")}: {car.mileage}</p>
-               </section>
+               </div>
            </section>
         </section>
     );
