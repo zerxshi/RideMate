@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import { IError } from "@/modules/LoginForm/types"
+import { IError } from "@/types"
 import { useTranslation } from "react-i18next"
 
 interface ValidationBlockProps {

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import FormButtons from "@/modules/EmailChange/components/FormButtons"
 import { changeEmailAPI } from "@/modules/EmailChange/API/ChangeEmailAPI"
 import FormValidationBlock from "@/modules/EmailChange/components/FormValidation"
-import { IError } from "@/modules/EmailChange/types"
+import { IError } from "@/types"
 
 const EmailChangeForm: FC = () => {
     const { t } = useTranslation(["emailChangePage", "common"])
