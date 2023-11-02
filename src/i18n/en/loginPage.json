@@ -2,20 +2,14 @@
     "buttons": {
         "login": "LOGIN",
         "register": "REGISTER",
-        "forgotPassword": "FORGOT PASSWORD?",
-        "getCode": "Get code",
-        "changePassword": "Change password",
-        "confirm": "Confirm"
+        "forgotPassword": "FORGOT PASSWORD?"
     },
     "links": {
-        "goToHome": "Go to home page",
-        "goToLogin": "Go to login page"
+        "goToHome": "Go to home page"
     },
     "phrases": {
         "signIn": "SIGN IN",
         "registration": "REGISTRATION",
-        "registrationSuccess": "Registration completed successfully",
-        "passwordRecovery": "Password recovery",
-        "passwordChangeSuccess": "The password has been successfully changed"
+        "registrationSuccess": "Registration completed successfully"
     }
 }
