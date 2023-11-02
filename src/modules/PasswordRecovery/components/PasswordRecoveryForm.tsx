@@ -7,7 +7,7 @@ import FormValidationBlock from "@/modules/PasswordRecovery/components/FormValid
 import SuccessFeature from "@/components/SuccessFeature"
 
 const PasswordRecoveryForm = () => {
-    const { t } = useTranslation("loginPage")
+    const { t } = useTranslation(["loginPage", "common"])
 
     const [emailValue, setEmailValue] = useState<string>("")
     const [codeValue, setCodeValue] = useState<string>("")
@@ -50,16 +50,16 @@ const PasswordRecoveryForm = () => {
         let error: string = ""
 
         if (isEmailPage && !emailValue) {
-            error = t("errors.fillInFields")
+            error = t("errors.fillInFields", { ns: "common" })
         }
         if (isCodePage && !codeValue) {
-            error = t("errors.fillInFields")
+            error = t("errors.fillInFields", { ns: "common" })
         }
         if (isNewPassPage && (!newPassValue || !confirmPassValue)) {
-            error = t("errors.fillInFields")
+            error = t("errors.fillInFields", { ns: "common" })
         }
         if (isNewPassPage && newPassValue !== confirmPassValue) {
-            error = t("errors.passwordsMatch")
+            error = t("errors.passwordsMatch", { ns: "common" })
         }
 
         setValidationError(error)
@@ -119,7 +119,7 @@ const PasswordRecoveryForm = () => {
                     onAnimationEnd={handleAnimationEnd}
                 >
                     <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
-                        {t("phrases.passwordRecovery")}
+                        {t("phrases.passwordRecovery", { ns: "loginPage" })}
                     </h2>
                     <FormContext.Provider
                         value={{

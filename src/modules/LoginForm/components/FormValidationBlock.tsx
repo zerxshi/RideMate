@@ -17,7 +17,7 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
     loginError,
     registrationError,
 }) => {
-    const { t } = useTranslation("loginPage")
+    const { t } = useTranslation("common")
 
     return (
         <div>
