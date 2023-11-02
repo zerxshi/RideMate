@@ -28,6 +28,7 @@ export const publicPages: IPages[] = [
     { path: CARS_ROUTE + "/:id", component: CarID },
     { path: LOGIN_ROUTE, component: Login },
     { path: RECOVERY_ROUTE, component: PasswordRecovery },
+    { path: EMAIL_CHANGE_ROUTE, component: EmailChange },
 ]
 
 export const privatePages: IPages[] = [
@@ -36,5 +37,4 @@ export const privatePages: IPages[] = [
     { path: CARS_ROUTE + "/:id", component: CarID },
     { path: TIMER_ROUTE, component: TimerPage },
     { path: PROFILE_ROUTE, component: Profile },
-    { path: EMAIL_CHANGE_ROUTE, component: EmailChange },
 ]
