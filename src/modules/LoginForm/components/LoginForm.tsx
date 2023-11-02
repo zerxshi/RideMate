@@ -114,6 +114,7 @@ const LoginForm: FC = () => {
         <section className="w-605">
             {isRegistrationSuccess && (
                 <SuccessFeature
+                    translationFile="loginPage"
                     headerTitle="registrationSuccess"
                     linkDestination="/"
                     linkTitle="goToHome"
