@@ -2,20 +2,14 @@
     "buttons": {
         "login": "ВОЙТИ",
         "register": "ЗАРЕГИСТРИРОВАТЬСЯ",
-        "forgotPassword": "ЗАБЫЛИ ПАРОЛЬ?",
-        "getCode": "Получить код",
-        "changePassword": "Поменять пароль",
-        "confirm": "Подтвердить"
+        "forgotPassword": "ЗАБЫЛИ ПАРОЛЬ?"
     },
     "links": {
-        "goToHome": "Перейти на главную страницу",
-        "goToLogin": "Перейти на страницу авторизации"
+        "goToHome": "Перейти на главную страницу"
     },
     "phrases": {
         "signIn": "ВОЙТИ",
         "registration": "РЕГИСТРАЦИЯ",
-        "registrationSuccess": "Регистрация прошла успешно",
-        "passwordRecovery": "Восстановление пароля",
-        "passwordChangeSuccess": "Пароль был успешно изменен"
+        "registrationSuccess": "Регистрация прошла успешно"
     }
 }

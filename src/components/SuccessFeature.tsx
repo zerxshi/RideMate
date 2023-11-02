@@ -4,17 +4,19 @@ import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
 interface SuccessFeatureProps {
+    translationFile: string
     headerTitle: string
     linkDestination: string
     linkTitle: string
 }
 
 const SuccessFeature: FC<SuccessFeatureProps> = ({
+    translationFile,
     headerTitle,
     linkDestination,
     linkTitle,
 }) => {
-    const { t } = useTranslation("loginPage")
+    const { t } = useTranslation(translationFile)
 
     return (
         <section className="absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 w-605 left-1/2 top-1/2 ">

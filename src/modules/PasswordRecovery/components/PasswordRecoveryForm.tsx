@@ -7,7 +7,7 @@ import FormValidationBlock from "@/modules/PasswordRecovery/components/FormValid
 import SuccessFeature from "@/components/SuccessFeature"
 
 const PasswordRecoveryForm = () => {
-    const { t } = useTranslation(["loginPage", "common"])
+    const { t } = useTranslation(["passwordRecoveryPage", "common"])
 
     const [emailValue, setEmailValue] = useState<string>("")
     const [codeValue, setCodeValue] = useState<string>("")
@@ -102,6 +102,7 @@ const PasswordRecoveryForm = () => {
         <section className="w-605">
             {isFakeSuccess && (
                 <SuccessFeature
+                    translationFile="passwordRecoveryPage"
                     headerTitle="passwordChangeSuccess"
                     linkDestination="/login"
                     linkTitle="goToLogin"
@@ -119,7 +120,9 @@ const PasswordRecoveryForm = () => {
                     onAnimationEnd={handleAnimationEnd}
                 >
                     <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
-                        {t("phrases.passwordRecovery", { ns: "loginPage" })}
+                        {t("phrases.passwordRecovery", {
+                            ns: "passwordRecoveryPage",
+                        })}
                     </h2>
                     <FormContext.Provider
                         value={{
