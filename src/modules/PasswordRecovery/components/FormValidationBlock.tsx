@@ -1,6 +1,4 @@
 import React, { FC } from "react"
-import { IError } from "@/modules/LoginForm/types"
-import { useTranslation } from "react-i18next"
 
 interface ValidationBlockProps {
     validationError: string
