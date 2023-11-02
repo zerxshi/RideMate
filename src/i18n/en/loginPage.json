@@ -11,14 +11,6 @@
         "goToHome": "Go to home page",
         "goToLogin": "Go to login page"
     },
-    "inputs": {
-        "email": "Email",
-        "name": "Name",
-        "password": "Password",
-        "confirmPassword": "Confirm password",
-        "newPassword": "New password",
-        "code": "Code"
-    },
     "phrases": {
         "signIn": "SIGN IN",
         "registration": "REGISTRATION",
