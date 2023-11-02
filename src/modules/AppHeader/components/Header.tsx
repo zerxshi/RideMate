@@ -20,7 +20,11 @@ const Header: FC = () => {
         dispatch(deleteUser())
     }
 
-    if (location.pathname.match("/login")) {
+    if (
+        location.pathname.match("/login") ||
+        location.pathname.match("/change/email") ||
+        location.pathname.match("/recovery")
+    ) {
         return <div></div>
     } else {
         return (
