@@ -4,13 +4,13 @@ import FormInputs from "@/modules/LoginForm/components/FormInputs"
 import userImg from "@/assets/images/userImg.png"
 import { useTranslation } from "react-i18next"
 import FormValidationBlock from "@/modules/LoginForm/components/FormValidationBlock"
-import { IError } from "@/modules/LoginForm/types"
+import { IError } from "@/types"
 import { useSignUp } from "@/modules/LoginForm/hooks/useSignUp"
 import { useSignIn } from "@/modules/LoginForm/hooks/useSignIn"
 import SuccessFeature from "@/components/SuccessFeature"
 
 const LoginForm: FC = () => {
-    const { t } = useTranslation("loginPage")
+    const { t } = useTranslation("common")
 
     const [emailValue, setEmailValue] = useState<string>("")
     const [nameValue, setNameValue] = useState<string>("")
