@@ -11,14 +11,6 @@
         "goToHome": "Перейти на главную страницу",
         "goToLogin": "Перейти на страницу авторизации"
     },
-    "inputs": {
-        "email": "Почта",
-        "name": "Имя",
-        "password": "Пароль",
-        "confirmPassword": "Подтвердите пароль",
-        "newPassword": "Новый пароль",
-        "code": "Код"
-    },
     "phrases": {
         "signIn": "ВОЙТИ",
         "registration": "РЕГИСТРАЦИЯ",

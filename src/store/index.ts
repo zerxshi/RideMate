@@ -2,10 +2,11 @@ import { authAPI } from "@/modules/LoginForm"
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import userSlice from "./slice/userSlice"
 import { changeDataAPI } from "@/modules/UserProfile/API/ChangeDataAPI"
-import { carsAPI } from "@/modules/Cars";
-import { brandAPI } from "@/modules/Cars";
-import { classAPI } from "@/modules/Cars";
-import {autoLoginAPI} from "@/API/autoLoginAPI";
+import { carsAPI } from "@/modules/Cars"
+import { brandAPI } from "@/modules/Cars"
+import { classAPI } from "@/modules/Cars"
+import { autoLoginAPI } from "@/API/autoLoginAPI"
+import { changeEmailAPI } from "@/modules/EmailChange"
 
 const rootReducer = combineReducers({
     userReducer: userSlice,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     [carsAPI.reducerPath]: carsAPI.reducer,
     [brandAPI.reducerPath]: brandAPI.reducer,
     [classAPI.reducerPath]: classAPI.reducer,
-    [autoLoginAPI.reducerPath]: autoLoginAPI.reducer
+    [autoLoginAPI.reducerPath]: autoLoginAPI.reducer,
+    [changeEmailAPI.reducerPath]: changeEmailAPI.reducer,
 })
 
 export const store = configureStore({
@@ -26,7 +28,8 @@ export const store = configureStore({
             carsAPI.middleware,
             brandAPI.middleware,
             classAPI.middleware,
-            autoLoginAPI.middleware
+            autoLoginAPI.middleware,
+            changeEmailAPI.middleware,
         ),
 })
 

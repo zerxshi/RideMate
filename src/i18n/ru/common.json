@@ -2,5 +2,18 @@
     "button": {
         "save": "Сохранить",
         "edit": "Редактировать"
+    },
+    "inputs": {
+        "email": "Почта",
+        "name": "Имя",
+        "password": "Пароль",
+        "confirmPassword": "Подтвердите пароль",
+        "newPassword": "Новый пароль",
+        "code": "Код",
+        "newEmail": "Новая почта"
+    },
+    "errors": {
+        "fillInFields": "Пожалуйста, заполните все поля",
+        "incorrectPassword": "Неверный пароль"
     }
 }

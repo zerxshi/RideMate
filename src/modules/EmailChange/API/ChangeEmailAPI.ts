@@ -1,8 +1,9 @@
 import { BASE_API_URL } from "@/utils/consts"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { IChangeDataResponse } from "@/modules/EmailChange/types"
 
-export const changeDataAPI = createApi({
-    reducerPath: "changeData",
+export const changeEmailAPI = createApi({
+    reducerPath: "changeEmail",
     baseQuery: fetchBaseQuery({
         baseUrl: BASE_API_URL + "/change",
         prepareHeaders: (headers) => {
@@ -12,16 +13,14 @@ export const changeDataAPI = createApi({
         },
     }),
     endpoints: (build) => ({
-        changeEmailRequest: build.mutation<string, void>({
-            query: () => ({
-                url: "/emailRequest",
-                method: "POST",
-            }),
-        }),
-        changePasswordRequest: build.mutation<string, void>({
-            query: () => ({
-                url: "/passwordRequest",
-                method: "POST",
+        changeEmail: build.mutation<
+            IChangeDataResponse,
+            { newEmail: string; changeToken: string }
+        >({
+            query: (body) => ({
+                url: "/email",
+                method: "PUT",
+                body,
             }),
         }),
     }),

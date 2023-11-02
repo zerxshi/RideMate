@@ -3,5 +3,18 @@
         "save": "Save",
         "edit": "Edit",
         "accept": "Accept"
+    },
+    "inputs": {
+        "email": "Email",
+        "name": "Name",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "newPassword": "New password",
+        "code": "Code",
+        "newEmail": "New email"
+    },
+    "errors": {
+        "fillInFields": "Please fill in all fields",
+        "incorrectPassword": "Incorrect password"
     }
 }
