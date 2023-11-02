@@ -1,0 +1,9 @@
+{
+    "phrases": {
+        "emailChange": "Смена почты"
+    },
+    "buttons": {
+        "checkPassword": "Check password",
+        "confirm": "Confirm"
+    }
+}

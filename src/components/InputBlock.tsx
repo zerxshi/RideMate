@@ -20,7 +20,7 @@ const InputBlock: FC<InputBlockProps> = ({
     inputId,
     inputType,
 }) => {
-    const { t } = useTranslation("loginPage")
+    const { t } = useTranslation("common")
 
     return (
         <div
