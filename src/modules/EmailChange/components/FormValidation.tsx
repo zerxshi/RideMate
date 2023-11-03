@@ -4,14 +4,18 @@ import { useTranslation } from "react-i18next"
 
 interface ValidationBlockProps {
     validationError: string
-    isError: boolean
+    isEmailError: boolean
+    isPasswordError: boolean
     emailChangeError: IError
+    passwordError: IError
 }
 
 const FormValidationBlock: FC<ValidationBlockProps> = ({
     validationError,
-    isError,
+    isEmailError,
+    isPasswordError,
     emailChangeError,
+    passwordError,
 }) => {
     const { t } = useTranslation("common")
 
@@ -27,7 +31,15 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
 
             <strong
                 className={`ml-3 font-bold text-my-dark text-lg ${
-                    isError ? "animate-append" : "hidden"
+                    isPasswordError ? "animate-append" : "hidden"
+                }`}
+            >
+                {passwordError && t(`errors.${passwordError.data.message}`)}
+            </strong>
+
+            <strong
+                className={`ml-3 font-bold text-my-dark text-lg ${
+                    isEmailError ? "animate-append" : "hidden"
                 }`}
             >
                 {emailChangeError &&

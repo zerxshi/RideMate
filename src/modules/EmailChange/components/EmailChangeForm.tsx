@@ -5,12 +5,29 @@ import FormButtons from "@/modules/EmailChange/components/FormButtons"
 import { changeEmailAPI } from "@/modules/EmailChange/API/ChangeEmailAPI"
 import FormValidationBlock from "@/modules/EmailChange/components/FormValidation"
 import { IError } from "@/types"
+import { passwordCheckAPI } from "@/API/passwordCheckAPI"
 
 const EmailChangeForm: FC = () => {
     const { t } = useTranslation(["emailChangePage", "common"])
 
-    const [changeEmail, { isError, isSuccess, error, reset }] =
-        changeEmailAPI.useChangeEmailMutation()
+    const [
+        changeEmail,
+        {
+            isError: isEmailError,
+            isSuccess: isEmailSuccess,
+            error: emailError,
+            reset: emailReset,
+        },
+    ] = changeEmailAPI.useChangeEmailMutation()
+
+    const [
+        checkPassword,
+        {
+            isError: isPasswordError,
+            error: passwordError,
+            reset: passwordReset,
+        },
+    ] = passwordCheckAPI.useCheckPasswordMutation()
 
     const [codeValue, setCodeValue] = useState<string>("")
     const [passwordValue, setPasswordValue] = useState<string>("")
@@ -31,10 +48,14 @@ const EmailChangeForm: FC = () => {
 
             case "password":
                 setPasswordValue(value)
+                setValidationError("")
+                passwordReset()
                 break
 
             case "newEmail":
                 setNewEmailValue(value)
+                setValidationError("")
+                emailReset()
                 break
         }
     }
@@ -65,11 +86,14 @@ const EmailChangeForm: FC = () => {
         }
     }
 
-    const handleCheckPassword = () => {
+    const handleCheckPassword = async () => {
         const error = validateForm()
         if (!error) {
-            setIsPasswordPage(false)
-            setIsNewEmailPage(true)
+            const result = await checkPassword({ password: passwordValue })
+            if ("data" in result) {
+                setIsPasswordPage(false)
+                setIsNewEmailPage(true)
+            }
         }
     }
 
@@ -85,7 +109,7 @@ const EmailChangeForm: FC = () => {
 
     return (
         <section className="w-605">
-            {isCodeTextVisible && (
+            {isCodePage && isCodeTextVisible && (
                 <b className="absolute text-2xl top-10 right-5 text-my-dark animate-append">
                     The code has been sent to your email!
                 </b>
@@ -110,8 +134,10 @@ const EmailChangeForm: FC = () => {
                 />
                 <FormValidationBlock
                     validationError={validationError}
-                    isError={isError}
-                    emailChangeError={error as IError}
+                    isEmailError={isEmailError}
+                    isPasswordError={isPasswordError}
+                    emailChangeError={emailError as IError}
+                    passwordError={passwordError as IError}
                 />
                 <FormButtons
                     handleCheckCode={handleCheckCode}
