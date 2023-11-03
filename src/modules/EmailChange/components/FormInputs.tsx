@@ -4,20 +4,34 @@ import InputBlock from "@/components/InputBlock"
 interface FormInputsProps {
     passwordValue: string
     newEmailValue: string
+    codeValue: string
     isPasswordPage: boolean
     isNewEmailPage: boolean
+    isCodePage: boolean
     setInputValue: (id: string, value: string) => void
 }
 
 const FormInputs: FC<FormInputsProps> = ({
     passwordValue,
     newEmailValue,
+    codeValue,
     isPasswordPage,
     isNewEmailPage,
+    isCodePage,
     setInputValue,
 }) => {
     return (
         <div>
+            <InputBlock
+                inputType="text"
+                inputId="code"
+                labelTitle="Code"
+                inputValue={codeValue}
+                setInputValue={setInputValue}
+                isCondition={isCodePage}
+                animations={["animate-append", "hidden"]}
+            />
+
             <InputBlock
                 inputType="password"
                 inputId="password"
