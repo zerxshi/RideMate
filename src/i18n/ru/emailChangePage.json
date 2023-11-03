@@ -3,7 +3,8 @@
         "emailChange": "Смена почты"
     },
     "buttons": {
-        "checkPassword": "Check password",
-        "confirm": "Confirm"
+        "checkCode": "Проверить код",
+        "checkPassword": "Проверить пароль",
+        "confirm": "Подтвердить"
     }
 }
