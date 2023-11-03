@@ -3,6 +3,7 @@
         "emailChange": "Email change"
     },
     "buttons": {
+        "checkCode": "Check code",
         "checkPassword": "Check password",
         "confirm": "Confirm"
     }

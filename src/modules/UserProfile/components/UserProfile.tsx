@@ -1,5 +1,6 @@
 import { useAppSelector } from "@/hooks/useTypedStore"
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { changeDataAPI } from "../API/ChangeDataAPI"
 import PersonalData from "./PersonalData"
 import RentalHistory from "./RentalHistory"
@@ -13,6 +14,8 @@ const UserProfile = () => {
     const [passwordChangeRequest, { isSuccess: isPasswordSuccess }] =
         changeDataAPI.useChangePasswordRequestMutation()
 
+    const navigate = useNavigate()
+
     const handlePersonalData = () => {
         setIsPersonalData(true)
         setIsRentalHistory(false)
@@ -24,6 +27,7 @@ const UserProfile = () => {
     }
 
     const handleEmailRequest = () => {
+        navigate("/change/email")
         emailChangeRequest()
     }
 

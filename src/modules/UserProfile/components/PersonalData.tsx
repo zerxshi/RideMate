@@ -56,11 +56,6 @@ const PersonalData: FC<PersonalDataProps> = ({
                     Change password
                 </button>
             </div>
-            {(isEmailSuccess || isPasswordSuccess) && (
-                <b className="mt-5 text-2xl text-my-blue">
-                    A letter to change your data has been sent to your email
-                </b>
-            )}
         </section>
     )
 }
