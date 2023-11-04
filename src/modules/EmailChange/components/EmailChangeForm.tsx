@@ -7,6 +7,9 @@ import FormValidationBlock from "@/modules/EmailChange/components/FormValidation
 import { IError } from "@/types"
 import { passwordCheckAPI } from "@/API/passwordCheckAPI"
 import { tokenCheckAPI } from "@/API/tokenCheckAPI"
+import SuccessFeature from "@/components/SuccessFeature"
+import { useAppDispatch } from "@/hooks/useTypedStore"
+import { deleteUser } from "@/store/slice/userSlice"
 
 const EmailChangeForm: FC = () => {
     const { t } = useTranslation(["emailChangePage", "common"])
@@ -45,6 +48,7 @@ const EmailChangeForm: FC = () => {
     const [isNewEmailPage, setIsNewEmailPage] = useState<boolean>(false)
 
     const [isCodeTextVisible, setIsCodeTextVisible] = useState<boolean>(true)
+    const [isFormVisible, setIsFormVisible] = useState<boolean>(true)
 
     const setInputValue = (inputId: string, value: string) => {
         switch (inputId) {
@@ -108,59 +112,82 @@ const EmailChangeForm: FC = () => {
         }
     }
 
-    const handleConfirmChange = () => {
+    const dispatch = useAppDispatch()
+
+    const handleConfirmChange = async () => {
         const error = validateForm()
         if (!error) {
-            changeEmail({
-                changeToken: "",
+            const result = await changeEmail({
                 newEmail: newEmailValue,
             })
+            if ("data" in result) {
+                dispatch(deleteUser())
+            }
+        }
+    }
+
+    const handleAnimationEnd = (e: React.AnimationEvent<HTMLFormElement>) => {
+        if (e.animationName === "remove") {
+            setIsFormVisible(false)
         }
     }
 
     return (
         <section className="w-605">
+            {isEmailSuccess && (
+                <SuccessFeature
+                    translationFile="emailChangePage"
+                    headerTitle="emailChangeSuccess"
+                    linkTitle="goToLogin"
+                    linkDestination="/login"
+                />
+            )}
             {isCodePage && isCodeTextVisible && (
                 <b className="absolute text-2xl top-10 right-5 text-my-dark animate-append">
                     The code has been sent to your email!
                 </b>
             )}
-            <form
-                className="flex flex-col gap-4"
-                onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
-                    e.preventDefault()
-                }
-            >
-                <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
-                    {t("phrases.emailChange", { ns: "emailChangePage" })}
-                </h2>
-                <FormInputs
-                    codeValue={codeValue}
-                    passwordValue={passwordValue}
-                    newEmailValue={newEmailValue}
-                    isCodePage={isCodePage}
-                    isPasswordPage={isPasswordPage}
-                    isNewEmailPage={isNewEmailPage}
-                    setInputValue={setInputValue}
-                />
-                <FormValidationBlock
-                    validationError={validationError}
-                    isEmailError={isEmailError}
-                    isPasswordError={isPasswordError}
-                    isTokenError={isTokenError}
-                    emailChangeError={emailError as IError}
-                    passwordError={passwordError as IError}
-                    tokenError={tokenError as IError}
-                />
-                <FormButtons
-                    handleCheckCode={handleCheckCode}
-                    handleCheckPassword={handleCheckPassword}
-                    handleConfirmChange={handleConfirmChange}
-                    isPasswordPage={isPasswordPage}
-                    isNewEmailPage={isNewEmailPage}
-                    isCodePage={isCodePage}
-                />
-            </form>
+            {isFormVisible && (
+                <form
+                    className={`flex flex-col gap-4 ${
+                        isEmailSuccess && "animate-remove"
+                    }`}
+                    onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                        e.preventDefault()
+                    }
+                    onAnimationEnd={handleAnimationEnd}
+                >
+                    <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
+                        {t("phrases.emailChange", { ns: "emailChangePage" })}
+                    </h2>
+                    <FormInputs
+                        codeValue={codeValue}
+                        passwordValue={passwordValue}
+                        newEmailValue={newEmailValue}
+                        isCodePage={isCodePage}
+                        isPasswordPage={isPasswordPage}
+                        isNewEmailPage={isNewEmailPage}
+                        setInputValue={setInputValue}
+                    />
+                    <FormValidationBlock
+                        validationError={validationError}
+                        isEmailError={isEmailError}
+                        isPasswordError={isPasswordError}
+                        isTokenError={isTokenError}
+                        emailChangeError={emailError as IError}
+                        passwordError={passwordError as IError}
+                        tokenError={tokenError as IError}
+                    />
+                    <FormButtons
+                        handleCheckCode={handleCheckCode}
+                        handleCheckPassword={handleCheckPassword}
+                        handleConfirmChange={handleConfirmChange}
+                        isPasswordPage={isPasswordPage}
+                        isNewEmailPage={isNewEmailPage}
+                        isCodePage={isCodePage}
+                    />
+                </form>
+            )}
         </section>
     )
 }
