@@ -9,3 +9,7 @@ export interface IError {
 export interface IPasswordCheckRes {
     message: string
 }
+
+export interface ITokenCheckRes {
+    message: string
+}
