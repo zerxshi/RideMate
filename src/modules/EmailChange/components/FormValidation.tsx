@@ -6,16 +6,20 @@ interface ValidationBlockProps {
     validationError: string
     isEmailError: boolean
     isPasswordError: boolean
+    isTokenError: boolean
     emailChangeError: IError
     passwordError: IError
+    tokenError: IError
 }
 
 const FormValidationBlock: FC<ValidationBlockProps> = ({
     validationError,
     isEmailError,
     isPasswordError,
+    isTokenError,
     emailChangeError,
     passwordError,
+    tokenError,
 }) => {
     const { t } = useTranslation("common")
 
@@ -27,6 +31,14 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
                 }`}
             >
                 {validationError}
+            </strong>
+
+            <strong
+                className={`ml-3 font-bold text-my-dark text-lg ${
+                    isTokenError ? "animate-append" : "hidden"
+                }`}
+            >
+                {tokenError && t(`errors.${tokenError.data.message}`)}
             </strong>
 
             <strong
