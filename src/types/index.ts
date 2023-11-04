@@ -5,3 +5,7 @@ export interface IError {
         errors: unknown[]
     }
 }
+
+export interface IPasswordCheckRes {
+    message: string
+}

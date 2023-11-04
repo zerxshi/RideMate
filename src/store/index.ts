@@ -7,6 +7,7 @@ import { brandAPI } from "@/modules/Cars"
 import { classAPI } from "@/modules/Cars"
 import { autoLoginAPI } from "@/API/autoLoginAPI"
 import { changeEmailAPI } from "@/modules/EmailChange"
+import { passwordCheckAPI } from "@/API/passwordCheckAPI"
 
 const rootReducer = combineReducers({
     userReducer: userSlice,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     [classAPI.reducerPath]: classAPI.reducer,
     [autoLoginAPI.reducerPath]: autoLoginAPI.reducer,
     [changeEmailAPI.reducerPath]: changeEmailAPI.reducer,
+    [passwordCheckAPI.reducerPath]: passwordCheckAPI.reducer,
 })
 
 export const store = configureStore({
@@ -30,6 +32,7 @@ export const store = configureStore({
             classAPI.middleware,
             autoLoginAPI.middleware,
             changeEmailAPI.middleware,
+            passwordCheckAPI.middleware,
         ),
 })
 
