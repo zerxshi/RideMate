@@ -7,7 +7,8 @@ import {
     TIMER_ROUTE,
     RECOVERY_ROUTE,
     EMAIL_CHANGE_ROUTE,
-} from "../utils/consts"
+    PASSWORD_CHANGE_ROUTE,
+} from "@/modules/AppRouter/utils/consts"
 import MainPage from "@/pages/MainPage"
 import Cars from "@/pages/Cars"
 import CarID from "@/pages/CarID"
@@ -16,6 +17,7 @@ import Profile from "@/pages/Profile"
 import Login from "@/pages/Login"
 import PasswordRecovery from "@/pages/PasswordRecovery"
 import EmailChange from "@/pages/EmailChange"
+import PasswordChange from "@/pages/PasswordChange"
 
 interface IPages {
     path: string
@@ -28,7 +30,6 @@ export const publicPages: IPages[] = [
     { path: CARS_ROUTE + "/:id", component: CarID },
     { path: LOGIN_ROUTE, component: Login },
     { path: RECOVERY_ROUTE, component: PasswordRecovery },
-    { path: EMAIL_CHANGE_ROUTE, component: EmailChange },
 ]
 
 export const privatePages: IPages[] = [
@@ -37,4 +38,6 @@ export const privatePages: IPages[] = [
     { path: CARS_ROUTE + "/:id", component: CarID },
     { path: TIMER_ROUTE, component: TimerPage },
     { path: PROFILE_ROUTE, component: Profile },
+    { path: EMAIL_CHANGE_ROUTE, component: EmailChange },
+    { path: PASSWORD_CHANGE_ROUTE, component: PasswordChange },
 ]
