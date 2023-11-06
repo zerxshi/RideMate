@@ -23,6 +23,7 @@ const Header: FC = () => {
     if (
         location.pathname.match("/login") ||
         location.pathname.match("/change/email") ||
+        location.pathname.match("/change/password") ||
         location.pathname.match("/recovery")
     ) {
         return <div></div>
