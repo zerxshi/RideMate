@@ -1,10 +1,14 @@
 {
     "phrases": {
-        "emailChange": "Смена почты"
+        "emailChange": "Смена почты",
+        "emailChangeSuccess": "Почта была успешно изменена"
     },
     "buttons": {
         "checkCode": "Проверить код",
         "checkPassword": "Проверить пароль",
         "confirm": "Подтвердить"
+    },
+    "links": {
+        "goToLogin": "Перейти на страницу авторизации"
     }
 }

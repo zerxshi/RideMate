@@ -6,6 +6,7 @@ export const changeEmailAPI = createApi({
     reducerPath: "changeEmail",
     baseQuery: fetchBaseQuery({
         baseUrl: BASE_API_URL + "/change",
+        credentials: "include",
         prepareHeaders: (headers) => {
             const accessToken: string | null =
                 localStorage.getItem("accessToken")
@@ -13,10 +14,7 @@ export const changeEmailAPI = createApi({
         },
     }),
     endpoints: (build) => ({
-        changeEmail: build.mutation<
-            IChangeDataResponse,
-            { newEmail: string; changeToken: string }
-        >({
+        changeEmail: build.mutation<IChangeDataResponse, { newEmail: string }>({
             query: (body) => ({
                 url: "/email",
                 method: "PUT",
