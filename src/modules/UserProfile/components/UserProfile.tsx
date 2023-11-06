@@ -32,6 +32,7 @@ const UserProfile = () => {
     }
 
     const handlePasswordRequest = () => {
+        navigate("/change/password")
         passwordChangeRequest()
     }
 
