@@ -169,7 +169,7 @@ const PasswordChangeForm = () => {
 
             {isCodePage && isCodeTextVisible && (
                 <b className="absolute text-2xl top-10 right-5 text-my-dark animate-append">
-                    The code has been sent to your email!
+                    {t("phrases.codeSentToEmail", { ns: "common" })}
                 </b>
             )}
 
@@ -184,7 +184,9 @@ const PasswordChangeForm = () => {
                     onAnimationEnd={handleAnimationEnd}
                 >
                     <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
-                        {t("phrases.passwordChange")}
+                        {t("phrases.passwordChange", {
+                            ns: "passwordChangePage",
+                        })}
                     </h2>
                     <FormInputs
                         codeValue={codeValue}

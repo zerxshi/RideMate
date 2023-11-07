@@ -18,7 +18,7 @@ const FormButtons: FC<FormButtonsProps> = ({
     isNewEmailPage,
     isCodePage,
 }) => {
-    const { t } = useTranslation("emailChangePage")
+    const { t } = useTranslation("common")
 
     return (
         <div className="flex flex-col">

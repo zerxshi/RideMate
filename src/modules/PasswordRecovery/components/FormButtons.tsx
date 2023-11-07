@@ -13,7 +13,7 @@ const FormButtons: FC<FormButtonsProps> = ({
     handleChangePassword,
     handleConfirmChange,
 }) => {
-    const { t } = useTranslation("passwordRecoveryPage")
+    const { t } = useTranslation("common")
 
     const formData = useFormContext()
 
