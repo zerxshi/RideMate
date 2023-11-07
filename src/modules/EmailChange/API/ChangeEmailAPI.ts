@@ -1,6 +1,6 @@
 import { BASE_API_URL } from "@/utils/consts"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { IChangeDataResponse } from "@/modules/EmailChange/types"
+import { IChangeDataResponse } from "@/types"
 
 export const changeEmailAPI = createApi({
     reducerPath: "changeEmail",
