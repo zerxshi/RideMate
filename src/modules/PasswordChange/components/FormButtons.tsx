@@ -18,7 +18,7 @@ const FormButtons: FC<FormButtonsProps> = ({
     isPasswordPage,
     isNewPassPage,
 }) => {
-    const { t } = useTranslation("passwordChangePage")
+    const { t } = useTranslation("common")
 
     return (
         <div className="flex flex-col">

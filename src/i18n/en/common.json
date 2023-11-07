@@ -2,7 +2,12 @@
     "buttons": {
         "save": "Save",
         "edit": "Edit",
-        "accept": "Accept"
+        "accept": "Accept",
+        "getCode": "Get code",
+        "checkCode": "Check code",
+        "checkPassword": "Check password",
+        "changePassword": "Change password",
+        "confirm": "Confirm"
     },
     "inputs": {
         "email": "Email",
@@ -21,5 +26,8 @@
         "userDoesntExist": "User with this email address does not exist",
         "invalidEmailToken": "The email change code is invalid or expired",
         "invalidPasswordToken": "The password change code is invalid or expired"
+    },
+    "phrases": {
+        "codeSentToEmail": "The code has been sent to your email!"
     }
 }

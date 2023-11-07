@@ -154,7 +154,7 @@ const EmailChangeForm: FC = () => {
             )}
             {isCodePage && isCodeTextVisible && (
                 <b className="absolute text-2xl top-10 right-5 text-my-dark animate-append">
-                    The code has been sent to your email!
+                    {t("phrases.codeSentToEmail", { ns: "common" })}
                 </b>
             )}
             {isFormVisible && (

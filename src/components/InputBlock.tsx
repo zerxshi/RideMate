@@ -6,7 +6,6 @@ interface InputBlockProps {
     animations: [string, string]
     inputValue: string
     setInputValue: (id: string, value: string) => void
-    labelTitle: string
     inputId: string
     inputType: string
 }
@@ -16,7 +15,6 @@ const InputBlock: FC<InputBlockProps> = ({
     animations,
     inputValue,
     setInputValue,
-    labelTitle,
     inputId,
     inputType,
 }) => {

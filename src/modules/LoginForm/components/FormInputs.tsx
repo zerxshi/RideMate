@@ -46,7 +46,6 @@ const FormInputs: FC<FormInputProps> = ({
                 setInputValue={setInputValue}
                 inputId={"name"}
                 inputType={"text"}
-                labelTitle={"Name"}
             />
             <InputBlock
                 isCondition={isLogin}
@@ -55,7 +54,6 @@ const FormInputs: FC<FormInputProps> = ({
                 setInputValue={setInputValue}
                 inputId={"email"}
                 inputType={"email"}
-                labelTitle={"Email"}
             />
             <InputBlock
                 isCondition={isLogin}
@@ -64,7 +62,6 @@ const FormInputs: FC<FormInputProps> = ({
                 setInputValue={setInputValue}
                 inputId={"password"}
                 inputType={"password"}
-                labelTitle={"Password"}
             />
             <InputBlock
                 isCondition={isLogin}
@@ -73,7 +70,6 @@ const FormInputs: FC<FormInputProps> = ({
                 setInputValue={setInputValue}
                 inputId={"confirmPassword"}
                 inputType={"password"}
-                labelTitle={"Confirm password"}
             />
         </div>
     )
