@@ -7,9 +7,11 @@ import { passwordCheckAPI } from "@/API/passwordCheckAPI"
 import { tokenCheckAPI } from "@/API/tokenCheckAPI"
 import { useAppDispatch } from "@/hooks/useTypedStore"
 import { deleteUser } from "@/store/slice/userSlice"
+import FormValidationBlock from "@/modules/PasswordChange/components/FormValidationBlock"
+import { IError } from "@/types"
 
 const PasswordChangeForm = () => {
-    const { t } = useTranslation("passwordChangePage")
+    const { t } = useTranslation(["passwordChangePage", "common"])
 
     const [
         changePassword,
@@ -39,6 +41,7 @@ const PasswordChangeForm = () => {
     const [passwordValue, setPasswordValue] = useState<string>("")
     const [newPassValue, setNewPassValue] = useState<string>("")
     const [confirmPassValue, setConfirmPassValue] = useState<string>("")
+    const [validationError, setValidationError] = useState<string>("")
 
     const [isCodePage, setIsCodePage] = useState<boolean>(true)
     const [isPasswordPage, setIsPasswordPage] = useState<boolean>(false)
@@ -54,46 +57,86 @@ const PasswordChangeForm = () => {
         switch (inputId) {
             case "code":
                 setCodeValue(value)
+                setValidationError("")
+                tokenReset()
                 break
 
             case "password":
                 setPasswordValue(value)
+                setValidationError("")
+                passwordReset()
                 break
 
             case "newPassword":
                 setNewPassValue(value)
+                setValidationError("")
+                changeReset()
                 break
 
             case "confirmPassword":
                 setConfirmPassValue(value)
+                setValidationError("")
+                changeReset()
                 break
         }
     }
 
+    const validateForm = () => {
+        let error: string = ""
+
+        if (isCodePage && !codeValue) {
+            error = t("errors.fillInFields", { ns: "common" })
+        }
+        if (isPasswordPage && !passwordValue) {
+            error = t("errors.fillInFields", { ns: "common" })
+        }
+        if (isNewPassPage && !newPassValue) {
+            error = t("errors.fillInFields", { ns: "common" })
+        }
+        if (isNewPassPage && newPassValue !== confirmPassValue) {
+            error = t("errors.passwordsMatch", { ns: "common" })
+        }
+
+        setValidationError(error)
+        return error
+    }
+
     const handleCheckCode = async () => {
-        const result = await checkToken({ passwordChangeToken: codeValue })
-        if ("data" in result) {
-            setIsCodePage(false)
-            setIsPasswordPage(true)
+        const error = validateForm()
+
+        if (!error) {
+            const result = await checkToken({ passwordChangeToken: codeValue })
+            if ("data" in result) {
+                setIsCodePage(false)
+                setIsPasswordPage(true)
+            }
         }
     }
 
     const handleCheckPassword = async () => {
-        const result = await checkPassword({ password: passwordValue })
-        if ("data" in result) {
-            setIsPasswordPage(false)
-            setIsNewPassPage(true)
+        const error = validateForm()
+
+        if (!error) {
+            const result = await checkPassword({ password: passwordValue })
+            if ("data" in result) {
+                setIsPasswordPage(false)
+                setIsNewPassPage(true)
+            }
         }
     }
 
     const dispatch = useAppDispatch()
 
     const handleConfirmChange = async () => {
-        const result = await changePassword({
-            newPassword: newPassValue,
-        })
-        if ("data" in result) {
-            dispatch(deleteUser())
+        const error = validateForm()
+
+        if (!error) {
+            const result = await changePassword({
+                newPassword: newPassValue,
+            })
+            if ("data" in result) {
+                dispatch(deleteUser())
+            }
         }
     }
 
@@ -123,6 +166,15 @@ const PasswordChangeForm = () => {
                     isPasswordPage={isPasswordPage}
                     isNewPassPage={isNewPassPage}
                     setInputValue={setInputValue}
+                />
+                <FormValidationBlock
+                    validationError={validationError}
+                    tokenError={tokenError as IError}
+                    passwordError={passwordError as IError}
+                    changeError={changeError as IError}
+                    isTokenError={isTokenError}
+                    isPasswordError={isPasswordError}
+                    isChangeError={isChangeError}
                 />
                 <FormButtons
                     handleCheckCode={handleCheckCode}
