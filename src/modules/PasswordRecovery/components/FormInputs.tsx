@@ -10,7 +10,6 @@ const FormInputs: FC = ({}) => {
             <InputBlock
                 inputType="email"
                 inputId="email"
-                labelTitle="Email"
                 inputValue={formData.emailValue}
                 setInputValue={formData.setInputValue}
                 isCondition={formData.isEmailPage}
@@ -20,7 +19,6 @@ const FormInputs: FC = ({}) => {
             <InputBlock
                 inputType="text"
                 inputId="code"
-                labelTitle="Code"
                 inputValue={formData.codeValue}
                 setInputValue={formData.setInputValue}
                 isCondition={formData.isCodePage}
@@ -30,7 +28,6 @@ const FormInputs: FC = ({}) => {
             <InputBlock
                 inputType="password"
                 inputId="newPassword"
-                labelTitle="New password"
                 inputValue={formData.newPassValue}
                 setInputValue={formData.setInputValue}
                 isCondition={formData.isNewPassPage}
@@ -40,7 +37,6 @@ const FormInputs: FC = ({}) => {
             <InputBlock
                 inputType="password"
                 inputId="confirmPassword"
-                labelTitle="Confirm password"
                 inputValue={formData.confirmPassValue}
                 setInputValue={formData.setInputValue}
                 isCondition={formData.isNewPassPage}

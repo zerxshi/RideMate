@@ -25,7 +25,6 @@ const FormInputs: FC<FormInputsProps> = ({
             <InputBlock
                 inputType="text"
                 inputId="code"
-                labelTitle="Code"
                 inputValue={codeValue}
                 setInputValue={setInputValue}
                 isCondition={isCodePage}
@@ -35,7 +34,6 @@ const FormInputs: FC<FormInputsProps> = ({
             <InputBlock
                 inputType="password"
                 inputId="password"
-                labelTitle="Password"
                 inputValue={passwordValue}
                 setInputValue={setInputValue}
                 isCondition={isPasswordPage}
@@ -45,7 +43,6 @@ const FormInputs: FC<FormInputsProps> = ({
             <InputBlock
                 inputType="email"
                 inputId="newEmail"
-                labelTitle="New email"
                 inputValue={newEmailValue}
                 setInputValue={setInputValue}
                 isCondition={isNewEmailPage}
