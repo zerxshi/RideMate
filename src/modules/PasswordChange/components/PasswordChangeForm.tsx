@@ -10,9 +10,17 @@ import { deleteUser } from "@/store/slice/userSlice"
 import FormValidationBlock from "@/modules/PasswordChange/components/FormValidationBlock"
 import { IError } from "@/types"
 import SuccessFeature from "@/components/SuccessFeature"
+import { useAppSelector } from "./../../../hooks/useTypedStore"
+import { useNavigate } from "react-router-dom"
 
 const PasswordChangeForm = () => {
     const { t } = useTranslation(["passwordChangePage", "common"])
+    const { isAuth } = useAppSelector((state) => state.userReducer)
+
+    const navigate = useNavigate()
+    if (!isAuth) {
+        navigate("/")
+    }
 
     const [
         changePassword,

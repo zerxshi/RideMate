@@ -8,11 +8,18 @@ import { IError } from "@/types"
 import { passwordCheckAPI } from "@/API/passwordCheckAPI"
 import { tokenCheckAPI } from "@/API/tokenCheckAPI"
 import SuccessFeature from "@/components/SuccessFeature"
-import { useAppDispatch } from "@/hooks/useTypedStore"
+import { useAppDispatch, useAppSelector } from "@/hooks/useTypedStore"
 import { deleteUser } from "@/store/slice/userSlice"
+import { useNavigate } from "react-router-dom"
 
 const EmailChangeForm: FC = () => {
     const { t } = useTranslation(["emailChangePage", "common"])
+    const { isAuth } = useAppSelector((state) => state.userReducer)
+
+    const navigate = useNavigate()
+    if (!isAuth) {
+        navigate("/")
+    }
 
     const [
         changeEmail,
