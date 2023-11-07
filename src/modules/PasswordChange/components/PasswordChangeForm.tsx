@@ -9,6 +9,7 @@ import { useAppDispatch } from "@/hooks/useTypedStore"
 import { deleteUser } from "@/store/slice/userSlice"
 import FormValidationBlock from "@/modules/PasswordChange/components/FormValidationBlock"
 import { IError } from "@/types"
+import SuccessFeature from "@/components/SuccessFeature"
 
 const PasswordChangeForm = () => {
     const { t } = useTranslation(["passwordChangePage", "common"])
@@ -48,6 +49,7 @@ const PasswordChangeForm = () => {
     const [isNewPassPage, setIsNewPassPage] = useState<boolean>(false)
 
     const [isCodeTextVisible, setIsCodeTextVisible] = useState<boolean>(true)
+    const [isFormVisible, setIsFormVisible] = useState<boolean>(true)
 
     useEffect(() => {
         setTimeout(() => setIsCodeTextVisible(false), 4000)
@@ -140,51 +142,71 @@ const PasswordChangeForm = () => {
         }
     }
 
+    const handleAnimationEnd = (e: React.AnimationEvent<HTMLFormElement>) => {
+        if (e.animationName === "remove") {
+            setIsFormVisible(false)
+        }
+    }
+
     return (
         <section className="w-605">
+            {isChangeSuccess && (
+                <SuccessFeature
+                    translationFile="passwordChangePage"
+                    headerTitle="passwordChangeSuccess"
+                    linkTitle="goToLogin"
+                    linkDestination="/login"
+                />
+            )}
+
             {isCodePage && isCodeTextVisible && (
                 <b className="absolute text-2xl top-10 right-5 text-my-dark animate-append">
                     The code has been sent to your email!
                 </b>
             )}
 
-            <form
-                className="flex flex-col gap-4"
-                onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
-                    e.preventDefault()
-                }
-            >
-                <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
-                    {t("phrases.passwordChange")}
-                </h2>
-                <FormInputs
-                    codeValue={codeValue}
-                    passwordValue={passwordValue}
-                    newPassValue={newPassValue}
-                    confirmPassValue={confirmPassValue}
-                    isCodePage={isCodePage}
-                    isPasswordPage={isPasswordPage}
-                    isNewPassPage={isNewPassPage}
-                    setInputValue={setInputValue}
-                />
-                <FormValidationBlock
-                    validationError={validationError}
-                    tokenError={tokenError as IError}
-                    passwordError={passwordError as IError}
-                    changeError={changeError as IError}
-                    isTokenError={isTokenError}
-                    isPasswordError={isPasswordError}
-                    isChangeError={isChangeError}
-                />
-                <FormButtons
-                    handleCheckCode={handleCheckCode}
-                    handleCheckPassword={handleCheckPassword}
-                    handleConfirmChange={handleConfirmChange}
-                    isPasswordPage={isPasswordPage}
-                    isNewPassPage={isNewPassPage}
-                    isCodePage={isCodePage}
-                />
-            </form>
+            {isFormVisible && (
+                <form
+                    className={`flex flex-col gap-4 ${
+                        isChangeSuccess && "animate-remove"
+                    }`}
+                    onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                        e.preventDefault()
+                    }
+                    onAnimationEnd={handleAnimationEnd}
+                >
+                    <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
+                        {t("phrases.passwordChange")}
+                    </h2>
+                    <FormInputs
+                        codeValue={codeValue}
+                        passwordValue={passwordValue}
+                        newPassValue={newPassValue}
+                        confirmPassValue={confirmPassValue}
+                        isCodePage={isCodePage}
+                        isPasswordPage={isPasswordPage}
+                        isNewPassPage={isNewPassPage}
+                        setInputValue={setInputValue}
+                    />
+                    <FormValidationBlock
+                        validationError={validationError}
+                        tokenError={tokenError as IError}
+                        passwordError={passwordError as IError}
+                        changeError={changeError as IError}
+                        isTokenError={isTokenError}
+                        isPasswordError={isPasswordError}
+                        isChangeError={isChangeError}
+                    />
+                    <FormButtons
+                        handleCheckCode={handleCheckCode}
+                        handleCheckPassword={handleCheckPassword}
+                        handleConfirmChange={handleConfirmChange}
+                        isPasswordPage={isPasswordPage}
+                        isNewPassPage={isNewPassPage}
+                        isCodePage={isCodePage}
+                    />
+                </form>
+            )}
         </section>
     )
 }
