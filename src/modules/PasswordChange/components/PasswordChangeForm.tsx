@@ -2,9 +2,38 @@ import React, { useEffect, useState } from "react"
 import FormInputs from "@/modules/PasswordChange/components/FormInputs"
 import FormButtons from "@/modules/PasswordChange/components/FormButtons"
 import { useTranslation } from "react-i18next"
+import { changePasswordAPI } from "@/modules/PasswordChange/API/changePasswordAPI"
+import { passwordCheckAPI } from "@/API/passwordCheckAPI"
+import { tokenCheckAPI } from "@/API/tokenCheckAPI"
+import { useAppDispatch } from "@/hooks/useTypedStore"
+import { deleteUser } from "@/store/slice/userSlice"
 
 const PasswordChangeForm = () => {
     const { t } = useTranslation("passwordChangePage")
+
+    const [
+        changePassword,
+        {
+            isError: isChangeError,
+            isSuccess: isChangeSuccess,
+            error: changeError,
+            reset: changeReset,
+        },
+    ] = changePasswordAPI.useChangePasswordMutation()
+
+    const [
+        checkPassword,
+        {
+            isError: isPasswordError,
+            error: passwordError,
+            reset: passwordReset,
+        },
+    ] = passwordCheckAPI.useCheckPasswordMutation()
+
+    const [
+        checkToken,
+        { isError: isTokenError, error: tokenError, reset: tokenReset },
+    ] = tokenCheckAPI.useCheckTokenMutation()
 
     const [codeValue, setCodeValue] = useState<string>("")
     const [passwordValue, setPasswordValue] = useState<string>("")
@@ -42,16 +71,31 @@ const PasswordChangeForm = () => {
     }
 
     const handleCheckCode = async () => {
-        setIsCodePage(false)
-        setIsPasswordPage(true)
+        const result = await checkToken({ passwordChangeToken: codeValue })
+        if ("data" in result) {
+            setIsCodePage(false)
+            setIsPasswordPage(true)
+        }
     }
 
     const handleCheckPassword = async () => {
-        setIsPasswordPage(false)
-        setIsNewPassPage(true)
+        const result = await checkPassword({ password: passwordValue })
+        if ("data" in result) {
+            setIsPasswordPage(false)
+            setIsNewPassPage(true)
+        }
     }
 
-    const handleConfirmChange = async () => {}
+    const dispatch = useAppDispatch()
+
+    const handleConfirmChange = async () => {
+        const result = await changePassword({
+            newPassword: newPassValue,
+        })
+        if ("data" in result) {
+            dispatch(deleteUser())
+        }
+    }
 
     return (
         <section className="w-605">
