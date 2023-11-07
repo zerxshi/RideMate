@@ -13,3 +13,7 @@ export interface IPasswordCheckRes {
 export interface ITokenCheckRes {
     message: string
 }
+
+export interface IChangeDataResponse {
+    message: string
+}

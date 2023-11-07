@@ -75,6 +75,9 @@ const EmailChangeForm: FC = () => {
     const validateForm = () => {
         let error: string = ""
 
+        if (isCodePage && !codeValue) {
+            error = t("errors.fillInFields", { ns: "common" })
+        }
         if (isPasswordPage && !passwordValue) {
             error = t("errors.fillInFields", { ns: "common" })
         }
