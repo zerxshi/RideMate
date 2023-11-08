@@ -26,14 +26,18 @@ const UserProfile = () => {
         setIsPersonalData(false)
     }
 
-    const handleEmailRequest = () => {
-        navigate("/change/email")
-        emailChangeRequest()
+    const handleEmailRequest = async () => {
+        const result = await emailChangeRequest()
+        if ("data" in result) {
+            navigate("/change/email")
+        }
     }
 
-    const handlePasswordRequest = () => {
-        navigate("/change/password")
-        passwordChangeRequest()
+    const handlePasswordRequest = async () => {
+        const result = await passwordChangeRequest()
+        if ("data" in result) {
+            navigate("/change/password")
+        }
     }
 
     return (
