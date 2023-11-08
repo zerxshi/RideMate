@@ -5,8 +5,6 @@ interface PersonalDataProps {
     email: string | null
     emailChangeRequest: () => void
     passwordChangeRequest: () => void
-    isEmailSuccess: boolean
-    isPasswordSuccess: boolean
 }
 
 const PersonalData: FC<PersonalDataProps> = ({
@@ -14,8 +12,6 @@ const PersonalData: FC<PersonalDataProps> = ({
     email,
     emailChangeRequest,
     passwordChangeRequest,
-    isEmailSuccess,
-    isPasswordSuccess,
 }) => {
     const modifiedEmail = email!.replace(
         /(.*)(.{3})@(.*)/,

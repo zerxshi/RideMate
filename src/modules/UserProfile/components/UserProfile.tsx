@@ -62,8 +62,6 @@ const UserProfile = () => {
                     email={email}
                     emailChangeRequest={handleEmailRequest}
                     passwordChangeRequest={handlePasswordRequest}
-                    isEmailSuccess={isEmailSuccess}
-                    isPasswordSuccess={isPasswordSuccess}
                 />
             )}
             {isRentalHistory && <RentalHistory />}
