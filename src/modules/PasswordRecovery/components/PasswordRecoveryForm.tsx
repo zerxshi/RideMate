@@ -5,9 +5,31 @@ import FormInputs from "@/modules/PasswordRecovery/components/FormInputs"
 import { FormContext } from "@/modules/PasswordRecovery/hooks/useFormContext"
 import FormValidationBlock from "@/modules/PasswordRecovery/components/FormValidationBlock"
 import SuccessFeature from "@/components/SuccessFeature"
+import { passwordRecoveryAPI } from "@/modules/PasswordRecovery"
+import { IError } from "@/types"
 
 const PasswordRecoveryForm = () => {
     const { t } = useTranslation(["passwordRecoveryPage", "common"])
+
+    const [
+        requestRecovery,
+        { isError: isRequestError, error: requestError, reset: requestReset },
+    ] = passwordRecoveryAPI.usePasswordRecoveryRequestMutation()
+
+    const [
+        verifyToken,
+        { isError: isTokenError, error: tokenError, reset: tokenReset },
+    ] = passwordRecoveryAPI.useVerifyTokenMutation()
+
+    const [
+        recoverPassword,
+        {
+            isSuccess: isRecoverySuccess,
+            isError: isRecoveryError,
+            error: recoveryError,
+            reset: recoveryReset,
+        },
+    ] = passwordRecoveryAPI.usePasswordRecoveryMutation()
 
     const [emailValue, setEmailValue] = useState<string>("")
     const [codeValue, setCodeValue] = useState<string>("")
@@ -21,32 +43,37 @@ const PasswordRecoveryForm = () => {
 
     const [isFakeSuccess, setIsFakeSuccess] = useState<boolean>(false)
     const [isFormVisible, setIsFormVisible] = useState<boolean>(true)
+    const [isCodeTextVisible, setIsCodeTextVisible] = useState<boolean>(true)
 
-    const setInputValue = (inputId: string, value: string) => {
+    const setInputValue = (inputId: string, value: string): void => {
         switch (inputId) {
             case "email":
                 setEmailValue(value)
                 setValidationError("")
+                requestReset()
                 break
 
             case "code":
                 setCodeValue(value)
                 setValidationError("")
+                tokenReset()
                 break
 
             case "newPassword":
                 setNewPassValue(value)
                 setValidationError("")
+                recoveryReset()
                 break
 
             case "confirmPassword":
                 setConfirmPassValue(value)
                 setValidationError("")
+                recoveryReset()
                 break
         }
     }
 
-    const validateForm = () => {
+    const validateForm = (): string => {
         let error: string = ""
 
         if (isEmailPage && !emailValue) {
@@ -66,33 +93,49 @@ const PasswordRecoveryForm = () => {
         return error
     }
 
-    const handleGetCode = (): void => {
+    const handleGetCode = async (): Promise<void> => {
         const error = validateForm()
         if (!error) {
-            setIsEmailPage(false)
-            setIsCodePage(true)
+            const result = await requestRecovery({ email: emailValue })
+
+            if ("data" in result) {
+                setIsEmailPage(false)
+                setIsCodePage(true)
+
+                setIsCodeTextVisible(true)
+                setTimeout(() => setIsCodeTextVisible(false), 4000)
+            }
         }
-        return
     }
 
-    const handleChangePassword = () => {
+    const handleCheckCode = async (): Promise<void> => {
         const error = validateForm()
         if (!error) {
-            setIsCodePage(false)
-            setIsNewPassPage(true)
+            const result = await verifyToken({
+                email: emailValue,
+                passwordRecoveryToken: codeValue,
+            })
+
+            if ("data" in result) {
+                setIsCodePage(false)
+                setIsNewPassPage(true)
+            }
         }
-        return
     }
 
-    const handleConfirmChange = () => {
+    const handleConfirmChange = async (): Promise<void> => {
         const error = validateForm()
         if (!error) {
-            setIsFakeSuccess(true)
+            await recoverPassword({
+                email: emailValue,
+                newPassword: newPassValue,
+            })
         }
-        return
     }
 
-    const handleAnimationEnd = (e: React.AnimationEvent<HTMLFormElement>) => {
+    const handleAnimationEnd = (
+        e: React.AnimationEvent<HTMLFormElement>,
+    ): void => {
         if (e.animationName === "remove") {
             setIsFormVisible(false)
         }
@@ -100,7 +143,7 @@ const PasswordRecoveryForm = () => {
 
     return (
         <section className="w-605">
-            {isFakeSuccess && (
+            {isRecoverySuccess && (
                 <SuccessFeature
                     translationFile="passwordRecoveryPage"
                     headerTitle="passwordChangeSuccess"
@@ -109,10 +152,16 @@ const PasswordRecoveryForm = () => {
                 />
             )}
 
+            {isCodePage && isCodeTextVisible && (
+                <b className="absolute text-2xl top-10 right-5 text-my-dark animate-append">
+                    {t("phrases.codeSentToEmail", { ns: "common" })}
+                </b>
+            )}
+
             {isFormVisible && (
                 <form
                     className={`flex flex-col gap-4 ${
-                        isFakeSuccess && "animate-remove"
+                        isRecoverySuccess && "animate-remove"
                     }`}
                     onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
                         e.preventDefault()
@@ -143,11 +192,17 @@ const PasswordRecoveryForm = () => {
 
                         <FormValidationBlock
                             validationError={validationError}
+                            requestError={requestError as IError}
+                            tokenError={tokenError as IError}
+                            recoveryError={recoveryError as IError}
+                            isRequestError={isRequestError}
+                            isTokenError={isTokenError}
+                            isRecoveryError={isRecoveryError}
                         />
 
                         <FormButtons
                             handleGetCode={handleGetCode}
-                            handleChangePassword={handleChangePassword}
+                            handleCheckCode={handleCheckCode}
                             handleConfirmChange={handleConfirmChange}
                         />
                     </FormContext.Provider>

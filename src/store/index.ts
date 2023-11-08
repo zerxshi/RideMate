@@ -10,6 +10,7 @@ import { changeEmailAPI } from "@/modules/EmailChange"
 import { passwordCheckAPI } from "@/API/passwordCheckAPI"
 import { tokenCheckAPI } from "@/API/tokenCheckAPI"
 import { changePasswordAPI } from "@/modules/PasswordChange/API/changePasswordAPI"
+import { passwordRecoveryAPI } from "@/modules/PasswordRecovery"
 
 const rootReducer = combineReducers({
     userReducer: userSlice,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
     [passwordCheckAPI.reducerPath]: passwordCheckAPI.reducer,
     [tokenCheckAPI.reducerPath]: tokenCheckAPI.reducer,
     [changePasswordAPI.reducerPath]: changePasswordAPI.reducer,
+    [passwordRecoveryAPI.reducerPath]: passwordRecoveryAPI.reducer,
 })
 
 export const store = configureStore({
@@ -39,6 +41,7 @@ export const store = configureStore({
             passwordCheckAPI.middleware,
             tokenCheckAPI.middleware,
             changePasswordAPI.middleware,
+            passwordRecoveryAPI.middleware,
         ),
 })
 

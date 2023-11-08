@@ -4,13 +4,13 @@ import { useFormContext } from "@/modules/PasswordRecovery/hooks/useFormContext"
 
 interface FormButtonsProps {
     handleGetCode: () => void
-    handleChangePassword: () => void
+    handleCheckCode: () => void
     handleConfirmChange: () => void
 }
 
 const FormButtons: FC<FormButtonsProps> = ({
     handleGetCode,
-    handleChangePassword,
+    handleCheckCode,
     handleConfirmChange,
 }) => {
     const { t } = useTranslation("common")
@@ -34,9 +34,9 @@ const FormButtons: FC<FormButtonsProps> = ({
                     formData.isCodePage ? "animate-append" : " hidden"
                 }`}
                 type="submit"
-                onClick={handleChangePassword}
+                onClick={handleCheckCode}
             >
-                {t("buttons.changePassword")}
+                {t("buttons.checkCode")}
             </button>
 
             <button
