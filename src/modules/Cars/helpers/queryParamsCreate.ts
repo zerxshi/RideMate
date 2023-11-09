@@ -1,10 +1,10 @@
-export const queryParamsCreate = (stringParams: string) => {
-    const queryParams = new URLSearchParams()
-    const params = new URLSearchParams(stringParams)
-    const classId = params.get("cars")
+export const queryParamsCreate = (stringParams: string): URLSearchParams => {
+    const queryParams: URLSearchParams = new URLSearchParams()
+    const params: URLSearchParams = new URLSearchParams(stringParams)
+    const classId: string | null = params.get("cars")
     if (classId) {
         if (getClassId(classId) !== -1) {
-            queryParams.set("classId", getClassId(classId).toString());
+            queryParams.set("classId", getClassId(classId).toString())
         }
     }
     if (params.get("brandId")) {
