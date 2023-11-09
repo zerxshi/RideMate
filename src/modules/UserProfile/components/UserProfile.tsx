@@ -1,6 +1,6 @@
 import { useAppSelector } from "@/hooks/useTypedStore"
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { NavigateFunction, useNavigate } from "react-router-dom"
 import { changeDataAPI } from "../API/ChangeDataAPI"
 import PersonalData from "./PersonalData"
 import RentalHistory from "./RentalHistory"
@@ -9,31 +9,31 @@ const UserProfile = () => {
     const { email, name } = useAppSelector((state) => state.userReducer)
     const [isPersonalData, setIsPersonalData] = useState<boolean>(true)
     const [isRentalHistory, setIsRentalHistory] = useState<boolean>(false)
-    const [emailChangeRequest, { isSuccess: isEmailSuccess }] =
+    const [emailChangeRequest, {}] =
         changeDataAPI.useChangeEmailRequestMutation()
-    const [passwordChangeRequest, { isSuccess: isPasswordSuccess }] =
+    const [passwordChangeRequest, {}] =
         changeDataAPI.useChangePasswordRequestMutation()
 
-    const navigate = useNavigate()
+    const navigate: NavigateFunction = useNavigate()
 
-    const handlePersonalData = () => {
+    const handlePersonalData = (): void => {
         setIsPersonalData(true)
         setIsRentalHistory(false)
     }
 
-    const handleRentalHistory = () => {
+    const handleRentalHistory = (): void => {
         setIsRentalHistory(true)
         setIsPersonalData(false)
     }
 
-    const handleEmailRequest = async () => {
+    const handleEmailRequest = async (): Promise<void> => {
         const result = await emailChangeRequest()
         if ("data" in result) {
             navigate("/change/email")
         }
     }
 
-    const handlePasswordRequest = async () => {
+    const handlePasswordRequest = async (): Promise<void> => {
         const result = await passwordChangeRequest()
         if ("data" in result) {
             navigate("/change/password")

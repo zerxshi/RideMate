@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next"
 import { useFormContext } from "@/modules/PasswordRecovery/hooks/useFormContext"
 
 interface FormButtonsProps {
-    handleGetCode: () => void
-    handleCheckCode: () => void
-    handleConfirmChange: () => void
+    handleGetCode: () => Promise<void>
+    handleCheckCode: () => Promise<void>
+    handleConfirmChange: () => Promise<void>
 }
 
 const FormButtons: FC<FormButtonsProps> = ({

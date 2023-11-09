@@ -13,7 +13,7 @@ const PersonalData: FC<PersonalDataProps> = ({
     emailChangeRequest,
     passwordChangeRequest,
 }) => {
-    const modifiedEmail = email!.replace(
+    const modifiedEmail: string = email!.replace(
         /(.*)(.{3})@(.*)/,
         (_, prefix, lastThree, afterAt) =>
             prefix.replace(/[a-zA-Z]/g, "*") + lastThree + "@" + afterAt,

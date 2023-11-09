@@ -1,3 +1,4 @@
+import { IChangeDataResponse } from "@/types"
 import { BASE_API_URL } from "@/utils/consts"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
@@ -12,13 +13,13 @@ export const changeDataAPI = createApi({
         },
     }),
     endpoints: (build) => ({
-        changeEmailRequest: build.mutation<string, void>({
+        changeEmailRequest: build.mutation<IChangeDataResponse, void>({
             query: () => ({
                 url: "/emailRequest",
                 method: "POST",
             }),
         }),
-        changePasswordRequest: build.mutation<string, void>({
+        changePasswordRequest: build.mutation<IChangeDataResponse, void>({
             query: () => ({
                 url: "/passwordRequest",
                 method: "POST",

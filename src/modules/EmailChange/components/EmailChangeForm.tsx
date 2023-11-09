@@ -10,13 +10,13 @@ import { tokenCheckAPI } from "@/API/tokenCheckAPI"
 import SuccessFeature from "@/components/SuccessFeature"
 import { useAppDispatch, useAppSelector } from "@/hooks/useTypedStore"
 import { deleteUser } from "@/store/slice/userSlice"
-import { useNavigate } from "react-router-dom"
+import { NavigateFunction, useNavigate } from "react-router-dom"
 
 const EmailChangeForm: FC = () => {
     const { t } = useTranslation(["emailChangePage", "common"])
     const { isAuth } = useAppSelector((state) => state.userReducer)
 
-    const navigate = useNavigate()
+    const navigate: NavigateFunction = useNavigate()
     if (!isAuth) {
         navigate("/")
     }
@@ -57,7 +57,7 @@ const EmailChangeForm: FC = () => {
     const [isCodeTextVisible, setIsCodeTextVisible] = useState<boolean>(true)
     const [isFormVisible, setIsFormVisible] = useState<boolean>(true)
 
-    const setInputValue = (inputId: string, value: string) => {
+    const setInputValue = (inputId: string, value: string): void => {
         switch (inputId) {
             case "code":
                 setCodeValue(value)
@@ -79,7 +79,7 @@ const EmailChangeForm: FC = () => {
         }
     }
 
-    const validateForm = () => {
+    const validateForm = (): string => {
         let error: string = ""
 
         if (isCodePage && !codeValue) {
@@ -100,7 +100,7 @@ const EmailChangeForm: FC = () => {
         setTimeout(() => setIsCodeTextVisible(false), 4000)
     }, [])
 
-    const handleCheckCode = async () => {
+    const handleCheckCode = async (): Promise<void> => {
         const error = validateForm()
         if (!error) {
             const result = await checkToken({ emailChangeToken: codeValue })
@@ -111,7 +111,7 @@ const EmailChangeForm: FC = () => {
         }
     }
 
-    const handleCheckPassword = async () => {
+    const handleCheckPassword = async (): Promise<void> => {
         const error = validateForm()
         if (!error) {
             const result = await checkPassword({ password: passwordValue })
@@ -124,7 +124,7 @@ const EmailChangeForm: FC = () => {
 
     const dispatch = useAppDispatch()
 
-    const handleConfirmChange = async () => {
+    const handleConfirmChange = async (): Promise<void> => {
         const error = validateForm()
         if (!error) {
             const result = await changeEmail({
@@ -136,7 +136,9 @@ const EmailChangeForm: FC = () => {
         }
     }
 
-    const handleAnimationEnd = (e: React.AnimationEvent<HTMLFormElement>) => {
+    const handleAnimationEnd = (
+        e: React.AnimationEvent<HTMLFormElement>,
+    ): void => {
         if (e.animationName === "remove") {
             setIsFormVisible(false)
         }

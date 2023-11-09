@@ -16,7 +16,7 @@ interface ContextType {
 
 export const FormContext = createContext<ContextType | undefined>(undefined)
 
-export const useFormContext = () => {
+export const useFormContext = (): ContextType => {
     const form = useContext(FormContext)
 
     if (form === undefined) {
