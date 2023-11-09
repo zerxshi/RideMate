@@ -20,13 +20,15 @@ const LoginForm: FC = () => {
     const [validationError, setValidationError] = useState<string>("")
     const [isFormVisible, setIsFormVisible] = useState<boolean>(true)
 
-    const handleAnimationEnd = (e: React.AnimationEvent<HTMLFormElement>) => {
+    const handleAnimationEnd = (
+        e: React.AnimationEvent<HTMLFormElement>,
+    ): void => {
         if (e.animationName === "remove") {
             setIsFormVisible(false)
         }
     }
 
-    const validateForm = () => {
+    const validateForm = (): string => {
         let error: string = ""
 
         if (isLogin && (!emailValue || !passwordValue)) {
@@ -63,7 +65,7 @@ const LoginForm: FC = () => {
         passwordValue,
     )
 
-    const setInputValue = (inputId: string, value: string) => {
+    const setInputValue = (inputId: string, value: string): void => {
         switch (inputId) {
             case "name":
                 setNameValue(value)
@@ -102,7 +104,7 @@ const LoginForm: FC = () => {
         setConfirmPasswordValue("")
     }
 
-    const handleToggleIsLogin = () => {
+    const handleToggleIsLogin = (): void => {
         clearInputs()
         setValidationError("")
         loginReset()

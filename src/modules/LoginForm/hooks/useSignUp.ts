@@ -3,6 +3,7 @@ import { useAppDispatch } from "@/hooks/useTypedStore"
 import { setUser } from "@/store/slice/userSlice"
 import { SerializedError } from "@reduxjs/toolkit"
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query"
+import { IToken } from "@/modules/LoginForm/types"
 
 type useSignUp = (
     validateFn: () => string,
@@ -41,11 +42,15 @@ export const useSignUp: useSignUp = (
             return
         }
 
-        const result = await register({
-            email: emailValue,
-            name: nameValue,
-            password: passwordValue,
-        })
+        const result:
+            | { data: IToken }
+            | { error: FetchBaseQueryError | SerializedError } = await register(
+            {
+                email: emailValue,
+                name: nameValue,
+                password: passwordValue,
+            },
+        )
 
         if ("data" in result) {
             localStorage.setItem("accessToken", result.data.token)
