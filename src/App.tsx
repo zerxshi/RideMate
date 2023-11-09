@@ -11,7 +11,7 @@ const App = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        const loginUser = async () => {
+        const loginUser = async (): Promise<void> => {
             const result = await mutate()
             if ("data" in result) {
                 dispatch(setUser(result.data))
