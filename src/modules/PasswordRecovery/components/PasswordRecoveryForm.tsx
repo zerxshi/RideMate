@@ -6,7 +6,9 @@ import { FormContext } from "@/modules/PasswordRecovery/hooks/useFormContext"
 import FormValidationBlock from "@/modules/PasswordRecovery/components/FormValidationBlock"
 import SuccessFeature from "@/components/SuccessFeature"
 import { passwordRecoveryAPI } from "@/modules/PasswordRecovery"
-import { IError } from "@/types"
+import { IChangeDataResponse, IError, ITokenCheckRes } from "@/types"
+import { SerializedError } from "@reduxjs/toolkit"
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query"
 
 const PasswordRecoveryForm = () => {
     const { t } = useTranslation(["passwordRecoveryPage", "common"])
@@ -94,9 +96,15 @@ const PasswordRecoveryForm = () => {
     }
 
     const handleGetCode = async (): Promise<void> => {
-        const error = validateForm()
+        const error: string = validateForm()
         if (!error) {
-            const result = await requestRecovery({ email: emailValue })
+            const result:
+                | {
+                      data: IChangeDataResponse
+                  }
+                | {
+                      error: FetchBaseQueryError | SerializedError
+                  } = await requestRecovery({ email: emailValue })
 
             if ("data" in result) {
                 setIsEmailPage(false)
@@ -109,9 +117,15 @@ const PasswordRecoveryForm = () => {
     }
 
     const handleCheckCode = async (): Promise<void> => {
-        const error = validateForm()
+        const error: string = validateForm()
         if (!error) {
-            const result = await verifyToken({
+            const result:
+                | {
+                      data: ITokenCheckRes
+                  }
+                | {
+                      error: FetchBaseQueryError | SerializedError
+                  } = await verifyToken({
                 email: emailValue,
                 passwordRecoveryToken: codeValue,
             })
@@ -124,7 +138,7 @@ const PasswordRecoveryForm = () => {
     }
 
     const handleConfirmChange = async (): Promise<void> => {
-        const error = validateForm()
+        const error: string = validateForm()
         if (!error) {
             await recoverPassword({
                 email: emailValue,
