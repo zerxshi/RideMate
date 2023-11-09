@@ -8,16 +8,23 @@ import { tokenCheckAPI } from "@/API/tokenCheckAPI"
 import { useAppDispatch } from "@/hooks/useTypedStore"
 import { deleteUser } from "@/store/slice/userSlice"
 import FormValidationBlock from "@/modules/PasswordChange/components/FormValidationBlock"
-import { IError } from "@/types"
+import {
+    IChangeDataResponse,
+    IError,
+    IPasswordCheckRes,
+    ITokenCheckRes,
+} from "@/types"
 import SuccessFeature from "@/components/SuccessFeature"
 import { useAppSelector } from "./../../../hooks/useTypedStore"
-import { useNavigate } from "react-router-dom"
+import { NavigateFunction, useNavigate } from "react-router-dom"
+import { SerializedError } from "@reduxjs/toolkit"
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query"
 
 const PasswordChangeForm = () => {
     const { t } = useTranslation(["passwordChangePage", "common"])
     const { isAuth } = useAppSelector((state) => state.userReducer)
 
-    const navigate = useNavigate()
+    const navigate: NavigateFunction = useNavigate()
     if (!isAuth) {
         navigate("/")
     }
@@ -63,7 +70,7 @@ const PasswordChangeForm = () => {
         setTimeout(() => setIsCodeTextVisible(false), 4000)
     }, [])
 
-    const setInputValue = (inputId: string, value: string) => {
+    const setInputValue = (inputId: string, value: string): void => {
         switch (inputId) {
             case "code":
                 setCodeValue(value)
@@ -91,7 +98,7 @@ const PasswordChangeForm = () => {
         }
     }
 
-    const validateForm = () => {
+    const validateForm = (): string => {
         let error: string = ""
 
         if (isCodePage && !codeValue) {
@@ -111,11 +118,14 @@ const PasswordChangeForm = () => {
         return error
     }
 
-    const handleCheckCode = async () => {
-        const error = validateForm()
+    const handleCheckCode = async (): Promise<void> => {
+        const error: string = validateForm()
 
         if (!error) {
-            const result = await checkToken({ passwordChangeToken: codeValue })
+            const result:
+                | { data: ITokenCheckRes }
+                | { error: FetchBaseQueryError | SerializedError } =
+                await checkToken({ passwordChangeToken: codeValue })
             if ("data" in result) {
                 setIsCodePage(false)
                 setIsPasswordPage(true)
@@ -123,11 +133,14 @@ const PasswordChangeForm = () => {
         }
     }
 
-    const handleCheckPassword = async () => {
-        const error = validateForm()
+    const handleCheckPassword = async (): Promise<void> => {
+        const error: string = validateForm()
 
         if (!error) {
-            const result = await checkPassword({ password: passwordValue })
+            const result:
+                | { data: IPasswordCheckRes }
+                | { error: FetchBaseQueryError | SerializedError } =
+                await checkPassword({ password: passwordValue })
             if ("data" in result) {
                 setIsPasswordPage(false)
                 setIsNewPassPage(true)
@@ -137,20 +150,25 @@ const PasswordChangeForm = () => {
 
     const dispatch = useAppDispatch()
 
-    const handleConfirmChange = async () => {
-        const error = validateForm()
+    const handleConfirmChange = async (): Promise<void> => {
+        const error: string = validateForm()
 
         if (!error) {
-            const result = await changePassword({
-                newPassword: newPassValue,
-            })
+            const result:
+                | { data: IChangeDataResponse }
+                | { error: FetchBaseQueryError | SerializedError } =
+                await changePassword({
+                    newPassword: newPassValue,
+                })
             if ("data" in result) {
                 dispatch(deleteUser())
             }
         }
     }
 
-    const handleAnimationEnd = (e: React.AnimationEvent<HTMLFormElement>) => {
+    const handleAnimationEnd = (
+        e: React.AnimationEvent<HTMLFormElement>,
+    ): void => {
         if (e.animationName === "remove") {
             setIsFormVisible(false)
         }
