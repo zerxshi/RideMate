@@ -16,7 +16,7 @@ const Header: FC = () => {
     const [logout, {}] = authAPI.useLogoutMutation()
 
     const userLogout = (): void => {
-        logout({})
+        logout()
         dispatch(deleteUser())
     }
 
