@@ -7,14 +7,15 @@ import { setUser } from "@/store/slice/userSlice"
 import { useAppDispatch } from "@/hooks/useTypedStore"
 
 const App = () => {
-    const [mutate] = autoLoginAPI.useAutoLoginMutation()
+    const [autoLogin] = autoLoginAPI.useAutoLoginMutation()
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         const loginUser = async (): Promise<void> => {
-            const result = await mutate()
+            const result = await autoLogin()
             if ("data" in result) {
-                dispatch(setUser(result.data))
+                localStorage.setItem("accessToken", result.data.token)
+                dispatch(setUser(result.data.token))
             }
         }
 
