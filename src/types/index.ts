@@ -17,3 +17,7 @@ export interface ITokenCheckRes {
 export interface IChangeDataResponse {
     message: string
 }
+
+export interface IAutoLoginRes {
+    token: string
+}
