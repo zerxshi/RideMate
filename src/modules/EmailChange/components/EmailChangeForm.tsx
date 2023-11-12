@@ -6,7 +6,7 @@ import { changeEmailAPI } from "@/modules/EmailChange/API/ChangeEmailAPI"
 import FormValidationBlock from "@/modules/EmailChange/components/FormValidation"
 import { IError } from "@/types"
 import { passwordCheckAPI } from "@/API/passwordCheckAPI"
-import { tokenCheckAPI } from "@/API/tokenCheckAPI"
+import { codeCheckAPI } from "@/API/codeCheckAPI"
 import SuccessFeature from "@/components/SuccessFeature"
 import { useAppDispatch, useAppSelector } from "@/hooks/useTypedStore"
 import { deleteUser } from "@/store/slice/userSlice"
@@ -41,9 +41,9 @@ const EmailChangeForm: FC = () => {
     ] = passwordCheckAPI.useCheckPasswordMutation()
 
     const [
-        checkToken,
-        { isError: isTokenError, error: tokenError, reset: tokenReset },
-    ] = tokenCheckAPI.useCheckTokenMutation()
+        checkCode,
+        { isError: isCodeError, error: codeError, reset: codeReset },
+    ] = codeCheckAPI.useCheckCodeMutation()
 
     const [codeValue, setCodeValue] = useState<string>("")
     const [passwordValue, setPasswordValue] = useState<string>("")
@@ -62,7 +62,7 @@ const EmailChangeForm: FC = () => {
             case "code":
                 setCodeValue(value)
                 setValidationError("")
-                tokenReset()
+                codeReset()
                 break
 
             case "password":
@@ -103,7 +103,7 @@ const EmailChangeForm: FC = () => {
     const handleCheckCode = async (): Promise<void> => {
         const error = validateForm()
         if (!error) {
-            const result = await checkToken({ emailChangeToken: codeValue })
+            const result = await checkCode({ emailChangeCode: codeValue })
             if ("data" in result) {
                 setIsCodePage(false)
                 setIsPasswordPage(true)
@@ -185,10 +185,10 @@ const EmailChangeForm: FC = () => {
                         validationError={validationError}
                         isEmailError={isEmailError}
                         isPasswordError={isPasswordError}
-                        isTokenError={isTokenError}
+                        isCodeError={isCodeError}
                         emailChangeError={emailError as IError}
                         passwordError={passwordError as IError}
-                        tokenError={tokenError as IError}
+                        codeError={codeError as IError}
                     />
                     <FormButtons
                         handleCheckCode={handleCheckCode}

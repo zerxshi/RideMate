@@ -1,6 +1,6 @@
 import { BASE_API_URL } from "@/utils/consts"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { IChangeDataResponse, ITokenCheckRes } from "@/types"
+import { IChangeDataResponse, ICodeCheckRes } from "@/types"
 
 export const passwordRecoveryAPI = createApi({
     reducerPath: "passwordRecovery",
@@ -14,12 +14,12 @@ export const passwordRecoveryAPI = createApi({
         },
     }),
     endpoints: (build) => ({
-        verifyToken: build.mutation<
-            ITokenCheckRes,
-            { passwordRecoveryToken: string; email: string }
+        verifyCode: build.mutation<
+            ICodeCheckRes,
+            { passwordRecoveryCode: string; email: string }
         >({
             query: (body) => ({
-                url: "/verifyToken",
+                url: "/verifyCode",
                 method: "POST",
                 body,
             }),

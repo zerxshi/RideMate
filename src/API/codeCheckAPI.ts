@@ -1,14 +1,14 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
-import { ITokenCheckRes } from "@/types"
+import { ICodeCheckRes } from "@/types"
 import { baseQueryWithReauth } from "@/helpers/baseQueryWithReauth"
 
-export const tokenCheckAPI = createApi({
-    reducerPath: "tokenCheck",
+export const codeCheckAPI = createApi({
+    reducerPath: "codeCheck",
     baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
-        checkToken: build.mutation<
-            ITokenCheckRes,
-            { emailChangeToken?: string; passwordChangeToken?: string }
+        checkCode: build.mutation<
+            ICodeCheckRes,
+            { emailChangeCode?: string; passwordChangeCode?: string }
         >({
             query: (body) => ({
                 url: "change/verifyCode",

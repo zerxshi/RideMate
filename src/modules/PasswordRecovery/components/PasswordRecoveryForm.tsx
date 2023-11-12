@@ -6,7 +6,7 @@ import { FormContext } from "@/modules/PasswordRecovery/hooks/useFormContext"
 import FormValidationBlock from "@/modules/PasswordRecovery/components/FormValidationBlock"
 import SuccessFeature from "@/components/SuccessFeature"
 import { passwordRecoveryAPI } from "@/modules/PasswordRecovery"
-import { IChangeDataResponse, IError, ITokenCheckRes } from "@/types"
+import { IChangeDataResponse, IError, ICodeCheckRes } from "@/types"
 import { SerializedError } from "@reduxjs/toolkit"
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query"
 
@@ -19,9 +19,9 @@ const PasswordRecoveryForm = () => {
     ] = passwordRecoveryAPI.usePasswordRecoveryRequestMutation()
 
     const [
-        verifyToken,
-        { isError: isTokenError, error: tokenError, reset: tokenReset },
-    ] = passwordRecoveryAPI.useVerifyTokenMutation()
+        verifyCode,
+        { isError: isCodeError, error: codeError, reset: codeReset },
+    ] = passwordRecoveryAPI.useVerifyCodeMutation()
 
     const [
         recoverPassword,
@@ -58,7 +58,7 @@ const PasswordRecoveryForm = () => {
             case "code":
                 setCodeValue(value)
                 setValidationError("")
-                tokenReset()
+                codeReset()
                 break
 
             case "newPassword":
@@ -121,13 +121,13 @@ const PasswordRecoveryForm = () => {
         if (!error) {
             const result:
                 | {
-                      data: ITokenCheckRes
+                      data: ICodeCheckRes
                   }
                 | {
                       error: FetchBaseQueryError | SerializedError
-                  } = await verifyToken({
+                  } = await verifyCode({
                 email: emailValue,
-                passwordRecoveryToken: codeValue,
+                passwordRecoveryCode: codeValue,
             })
 
             if ("data" in result) {
@@ -207,10 +207,10 @@ const PasswordRecoveryForm = () => {
                         <FormValidationBlock
                             validationError={validationError}
                             requestError={requestError as IError}
-                            tokenError={tokenError as IError}
+                            codeError={codeError as IError}
                             recoveryError={recoveryError as IError}
                             isRequestError={isRequestError}
-                            isTokenError={isTokenError}
+                            isCodeError={isCodeError}
                             isRecoveryError={isRecoveryError}
                         />
 
