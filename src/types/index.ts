@@ -10,7 +10,7 @@ export interface IPasswordCheckRes {
     message: string
 }
 
-export interface ITokenCheckRes {
+export interface ICodeCheckRes {
     message: string
 }
 
