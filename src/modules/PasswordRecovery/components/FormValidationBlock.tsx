@@ -6,20 +6,20 @@ interface ValidationBlockProps {
     validationError: string
     isRecoveryError: boolean
     isRequestError: boolean
-    isTokenError: boolean
+    isCodeError: boolean
     recoveryError: IError
     requestError: IError
-    tokenError: IError
+    codeError: IError
 }
 
 const FormValidationBlock: FC<ValidationBlockProps> = ({
     validationError,
     recoveryError,
     requestError,
-    tokenError,
+    codeError,
     isRecoveryError,
     isRequestError,
-    isTokenError,
+    isCodeError,
 }) => {
     const { t } = useTranslation("common")
 
@@ -43,10 +43,10 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
 
             <strong
                 className={`ml-3 font-bold text-my-dark text-lg ${
-                    isTokenError ? "animate-append" : "hidden"
+                    isCodeError ? "animate-append" : "hidden"
                 }`}
             >
-                {tokenError && t(`errors.${tokenError.data.message}`)}
+                {codeError && t(`errors.${codeError.data.message}`)}
             </strong>
 
             <strong

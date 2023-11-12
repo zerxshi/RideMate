@@ -4,7 +4,7 @@ import FormButtons from "@/modules/PasswordChange/components/FormButtons"
 import { useTranslation } from "react-i18next"
 import { changePasswordAPI } from "@/modules/PasswordChange/API/changePasswordAPI"
 import { passwordCheckAPI } from "@/API/passwordCheckAPI"
-import { tokenCheckAPI } from "@/API/tokenCheckAPI"
+import { codeCheckAPI } from "@/API/codeCheckAPI"
 import { useAppDispatch } from "@/hooks/useTypedStore"
 import { deleteUser } from "@/store/slice/userSlice"
 import FormValidationBlock from "@/modules/PasswordChange/components/FormValidationBlock"
@@ -12,7 +12,7 @@ import {
     IChangeDataResponse,
     IError,
     IPasswordCheckRes,
-    ITokenCheckRes,
+    ICodeCheckRes,
 } from "@/types"
 import SuccessFeature from "@/components/SuccessFeature"
 import { useAppSelector } from "./../../../hooks/useTypedStore"
@@ -49,9 +49,9 @@ const PasswordChangeForm = () => {
     ] = passwordCheckAPI.useCheckPasswordMutation()
 
     const [
-        checkToken,
-        { isError: isTokenError, error: tokenError, reset: tokenReset },
-    ] = tokenCheckAPI.useCheckTokenMutation()
+        checkCode,
+        { isError: isCodeError, error: codeError, reset: codeReset },
+    ] = codeCheckAPI.useCheckCodeMutation()
 
     const [codeValue, setCodeValue] = useState<string>("")
     const [passwordValue, setPasswordValue] = useState<string>("")
@@ -75,7 +75,7 @@ const PasswordChangeForm = () => {
             case "code":
                 setCodeValue(value)
                 setValidationError("")
-                tokenReset()
+                codeReset()
                 break
 
             case "password":
@@ -123,9 +123,9 @@ const PasswordChangeForm = () => {
 
         if (!error) {
             const result:
-                | { data: ITokenCheckRes }
+                | { data: ICodeCheckRes }
                 | { error: FetchBaseQueryError | SerializedError } =
-                await checkToken({ passwordChangeToken: codeValue })
+                await checkCode({ passwordChangeCode: codeValue })
             if ("data" in result) {
                 setIsCodePage(false)
                 setIsPasswordPage(true)
@@ -218,10 +218,10 @@ const PasswordChangeForm = () => {
                     />
                     <FormValidationBlock
                         validationError={validationError}
-                        tokenError={tokenError as IError}
+                        codeError={codeError as IError}
                         passwordError={passwordError as IError}
                         changeError={changeError as IError}
-                        isTokenError={isTokenError}
+                        isCodeError={isCodeError}
                         isPasswordError={isPasswordError}
                         isChangeError={isChangeError}
                     />
