@@ -1,24 +1,17 @@
-import { BASE_API_URL } from "@/utils/consts"
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { createApi } from "@reduxjs/toolkit/query/react"
 import { ITokenCheckRes } from "@/types"
+import { baseQueryWithReauth } from "@/helpers/baseQueryWithReauth"
 
 export const tokenCheckAPI = createApi({
     reducerPath: "tokenCheck",
-    baseQuery: fetchBaseQuery({
-        baseUrl: BASE_API_URL + "/change",
-        prepareHeaders: (headers) => {
-            const accessToken: string | null =
-                localStorage.getItem("accessToken")
-            headers.set("Authorization", "Bearer " + accessToken!)
-        },
-    }),
+    baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
         checkToken: build.mutation<
             ITokenCheckRes,
             { emailChangeToken?: string; passwordChangeToken?: string }
         >({
             query: (body) => ({
-                url: "/verifyToken",
+                url: "change/verifyCode",
                 method: "POST",
                 body,
             }),
