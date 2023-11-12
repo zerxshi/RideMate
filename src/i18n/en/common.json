@@ -24,9 +24,9 @@
         "incorrectPassword": "Incorrect password",
         "userExists": "Users with the same email address already exist",
         "userDoesntExist": "User with this email address does not exist",
-        "invalidEmailToken": "The email change code is invalid or expired",
-        "invalidPasswordToken": "The password change code is invalid or expired",
-        "invalidPasswordRecoveryToken": "The password recovery code is invalid or expired"
+        "invalidEmailCode": "The email change code is invalid or expired",
+        "invalidPasswordCode": "The password change code is invalid or expired",
+        "invalidPasswordRecoveryCode": "The password recovery code is invalid or expired"
     },
     "phrases": {
         "codeSentToEmail": "The code has been sent to your email!"
