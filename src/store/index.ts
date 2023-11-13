@@ -11,6 +11,7 @@ import { passwordCheckAPI } from "@/API/passwordCheckAPI"
 import { codeCheckAPI } from "@/API/codeCheckAPI"
 import { changePasswordAPI } from "@/modules/PasswordChange/API/changePasswordAPI"
 import { passwordRecoveryAPI } from "@/modules/PasswordRecovery"
+import { rentalHistoryAPI } from "@/modules/UserProfile/API/rentalHistoryAPI"
 
 const rootReducer = combineReducers({
     userReducer: userSlice,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     [codeCheckAPI.reducerPath]: codeCheckAPI.reducer,
     [changePasswordAPI.reducerPath]: changePasswordAPI.reducer,
     [passwordRecoveryAPI.reducerPath]: passwordRecoveryAPI.reducer,
+    [rentalHistoryAPI.reducerPath]: rentalHistoryAPI.reducer,
 })
 
 export const store = configureStore({
@@ -42,6 +44,7 @@ export const store = configureStore({
             codeCheckAPI.middleware,
             changePasswordAPI.middleware,
             passwordRecoveryAPI.middleware,
+            rentalHistoryAPI.middleware,
         ),
 })
 
