@@ -6,13 +6,16 @@ import PersonalData from "./PersonalData"
 import RentalHistory from "./RentalHistory"
 
 const UserProfile = () => {
-    const { email, name } = useAppSelector((state) => state.userReducer)
-    const [isPersonalData, setIsPersonalData] = useState<boolean>(true)
-    const [isRentalHistory, setIsRentalHistory] = useState<boolean>(false)
     const [emailChangeRequest, {}] =
         changeDataAPI.useChangeEmailRequestMutation()
+
     const [passwordChangeRequest, {}] =
         changeDataAPI.useChangePasswordRequestMutation()
+
+    const { email, name } = useAppSelector((state) => state.userReducer)
+
+    const [isPersonalData, setIsPersonalData] = useState<boolean>(true)
+    const [isRentalHistory, setIsRentalHistory] = useState<boolean>(false)
 
     const navigate: NavigateFunction = useNavigate()
 
@@ -41,7 +44,7 @@ const UserProfile = () => {
     }
 
     return (
-        <section className="flex gap-32 w-1150">
+        <section className="flex gap-14 w-1150">
             <div className="flex flex-col gap-4">
                 <button
                     className="text-2xl font-bold rounded-lg h-9 w-52 text-my-dark bg-my-blue active:scale-99"
