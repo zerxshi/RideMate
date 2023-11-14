@@ -5,7 +5,6 @@ import { changeDataAPI } from "@/modules/UserProfile/API/ChangeDataAPI"
 import PersonalData from "@/modules/UserProfile/components/PersonalData"
 import RentalHistory from "@/modules/UserProfile/components/RentalHistory"
 import { rentalHistoryAPI } from "@/modules/UserProfile/API/rentalHistoryAPI"
-import { carsAPI } from "@/modules/Cars"
 
 const UserProfile = () => {
     const [emailChangeRequest, {}] =
@@ -15,7 +14,6 @@ const UserProfile = () => {
         changeDataAPI.useChangePasswordRequestMutation()
 
     const { data: rentalHistory } = rentalHistoryAPI.useGetRentalHistoryQuery()
-    const { data: cars } = carsAPI.useGetAllCarsQuery("")
 
     const { email, name } = useAppSelector((state) => state.userReducer)
 
@@ -73,13 +71,14 @@ const UserProfile = () => {
                 />
             )}
             {isRentalHistory &&
-                cars &&
-                cars.rows &&
                 rentalHistory &&
-                rentalHistory.rows && (
+                rentalHistory.history &&
+                rentalHistory.cars &&
+                rentalHistory.brands && (
                     <RentalHistory
-                        cars={cars.rows}
-                        rentalCars={rentalHistory.rows}
+                        cars={rentalHistory.cars}
+                        brands={rentalHistory.brands}
+                        rentalCars={rentalHistory.history.rows}
                     />
                 )}
         </section>

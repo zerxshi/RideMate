@@ -1,8 +1,8 @@
 import React, { FC } from "react"
-import { ICar } from "@/modules/UserProfile/types"
+import { ICarAndBrand } from "@/modules/UserProfile/types"
 import { BASE_SERVER_URL } from "@/utils/consts"
 interface RentalCarCardProps {
-    car: ICar | undefined
+    car: ICarAndBrand | undefined
     rentalDates: string
     totalPrice: number
 }
@@ -14,10 +14,12 @@ const RentalCarCard: FC<RentalCarCardProps> = ({
 }) => {
     return (
         <article className="flex gap-5 p-4 shadow-xl bg-zinc-700 rounded-xl w-[630px]">
-            <img src={BASE_SERVER_URL + car!.img} className="w-64 rounded-lg" />
+            <img src={BASE_SERVER_URL + car?.img} className="w-64 rounded-lg" />
 
             <div>
-                <b className="text-xl">{car?.model}</b>
+                <b className="text-xl">
+                    {car?.brand} {car?.model}
+                </b>
                 <dl className="flex flex-wrap gap-1 text-lg font-bold">
                     <dt>Rental dates:</dt>
                     <dd>{rentalDates}</dd>

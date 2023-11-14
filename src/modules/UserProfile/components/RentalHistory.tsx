@@ -1,23 +1,49 @@
 import React, { FC } from "react"
 import RentalCarCard from "@/modules/UserProfile/components/RentalCarCard"
-import { ICar, IRentalCar } from "@/modules/UserProfile/types"
+import {
+    ICarAndBrand,
+    IBrand,
+    ICar,
+    IRentalCar,
+} from "@/modules/UserProfile/types"
 
 interface RentalHistoryProps {
     cars: ICar[]
+    brands: IBrand[]
     rentalCars: IRentalCar[]
 }
 
-const RentalHistory: FC<RentalHistoryProps> = ({ cars, rentalCars }) => {
-    const findCarById = (carId: number): ICar | undefined => {
-        return cars.find((car) => car.id === carId)
+const RentalHistory: FC<RentalHistoryProps> = ({
+    cars,
+    brands,
+    rentalCars,
+}) => {
+    const findCarAndBrandById = (carId: number): ICarAndBrand | undefined => {
+        const car = cars.find((car) => car.id === carId)
+        const brand = brands.find((brand) => brand.id === car?.brandId)
+        return {
+            model: car?.model,
+            img: car?.img,
+            brand: brand?.name,
+        }
     }
 
     const rentalDates = (dates: string[]): string => {
-        if (dates.length <= 2) {
-            return dates.join(", ")
+        const datesWithDots = dates.map((date): string => {
+            const year = new Date(date).getFullYear()
+            const month = new Date(date).getMonth() + 1
+            const day = new Date(date).getDate()
+
+            return year + "." + month + "." + day
+        })
+
+        if (datesWithDots.length <= 2) {
+            return datesWithDots.join(", ")
         }
-        if (dates.length > 2) {
-            return `${dates[0]} - ${dates[dates.length - 1]}`
+        if (datesWithDots.length > 2) {
+            return `${datesWithDots[0]} - ${
+                datesWithDots[datesWithDots.length - 1]
+            }`
         }
 
         return ""
@@ -27,7 +53,7 @@ const RentalHistory: FC<RentalHistoryProps> = ({ cars, rentalCars }) => {
         <section className="flex flex-col gap-4">
             {rentalCars.map((rentalCar) => (
                 <RentalCarCard
-                    car={findCarById(rentalCar.carId)}
+                    car={findCarAndBrandById(rentalCar.carId)}
                     totalPrice={rentalCar.totalPrice}
                     rentalDates={rentalDates(rentalCar.occupied_dates)}
                     key={rentalCar.id}
