@@ -7,7 +7,7 @@ interface Props {
     setSearchParams: SetURLSearchParams;
 }
 
-const CartSort: FC<Props> = () => {
+const CarsSort: FC<Props> = () => {
     const { t } = useTranslation("carsPage")
 
     return (
@@ -22,4 +22,4 @@ const CartSort: FC<Props> = () => {
     );
 };
 
-export default CartSort;
+export default CarsSort;

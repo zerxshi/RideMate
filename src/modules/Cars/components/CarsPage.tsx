@@ -3,7 +3,7 @@ import CarsMenu from "@/modules/Cars/components/CarsMenu";
 import CarsForm from "@/modules/Cars/components/CarsForm";
 import { useSearchParams } from 'react-router-dom';
 import { carsAPI } from "@/modules/Cars/API/carsAPI";
-import CarSortAndFilter from "@/modules/Cars/components/CarSortAndFilter";
+import CarsSortAndFilter from "@/modules/Cars/components/CarsSortAndFilter";
 import { brandAPI } from "@/modules/Cars/API/brandAPI";
 import { classAPI } from "@/modules/Cars";
 
@@ -39,7 +39,7 @@ const CarsPage: FC = () => {
                         {cars && cars.rows && brands && brands.rows && carClasses && carClasses.rows &&
                             <CarsForm cars={cars.rows} brands={brands.rows} carClasses={carClasses.rows}/>
                         }
-                        <CarSortAndFilter searchParams={searchParams} setSearchParams={setSearchParams} />
+                        <CarsSortAndFilter searchParams={searchParams} setSearchParams={setSearchParams} />
                     </section>
             </section>
         </section>

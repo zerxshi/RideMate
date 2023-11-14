@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import { SetURLSearchParams } from 'react-router-dom';
-import CartSort from "@/modules/Cars/components/CartSort";
+import CarsSort from "@/modules/Cars/components/CarsSort";
 import CarsFilter from "@/modules/Cars/components/CarsFilter";
 
 interface Props {
@@ -8,14 +8,14 @@ interface Props {
     setSearchParams: SetURLSearchParams;
 }
 
-const CarSortAndFilter: FC<Props> = ({searchParams, setSearchParams}) => {
+const CarsSortAndFilter: FC<Props> = ({searchParams, setSearchParams}) => {
 
     return (
         <section className={"shadow-2xl p-5"}>
-            <CartSort searchParams={searchParams} setSearchParams={setSearchParams}/>
+            <CarsSort searchParams={searchParams} setSearchParams={setSearchParams}/>
             <CarsFilter searchParams={searchParams} setSearchParams={setSearchParams}/>
         </section>
     );
 };
 
-export default CarSortAndFilter;
+export default CarsSortAndFilter;
