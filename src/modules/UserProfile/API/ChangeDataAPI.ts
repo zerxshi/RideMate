@@ -1,26 +1,20 @@
-import { BASE_API_URL } from "@/utils/consts"
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { baseQueryWithReauth } from "@/helpers/baseQueryWithReauth"
+import { IChangeDataResponse } from "@/types"
+import { createApi } from "@reduxjs/toolkit/query/react"
 
 export const changeDataAPI = createApi({
     reducerPath: "changeData",
-    baseQuery: fetchBaseQuery({
-        baseUrl: BASE_API_URL + "/change",
-        prepareHeaders: (headers) => {
-            const accessToken: string | null =
-                localStorage.getItem("accessToken")
-            headers.set("Authorization", "Bearer " + accessToken!)
-        },
-    }),
+    baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
-        changeEmailRequest: build.mutation<string, void>({
+        changeEmailRequest: build.mutation<IChangeDataResponse, void>({
             query: () => ({
-                url: "/emailRequest",
+                url: "change/emailRequest",
                 method: "POST",
             }),
         }),
-        changePasswordRequest: build.mutation<string, void>({
+        changePasswordRequest: build.mutation<IChangeDataResponse, void>({
             query: () => ({
-                url: "/passwordRequest",
+                url: "change/passwordRequest",
                 method: "POST",
             }),
         }),

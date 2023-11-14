@@ -5,8 +5,6 @@ interface PersonalDataProps {
     email: string | null
     emailChangeRequest: () => void
     passwordChangeRequest: () => void
-    isEmailSuccess: boolean
-    isPasswordSuccess: boolean
 }
 
 const PersonalData: FC<PersonalDataProps> = ({
@@ -14,10 +12,8 @@ const PersonalData: FC<PersonalDataProps> = ({
     email,
     emailChangeRequest,
     passwordChangeRequest,
-    isEmailSuccess,
-    isPasswordSuccess,
 }) => {
-    const modifiedEmail = email!.replace(
+    const modifiedEmail: string = email!.replace(
         /(.*)(.{3})@(.*)/,
         (_, prefix, lastThree, afterAt) =>
             prefix.replace(/[a-zA-Z]/g, "*") + lastThree + "@" + afterAt,

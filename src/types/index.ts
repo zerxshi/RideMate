@@ -10,6 +10,14 @@ export interface IPasswordCheckRes {
     message: string
 }
 
-export interface ITokenCheckRes {
+export interface ICodeCheckRes {
     message: string
+}
+
+export interface IChangeDataResponse {
+    message: string
+}
+
+export interface IAutoLoginRes {
+    token: string
 }

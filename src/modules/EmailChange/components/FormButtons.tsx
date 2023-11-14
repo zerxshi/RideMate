@@ -2,9 +2,9 @@ import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
 
 interface FormButtonsProps {
-    handleCheckCode: () => void
-    handleCheckPassword: () => void
-    handleConfirmChange: () => void
+    handleCheckCode: () => Promise<void>
+    handleCheckPassword: () => Promise<void>
+    handleConfirmChange: () => Promise<void>
     isPasswordPage: boolean
     isNewEmailPage: boolean
     isCodePage: boolean
@@ -18,7 +18,7 @@ const FormButtons: FC<FormButtonsProps> = ({
     isNewEmailPage,
     isCodePage,
 }) => {
-    const { t } = useTranslation("emailChangePage")
+    const { t } = useTranslation("common")
 
     return (
         <div className="flex flex-col">

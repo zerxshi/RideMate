@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom"
+import { NavigateFunction, useNavigate } from "react-router-dom"
 import { authAPI } from "@/modules/LoginForm/API/authAPI"
 import { useAppDispatch } from "@/hooks/useTypedStore"
 import { setUser } from "@/store/slice/userSlice"
 import { SerializedError } from "@reduxjs/toolkit"
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query"
+import { IToken } from "@/modules/LoginForm/types"
 
 type useSignIn = (
     validateFn: () => string,
@@ -22,16 +23,18 @@ export const useSignIn: useSignIn = (validateFn, emailValue, passwordValue) => {
         { isError: isLoginError, error: loginError, reset: loginReset },
     ] = authAPI.useLoginMutation()
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
+    const navigate: NavigateFunction = useNavigate()
 
     const signIn = async (): Promise<void> => {
-        const error = validateFn()
+        const error: string = validateFn()
 
         if (error) {
             return
         }
 
-        const result = await login({
+        const result:
+            | { data: IToken }
+            | { error: FetchBaseQueryError | SerializedError } = await login({
             email: emailValue,
             password: passwordValue,
         })
