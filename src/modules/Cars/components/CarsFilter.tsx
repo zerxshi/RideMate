@@ -13,7 +13,7 @@ interface Props {
     setSearchParams: SetURLSearchParams;
 }
 
-const CartFilter: FC<Props> = ({searchParams, setSearchParams}) => {
+const CarsFilter: FC<Props> = ({searchParams, setSearchParams}) => {
     const { t } = useTranslation("carsPage")
     const [minPrice, setMinPrice] = useState<number>(0);
     const [maxPrice, setMaxPrice] = useState<number>(100);
@@ -129,4 +129,4 @@ const CartFilter: FC<Props> = ({searchParams, setSearchParams}) => {
     );
 };
 
-export default CartFilter;
+export default CarsFilter;
