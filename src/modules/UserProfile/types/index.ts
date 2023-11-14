@@ -5,27 +5,35 @@ export interface IRentalCar {
     totalPrice: number
 }
 
-export interface IRentalHistoryRes {
+export interface IHistory {
     count: number
     rows: IRentalCar[]
+}
+
+export interface ICar {
+    id: number
+    model: string
+    img: string
+    brandId: number
+}
+
+export interface IBrand {
+    id: number
+    name: string
+}
+
+export interface IRentalHistoryRes {
+    history: IHistory
+    cars: ICar[]
+    brands: IBrand[]
 }
 
 export interface ICancelRentalRes {
     message: string
 }
 
-export interface ICar {
-    id: number
-    model: string
-    price: number
-    mileage: number
-    lastMileageOnTs: number
-    fuelConsumption: number
-    technicalCondition: number
-    img: string
-    classId: number
-    brandId: number
-    rentalParkingId: number | null
-    maintenanceParkingId: number | null
-    carScheduleId: number | null
+export interface ICarAndBrand {
+    model: string | undefined
+    img: string | undefined
+    brand: string | undefined
 }
