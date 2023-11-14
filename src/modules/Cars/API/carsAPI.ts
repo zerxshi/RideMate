@@ -15,7 +15,7 @@ export const carsAPI = createApi({
             query: (params) => {
                 const queryParams = queryParamsCreate(params)
 
-                return `/${params ? `?${new URLSearchParams(queryParams).toString()}` : ""}`
+                return `${params ? `?${new URLSearchParams(queryParams).toString()}` : ""}`
             },
             providesTags: ["Cars"]
         })

@@ -1,25 +1,25 @@
 import React, {FC} from 'react';
-import { SetURLSearchParams } from 'react-router-dom';
 import {useTranslation} from "react-i18next";
+import {SetURLSearchParams} from "react-router-dom";
 
 interface Props {
     searchParams: URLSearchParams;
     setSearchParams: SetURLSearchParams;
 }
 
-const CarFilter: FC<Props> = ({searchParams, setSearchParams}) => {
+const CarsSort: FC<Props> = () => {
     const { t } = useTranslation("carsPage")
 
     return (
-        <section className={"shadow-2xl p-5"}>
-            {t("filter.sortBy")}
+        <div>
+            {t("sortAndFilters.sortBy")}
             <ul>
                 <li>
 
                 </li>
             </ul>
-        </section>
+        </div>
     );
 };
 
-export default CarFilter;
+export default CarsSort;

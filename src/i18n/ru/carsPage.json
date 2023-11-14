@@ -12,7 +12,10 @@
         "brand": "Бренд",
         "class": "Класс"
     },
-    "filter": {
-        "sortBy": "Сортировка по"
+    "sortAndFilters": {
+        "sortBy": "Сортировка по",
+        "filters": "Фильтры",
+        "minPrice": "Минимальная цена",
+        "maxPrice": "Максимальная цена"
     }
 }
