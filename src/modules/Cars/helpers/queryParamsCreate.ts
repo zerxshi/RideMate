@@ -23,6 +23,10 @@ export const queryParamsCreate = (stringParams: string) => {
         queryParams.set("page", params.get("page")!)
     }
 
+    if (params.get("dates[]")) {
+        queryParams.set("dates", params.get("dates[]")!)
+    }
+
     return queryParams
 }
 
