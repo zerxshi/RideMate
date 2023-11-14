@@ -1,27 +1,29 @@
-import React, { FC } from "react"
 import InputBlock from "@/components/InputBlock"
+import React, { FC } from "react"
 
 interface FormInputsProps {
-    passwordValue: string
-    newEmailValue: string
     codeValue: string
-    isPasswordPage: boolean
-    isNewEmailPage: boolean
+    passwordValue: string
+    newPassValue: string
+    confirmPassValue: string
     isCodePage: boolean
+    isPasswordPage: boolean
+    isNewPassPage: boolean
     setInputValue: (id: string, value: string) => void
 }
 
 const FormInputs: FC<FormInputsProps> = ({
-    passwordValue,
-    newEmailValue,
     codeValue,
-    isPasswordPage,
-    isNewEmailPage,
+    passwordValue,
+    newPassValue,
+    confirmPassValue,
     isCodePage,
+    isPasswordPage,
+    isNewPassPage,
     setInputValue,
 }) => {
     return (
-        <div>
+        <div className="flex flex-col gap-4">
             <InputBlock
                 inputType="text"
                 inputId="code"
@@ -41,11 +43,20 @@ const FormInputs: FC<FormInputsProps> = ({
             />
 
             <InputBlock
-                inputType="email"
-                inputId="newEmail"
-                inputValue={newEmailValue}
+                inputType="password"
+                inputId="newPassword"
+                inputValue={newPassValue}
                 setInputValue={setInputValue}
-                isCondition={isNewEmailPage}
+                isCondition={isNewPassPage}
+                animations={["animate-append", "hidden"]}
+            />
+
+            <InputBlock
+                inputType="password"
+                inputId="confirmPassword"
+                inputValue={confirmPassValue}
+                setInputValue={setInputValue}
+                isCondition={isNewPassPage}
                 animations={["animate-append", "hidden"]}
             />
         </div>

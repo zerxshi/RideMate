@@ -1,19 +1,27 @@
-import React, { FC, useEffect, useState } from "react"
-import FormInputs from "@/modules/EmailChange/components/FormInputs"
+import React, { useEffect, useState } from "react"
+import FormInputs from "@/modules/PasswordChange/components/FormInputs"
+import FormButtons from "@/modules/PasswordChange/components/FormButtons"
 import { useTranslation } from "react-i18next"
-import FormButtons from "@/modules/EmailChange/components/FormButtons"
-import { changeEmailAPI } from "@/modules/EmailChange/API/ChangeEmailAPI"
-import FormValidationBlock from "@/modules/EmailChange/components/FormValidation"
-import { IError } from "@/types"
+import { changePasswordAPI } from "@/modules/PasswordChange/API/changePasswordAPI"
 import { passwordCheckAPI } from "@/API/passwordCheckAPI"
 import { codeCheckAPI } from "@/API/codeCheckAPI"
-import SuccessFeature from "@/components/SuccessFeature"
-import { useAppDispatch, useAppSelector } from "@/hooks/useTypedStore"
+import { useAppDispatch } from "@/hooks/useTypedStore"
 import { deleteUser } from "@/store/slice/userSlice"
+import FormValidationBlock from "@/modules/PasswordChange/components/FormValidationBlock"
+import {
+    IChangeDataResponse,
+    IError,
+    IPasswordCheckRes,
+    ICodeCheckRes,
+} from "@/types"
+import SuccessFeature from "@/components/SuccessFeature"
+import { useAppSelector } from "./../../../hooks/useTypedStore"
 import { NavigateFunction, useNavigate } from "react-router-dom"
+import { SerializedError } from "@reduxjs/toolkit"
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query"
 
-const EmailChangeForm: FC = () => {
-    const { t } = useTranslation(["emailChangePage", "common"])
+const PasswordChangeForm = () => {
+    const { t } = useTranslation(["passwordChangePage", "common"])
     const { isAuth } = useAppSelector((state) => state.userReducer)
 
     const navigate: NavigateFunction = useNavigate()
@@ -22,14 +30,14 @@ const EmailChangeForm: FC = () => {
     }
 
     const [
-        changeEmail,
+        changePassword,
         {
-            isError: isEmailError,
-            isSuccess: isEmailSuccess,
-            error: emailError,
-            reset: emailReset,
+            isError: isChangeError,
+            isSuccess: isChangeSuccess,
+            error: changeError,
+            reset: changeReset,
         },
-    ] = changeEmailAPI.useChangeEmailMutation()
+    ] = changePasswordAPI.useChangePasswordMutation()
 
     const [
         checkPassword,
@@ -47,15 +55,20 @@ const EmailChangeForm: FC = () => {
 
     const [codeValue, setCodeValue] = useState<string>("")
     const [passwordValue, setPasswordValue] = useState<string>("")
-    const [newEmailValue, setNewEmailValue] = useState<string>("")
+    const [newPassValue, setNewPassValue] = useState<string>("")
+    const [confirmPassValue, setConfirmPassValue] = useState<string>("")
     const [validationError, setValidationError] = useState<string>("")
 
     const [isCodePage, setIsCodePage] = useState<boolean>(true)
     const [isPasswordPage, setIsPasswordPage] = useState<boolean>(false)
-    const [isNewEmailPage, setIsNewEmailPage] = useState<boolean>(false)
+    const [isNewPassPage, setIsNewPassPage] = useState<boolean>(false)
 
     const [isCodeTextVisible, setIsCodeTextVisible] = useState<boolean>(true)
     const [isFormVisible, setIsFormVisible] = useState<boolean>(true)
+
+    useEffect(() => {
+        setTimeout(() => setIsCodeTextVisible(false), 4000)
+    }, [])
 
     const setInputValue = (inputId: string, value: string): void => {
         switch (inputId) {
@@ -71,10 +84,16 @@ const EmailChangeForm: FC = () => {
                 passwordReset()
                 break
 
-            case "newEmail":
-                setNewEmailValue(value)
+            case "newPassword":
+                setNewPassValue(value)
                 setValidationError("")
-                emailReset()
+                changeReset()
+                break
+
+            case "confirmPassword":
+                setConfirmPassValue(value)
+                setValidationError("")
+                changeReset()
                 break
         }
     }
@@ -88,22 +107,25 @@ const EmailChangeForm: FC = () => {
         if (isPasswordPage && !passwordValue) {
             error = t("errors.fillInFields", { ns: "common" })
         }
-        if (isNewEmailPage && !newEmailValue) {
+        if (isNewPassPage && !newPassValue) {
             error = t("errors.fillInFields", { ns: "common" })
+        }
+        if (isNewPassPage && newPassValue !== confirmPassValue) {
+            error = t("errors.passwordsMatch", { ns: "common" })
         }
 
         setValidationError(error)
         return error
     }
 
-    useEffect(() => {
-        setTimeout(() => setIsCodeTextVisible(false), 4000)
-    }, [])
-
     const handleCheckCode = async (): Promise<void> => {
-        const error = validateForm()
+        const error: string = validateForm()
+
         if (!error) {
-            const result = await checkCode({ emailChangeCode: codeValue })
+            const result:
+                | { data: ICodeCheckRes }
+                | { error: FetchBaseQueryError | SerializedError } =
+                await checkCode({ passwordChangeCode: codeValue })
             if ("data" in result) {
                 setIsCodePage(false)
                 setIsPasswordPage(true)
@@ -112,12 +134,16 @@ const EmailChangeForm: FC = () => {
     }
 
     const handleCheckPassword = async (): Promise<void> => {
-        const error = validateForm()
+        const error: string = validateForm()
+
         if (!error) {
-            const result = await checkPassword({ password: passwordValue })
+            const result:
+                | { data: IPasswordCheckRes }
+                | { error: FetchBaseQueryError | SerializedError } =
+                await checkPassword({ password: passwordValue })
             if ("data" in result) {
                 setIsPasswordPage(false)
-                setIsNewEmailPage(true)
+                setIsNewPassPage(true)
             }
         }
     }
@@ -125,11 +151,15 @@ const EmailChangeForm: FC = () => {
     const dispatch = useAppDispatch()
 
     const handleConfirmChange = async (): Promise<void> => {
-        const error = validateForm()
+        const error: string = validateForm()
+
         if (!error) {
-            const result = await changeEmail({
-                newEmail: newEmailValue,
-            })
+            const result:
+                | { data: IChangeDataResponse }
+                | { error: FetchBaseQueryError | SerializedError } =
+                await changePassword({
+                    newPassword: newPassValue,
+                })
             if ("data" in result) {
                 dispatch(deleteUser())
             }
@@ -146,23 +176,25 @@ const EmailChangeForm: FC = () => {
 
     return (
         <section className="w-605">
-            {isEmailSuccess && (
+            {isChangeSuccess && (
                 <SuccessFeature
-                    translationFile="emailChangePage"
-                    headerTitle="emailChangeSuccess"
+                    translationFile="passwordChangePage"
+                    headerTitle="passwordChangeSuccess"
                     linkTitle="goToLogin"
                     linkDestination="/login"
                 />
             )}
+
             {isCodePage && isCodeTextVisible && (
                 <b className="absolute text-2xl top-10 right-5 text-my-dark animate-append">
                     {t("phrases.codeSentToEmail", { ns: "common" })}
                 </b>
             )}
+
             {isFormVisible && (
                 <form
                     className={`flex flex-col gap-4 ${
-                        isEmailSuccess && "animate-remove"
+                        isChangeSuccess && "animate-remove"
                     }`}
                     onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
                         e.preventDefault()
@@ -170,32 +202,35 @@ const EmailChangeForm: FC = () => {
                     onAnimationEnd={handleAnimationEnd}
                 >
                     <h2 className="text-3xl font-bold text-my-dark animate-slideDown">
-                        {t("phrases.emailChange", { ns: "emailChangePage" })}
+                        {t("phrases.passwordChange", {
+                            ns: "passwordChangePage",
+                        })}
                     </h2>
                     <FormInputs
                         codeValue={codeValue}
                         passwordValue={passwordValue}
-                        newEmailValue={newEmailValue}
+                        newPassValue={newPassValue}
+                        confirmPassValue={confirmPassValue}
                         isCodePage={isCodePage}
                         isPasswordPage={isPasswordPage}
-                        isNewEmailPage={isNewEmailPage}
+                        isNewPassPage={isNewPassPage}
                         setInputValue={setInputValue}
                     />
                     <FormValidationBlock
                         validationError={validationError}
-                        isEmailError={isEmailError}
-                        isPasswordError={isPasswordError}
-                        isCodeError={isCodeError}
-                        emailChangeError={emailError as IError}
-                        passwordError={passwordError as IError}
                         codeError={codeError as IError}
+                        passwordError={passwordError as IError}
+                        changeError={changeError as IError}
+                        isCodeError={isCodeError}
+                        isPasswordError={isPasswordError}
+                        isChangeError={isChangeError}
                     />
                     <FormButtons
                         handleCheckCode={handleCheckCode}
                         handleCheckPassword={handleCheckPassword}
                         handleConfirmChange={handleConfirmChange}
                         isPasswordPage={isPasswordPage}
-                        isNewEmailPage={isNewEmailPage}
+                        isNewPassPage={isNewPassPage}
                         isCodePage={isCodePage}
                     />
                 </form>
@@ -204,4 +239,4 @@ const EmailChangeForm: FC = () => {
     )
 }
 
-export { EmailChangeForm }
+export { PasswordChangeForm }

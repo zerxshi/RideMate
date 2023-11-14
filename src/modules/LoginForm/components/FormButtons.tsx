@@ -4,8 +4,8 @@ import { Link } from "react-router-dom"
 
 interface FormButtonProps {
     isLogin: boolean
-    register: () => void
-    login: () => void
+    register: () => Promise<void>
+    login: () => Promise<void>
     handleToggleIsLogin: () => void
 }
 

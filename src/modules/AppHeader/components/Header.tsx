@@ -15,14 +15,15 @@ const Header: FC = () => {
     const dispatch = useAppDispatch()
     const [logout, {}] = authAPI.useLogoutMutation()
 
-    const userLogout = () => {
-        logout({})
+    const userLogout = (): void => {
+        logout()
         dispatch(deleteUser())
     }
 
     if (
         location.pathname.match("/login") ||
         location.pathname.match("/change/email") ||
+        location.pathname.match("/change/password") ||
         location.pathname.match("/recovery")
     ) {
         return <div></div>

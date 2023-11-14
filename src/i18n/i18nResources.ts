@@ -12,6 +12,8 @@ import enEmailChangePage from "@/i18n/en/emailChangePage.json"
 import ruEmailChangePage from "@/i18n/ru/emailChangePage.json"
 import enPasswordRecoveryPage from "@/i18n/en/passwordRecoveryPage.json"
 import ruPasswordRecoveryPage from "@/i18n/ru/passwordRecoveryPage.json"
+import enPasswordChangePage from "@/i18n/en/passwordChangePage.json"
+import ruPasswordChangePage from "@/i18n/ru/passwordChangePage.json"
 
 const resources = {
     en: {
@@ -23,6 +25,7 @@ const resources = {
         carsPage: enCarsPage,
         emailChangePage: enEmailChangePage,
         passwordRecoveryPage: enPasswordRecoveryPage,
+        passwordChangePage: enPasswordChangePage,
     },
     ru: {
         common: ruCommon,
@@ -32,6 +35,7 @@ const resources = {
         carsPage: ruCarsPage,
         emailChangePage: ruEmailChangePage,
         passwordRecoveryPage: ruPasswordRecoveryPage,
+        passwordChangePage: ruPasswordChangePage,
     },
 }
 

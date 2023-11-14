@@ -1,37 +1,30 @@
 import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { useFormContext } from "@/modules/PasswordRecovery/hooks/useFormContext"
 
 interface FormButtonsProps {
-    handleGetCode: () => Promise<void>
     handleCheckCode: () => Promise<void>
+    handleCheckPassword: () => Promise<void>
     handleConfirmChange: () => Promise<void>
+    isCodePage: boolean
+    isPasswordPage: boolean
+    isNewPassPage: boolean
 }
 
 const FormButtons: FC<FormButtonsProps> = ({
-    handleGetCode,
     handleCheckCode,
+    handleCheckPassword,
     handleConfirmChange,
+    isCodePage,
+    isPasswordPage,
+    isNewPassPage,
 }) => {
     const { t } = useTranslation("common")
-
-    const formData = useFormContext()
 
     return (
         <div className="flex flex-col">
             <button
                 className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
-                    formData.isEmailPage ? "animate-slideUp" : " hidden"
-                }`}
-                type="submit"
-                onClick={handleGetCode}
-            >
-                {t("buttons.getCode")}
-            </button>
-
-            <button
-                className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
-                    formData.isCodePage ? "animate-append" : " hidden"
+                    isCodePage ? "animate-slideUp" : " hidden"
                 }`}
                 type="submit"
                 onClick={handleCheckCode}
@@ -41,7 +34,17 @@ const FormButtons: FC<FormButtonsProps> = ({
 
             <button
                 className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
-                    formData.isNewPassPage ? "animate-slideDown" : " hidden"
+                    isPasswordPage ? "animate-append" : " hidden"
+                }`}
+                type="submit"
+                onClick={handleCheckPassword}
+            >
+                {t("buttons.checkPassword")}
+            </button>
+
+            <button
+                className={`w-full text-2xl font-bold h-14 rounded-2xl text-my-blue bg-my-dark active:scale-99 ${
+                    isNewPassPage ? "animate-append" : " hidden"
                 }`}
                 type="submit"
                 onClick={handleConfirmChange}

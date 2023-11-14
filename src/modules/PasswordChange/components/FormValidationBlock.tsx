@@ -1,25 +1,25 @@
-import { IError } from "@/types"
 import React, { FC } from "react"
+import { IError } from "@/types"
 import { useTranslation } from "react-i18next"
 
 interface ValidationBlockProps {
     validationError: string
-    isRecoveryError: boolean
-    isRequestError: boolean
+    isChangeError: boolean
+    isPasswordError: boolean
     isCodeError: boolean
-    recoveryError: IError
-    requestError: IError
+    changeError: IError
+    passwordError: IError
     codeError: IError
 }
 
 const FormValidationBlock: FC<ValidationBlockProps> = ({
     validationError,
-    recoveryError,
-    requestError,
-    codeError,
-    isRecoveryError,
-    isRequestError,
+    isChangeError,
+    isPasswordError,
     isCodeError,
+    changeError,
+    passwordError,
+    codeError,
 }) => {
     const { t } = useTranslation("common")
 
@@ -35,14 +35,6 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
 
             <strong
                 className={`ml-3 font-bold text-my-dark text-lg ${
-                    isRequestError ? "animate-append" : "hidden"
-                }`}
-            >
-                {requestError && t(`errors.${requestError.data.message}`)}
-            </strong>
-
-            <strong
-                className={`ml-3 font-bold text-my-dark text-lg ${
                     isCodeError ? "animate-append" : "hidden"
                 }`}
             >
@@ -51,10 +43,18 @@ const FormValidationBlock: FC<ValidationBlockProps> = ({
 
             <strong
                 className={`ml-3 font-bold text-my-dark text-lg ${
-                    isRecoveryError ? "animate-append" : "hidden"
+                    isPasswordError ? "animate-append" : "hidden"
                 }`}
             >
-                {recoveryError && t(`errors.${recoveryError.data.message}`)}
+                {passwordError && t(`errors.${passwordError.data.message}`)}
+            </strong>
+
+            <strong
+                className={`ml-3 font-bold text-my-dark text-lg ${
+                    isChangeError ? "animate-append" : "hidden"
+                }`}
+            >
+                {changeError && t(`errors.${changeError.data.message}`)}
             </strong>
         </div>
     )

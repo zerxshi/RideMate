@@ -3,7 +3,7 @@ import React, { FC } from "react"
 
 const PasswordRecovery: FC = () => {
     return (
-        <main className="absolute bottom-0 left-0 right-0 flex items-center justify-center overflow-hidden top-20 bg-my-blue">
+        <main className="flex items-center justify-center w-screen h-screen overflow-hidden bg-my-blue">
             <PasswordRecoveryForm />
         </main>
     )
