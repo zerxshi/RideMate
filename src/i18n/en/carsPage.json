@@ -12,7 +12,10 @@
         "brand": "Brand",
         "class": "Class"
     },
-    "filter": {
-        "sortBy": "Sort by"
+    "sortAndFilters": {
+        "sortBy": "Sort by",
+        "filters": "Filters",
+        "minPrice": "Minimum price",
+        "maxPrice": "Maximum price"
     }
 }
