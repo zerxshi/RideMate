@@ -1,9 +1,11 @@
 import { useAppSelector } from "@/hooks/useTypedStore"
 import React, { useState } from "react"
 import { NavigateFunction, useNavigate } from "react-router-dom"
-import { changeDataAPI } from "../API/ChangeDataAPI"
-import PersonalData from "./PersonalData"
-import RentalHistory from "./RentalHistory"
+import { changeDataAPI } from "@/modules/UserProfile/API/ChangeDataAPI"
+import PersonalData from "@/modules/UserProfile/components/PersonalData"
+import RentalHistory from "@/modules/UserProfile/components/RentalHistory"
+import { rentalHistoryAPI } from "@/modules/UserProfile/API/rentalHistoryAPI"
+import { carsAPI } from "@/modules/Cars"
 
 const UserProfile = () => {
     const [emailChangeRequest, {}] =
@@ -11,6 +13,9 @@ const UserProfile = () => {
 
     const [passwordChangeRequest, {}] =
         changeDataAPI.useChangePasswordRequestMutation()
+
+    const { data: rentalHistory } = rentalHistoryAPI.useGetRentalHistoryQuery()
+    const { data: cars } = carsAPI.useGetAllCarsQuery("")
 
     const { email, name } = useAppSelector((state) => state.userReducer)
 
@@ -67,7 +72,16 @@ const UserProfile = () => {
                     passwordChangeRequest={handlePasswordRequest}
                 />
             )}
-            {isRentalHistory && <RentalHistory />}
+            {isRentalHistory &&
+                cars &&
+                cars.rows &&
+                rentalHistory &&
+                rentalHistory.rows && (
+                    <RentalHistory
+                        cars={cars.rows}
+                        rentalCars={rentalHistory.rows}
+                    />
+                )}
         </section>
     )
 }

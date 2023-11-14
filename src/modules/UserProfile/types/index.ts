@@ -13,3 +13,19 @@ export interface IRentalHistoryRes {
 export interface ICancelRentalRes {
     message: string
 }
+
+export interface ICar {
+    id: number
+    model: string
+    price: number
+    mileage: number
+    lastMileageOnTs: number
+    fuelConsumption: number
+    technicalCondition: number
+    img: string
+    classId: number
+    brandId: number
+    rentalParkingId: number | null
+    maintenanceParkingId: number | null
+    carScheduleId: number | null
+}
