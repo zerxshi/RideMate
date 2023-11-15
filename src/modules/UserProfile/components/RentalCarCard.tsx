@@ -5,12 +5,14 @@ interface RentalCarCardProps {
     car: ICarAndBrand | undefined
     rentalDates: string
     totalPrice: number
+    status: string
 }
 
 const RentalCarCard: FC<RentalCarCardProps> = ({
     car,
     rentalDates,
     totalPrice,
+    status,
 }) => {
     return (
         <article className="flex gap-5 p-4 shadow-xl bg-zinc-700 rounded-xl w-[630px]">
@@ -30,7 +32,7 @@ const RentalCarCard: FC<RentalCarCardProps> = ({
                 </dl>
                 <dl className="flex gap-1 text-lg font-bold">
                     <dt>Status:</dt>
-                    <dd>Done</dd>
+                    <dd>{status}</dd>
                 </dl>
             </div>
         </article>
