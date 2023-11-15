@@ -6,6 +6,7 @@ import {
     ICar,
     IRentalCar,
 } from "@/modules/UserProfile/types"
+import { useTranslation } from "react-i18next"
 
 interface RentalHistoryProps {
     cars: ICar[]
@@ -18,6 +19,8 @@ const RentalHistory: FC<RentalHistoryProps> = ({
     brands,
     rentalCars,
 }) => {
+    const { t } = useTranslation("historyPage")
+
     const findCarAndBrandById = (carId: number): ICarAndBrand | undefined => {
         const car = cars.find((car) => car.id === carId)
         const brand = brands.find((brand) => brand.id === car?.brandId)
@@ -30,11 +33,7 @@ const RentalHistory: FC<RentalHistoryProps> = ({
 
     const rentalDates = (dates: string[]): string => {
         const datesWithDots = dates.map((date): string => {
-            const year = new Date(date).getFullYear()
-            const month = new Date(date).getMonth() + 1
-            const day = new Date(date).getDate()
-
-            return year + "." + month + "." + day
+            return new Date(date).toLocaleDateString()
         })
 
         if (datesWithDots.length <= 2) {
@@ -49,6 +48,38 @@ const RentalHistory: FC<RentalHistoryProps> = ({
         return ""
     }
 
+    const createStatus = (dates: string[]): string => {
+        const dateNow = new Date().getTime()
+        if (dates.length === 1) {
+            const date = new Date(dates[0]).getTime()
+            if (dateNow < date) {
+                return t("phrases.awaiting")
+            }
+            if (dateNow > date) {
+                return t("phrases.complete")
+            }
+            if (dateNow === date) {
+                return t("phrases.inProcess")
+            }
+        }
+
+        if (dates.length > 1) {
+            const startDate = new Date(dates[0]).getTime()
+            const endDate = new Date(dates[dates.length - 1]).getTime()
+            if (startDate < dateNow && dateNow < endDate) {
+                return t("phrases.inProcess")
+            }
+            if (dateNow < startDate) {
+                return t("phrases.awaiting")
+            }
+            if (dateNow > endDate) {
+                return t("phrases.complete")
+            }
+        }
+
+        return ""
+    }
+
     return (
         <section className="flex flex-col gap-4">
             {rentalCars.map((rentalCar) => (
@@ -56,6 +87,7 @@ const RentalHistory: FC<RentalHistoryProps> = ({
                     car={findCarAndBrandById(rentalCar.carId)}
                     totalPrice={rentalCar.totalPrice}
                     rentalDates={rentalDates(rentalCar.occupied_dates)}
+                    status={createStatus(rentalCar.occupied_dates)}
                     key={rentalCar.id}
                 />
             ))}
