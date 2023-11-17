@@ -12,12 +12,14 @@ interface RentalHistoryProps {
     cars: ICar[]
     brands: IBrand[]
     rentalCars: IRentalCar[]
+    cancelReservation: (historyId: number) => Promise<void>
 }
 
 const RentalHistory: FC<RentalHistoryProps> = ({
     cars,
     brands,
     rentalCars,
+    cancelReservation,
 }) => {
     const { t } = useTranslation("historyPage")
 
@@ -88,6 +90,8 @@ const RentalHistory: FC<RentalHistoryProps> = ({
                     totalPrice={rentalCar.totalPrice}
                     rentalDates={rentalDates(rentalCar.occupied_dates)}
                     status={createStatus(rentalCar.occupied_dates)}
+                    historyId={rentalCar.id}
+                    cancelReservation={cancelReservation}
                     key={rentalCar.id}
                 />
             ))}
