@@ -31,15 +31,15 @@ const RentalCarCard: FC<RentalCarCardProps> = ({
                         {car?.brand} {car?.model}
                     </b>
                     <dl className="flex flex-wrap gap-1 text-lg font-bold">
-                        <dt>Rental dates:</dt>
+                        <dt>{t("lists.rentalDates")}:</dt>
                         <dd>{rentalDates}</dd>
                     </dl>
                     <dl className="flex gap-1 text-lg font-bold">
-                        <dt>Total price:</dt>
+                        <dt>{t("lists.totalPrice")}:</dt>
                         <dd>{totalPrice}</dd>
                     </dl>
                     <dl className="flex gap-1 text-lg font-bold">
-                        <dt>Status:</dt>
+                        <dt>{t("lists.status")}:</dt>
                         <dd>{status}</dd>
                     </dl>
                 </div>

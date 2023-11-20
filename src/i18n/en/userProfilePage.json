@@ -1,0 +1,16 @@
+{
+    "buttons": {
+        "personalData": "Personal data",
+        "rentalHistory": "Rental history",
+        "changePassword": "Change password",
+        "changeEmail": "Change email"
+    },
+    "lists": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password"
+    },
+    "phrases": {
+        "personalData": "Personal data"
+    }
+}

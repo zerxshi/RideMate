@@ -6,5 +6,10 @@
     },
     "buttons": {
         "cancelReservation": "Cancel reservation"
+    },
+    "lists": {
+        "rentalDates": "Rental dates",
+        "totalPrice": "Total price",
+        "status": "Status"
     }
 }

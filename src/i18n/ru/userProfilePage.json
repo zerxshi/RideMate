@@ -1,0 +1,16 @@
+{
+    "buttons": {
+        "personalData": "Личные данные",
+        "rentalHistory": "История аренды",
+        "changePassword": "Поменять пароль",
+        "changeEmail": "Поменять почту"
+    },
+    "lists": {
+        "name": "Имя",
+        "email": "Почта",
+        "password": "Пароль"
+    },
+    "phrases": {
+        "personalData": "Личные данные"
+    }
+}
