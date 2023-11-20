@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+import { useTranslation } from "react-i18next"
 
 interface PersonalDataProps {
     name: string | null
@@ -13,6 +14,8 @@ const PersonalData: FC<PersonalDataProps> = ({
     emailChangeRequest,
     passwordChangeRequest,
 }) => {
+    const { t } = useTranslation("userProfilePage")
+
     const modifiedEmail: string = email!.replace(
         /(.*)(.{3})@(.*)/,
         (_, prefix, lastThree, afterAt) =>
@@ -22,34 +25,32 @@ const PersonalData: FC<PersonalDataProps> = ({
     return (
         <section className="flex flex-col gap-3 ">
             <h2 className="text-2xl font-bold text-white">
-                Personal information
+                {t("phrases.personalData")}
             </h2>
             <dl className="flex gap-2 text-xl font-bold text-white">
-                <dt>Name:</dt>
+                <dt>{t("lists.name")}:</dt>
                 <dd>{name}</dd>
             </dl>
             <div className="flex gap-5">
                 <dl className="flex gap-2 text-xl font-bold text-white">
-                    <dt>Email:</dt>
+                    <dt>{t("lists.email")}:</dt>
                     <dd>{modifiedEmail}</dd>
                 </dl>
                 <button
                     onClick={emailChangeRequest}
                     className="text-xl font-bold rounded-lg w-44 text-my-dark bg-my-blue active:scale-99"
                 >
-                    Change email
+                    {t("buttons.changeEmail")}
                 </button>
             </div>
             <div className="flex gap-5">
-                <dl className="flex gap-2 text-xl font-bold text-white">
-                    <dt>Password:</dt>
-                    <dd>*********</dd>
-                </dl>
+                <b className="text-xl text-white">{t("lists.password")}:</b>
+
                 <button
                     onClick={passwordChangeRequest}
                     className="text-xl font-bold rounded-lg w-44 text-my-dark bg-my-blue active:scale-99"
                 >
-                    Change password
+                    {t("buttons.changePassword")}
                 </button>
             </div>
         </section>

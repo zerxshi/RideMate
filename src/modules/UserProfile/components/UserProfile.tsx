@@ -5,8 +5,11 @@ import { changeDataAPI } from "@/modules/UserProfile/API/ChangeDataAPI"
 import PersonalData from "@/modules/UserProfile/components/PersonalData"
 import RentalHistory from "@/modules/UserProfile/components/RentalHistory"
 import { rentalHistoryAPI } from "@/modules/UserProfile/API/rentalHistoryAPI"
+import { useTranslation } from "react-i18next"
 
 const UserProfile = () => {
+    const { t } = useTranslation("userProfilePage")
+
     const [emailChangeRequest, {}] =
         changeDataAPI.useChangeEmailRequestMutation()
 
@@ -60,13 +63,13 @@ const UserProfile = () => {
                     className="text-2xl font-bold rounded-lg h-9 w-52 text-my-dark bg-my-blue active:scale-99"
                     onClick={handlePersonalData}
                 >
-                    Personal data
+                    {t("buttons.personalData")}
                 </button>
                 <button
                     className="text-2xl font-bold rounded-lg h-9 w-52 text-my-dark bg-my-blue active:scale-99"
                     onClick={handleRentalHistory}
                 >
-                    Rental history
+                    {t("buttons.rentalHistory")}
                 </button>
             </div>
             {isPersonalData && (
