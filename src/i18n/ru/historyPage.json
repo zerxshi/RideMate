@@ -6,5 +6,10 @@
     },
     "buttons": {
         "cancelReservation": "Отменить бронирование"
+    },
+    "lists": {
+        "rentalDates": "Даты аренды",
+        "totalPrice": "Итоговая цена",
+        "status": "Статус"
     }
 }
