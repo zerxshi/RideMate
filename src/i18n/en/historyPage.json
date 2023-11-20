@@ -3,5 +3,8 @@
         "awaiting": "Awaiting",
         "inProcess": "In process",
         "complete": "Complete"
+    },
+    "buttons": {
+        "cancelReservation": "Cancel reservation"
     }
 }

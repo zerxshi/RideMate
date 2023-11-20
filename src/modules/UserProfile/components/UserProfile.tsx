@@ -14,6 +14,7 @@ const UserProfile = () => {
         changeDataAPI.useChangePasswordRequestMutation()
 
     const { data: rentalHistory } = rentalHistoryAPI.useGetRentalHistoryQuery()
+    const [cancelReservation] = rentalHistoryAPI.useCancelRentalMutation()
 
     const { email, name } = useAppSelector((state) => state.userReducer)
 
@@ -44,6 +45,12 @@ const UserProfile = () => {
         if ("data" in result) {
             navigate("/change/password")
         }
+    }
+
+    const handleCancelReservation = async (
+        historyId: number,
+    ): Promise<void> => {
+        await cancelReservation({ historyId })
     }
 
     return (
@@ -79,6 +86,7 @@ const UserProfile = () => {
                         cars={rentalHistory.cars}
                         brands={rentalHistory.brands}
                         rentalCars={rentalHistory.history.rows}
+                        cancelReservation={handleCancelReservation}
                     />
                 )}
         </section>
