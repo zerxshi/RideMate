@@ -46,6 +46,13 @@ const Header: FC = () => {
                         <CarsDropdownMenu />
                     </div>
 
+                    <Link to="/admin" className="">
+                        {" "}
+                        <b className="text-xl font-normal font-russo text-my-blue">
+                            ADMIN PANEL
+                        </b>
+                    </Link>
+
                     {isAuth ? (
                         <UserDropdownMenu
                             userName={name!}

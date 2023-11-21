@@ -8,6 +8,7 @@ import {
     RECOVERY_ROUTE,
     EMAIL_CHANGE_ROUTE,
     PASSWORD_CHANGE_ROUTE,
+    ADMIN_PAGE_ROUTE,
 } from "@/modules/AppRouter/utils/consts"
 import MainPage from "@/pages/MainPage"
 import Cars from "@/pages/Cars"
@@ -18,6 +19,7 @@ import Login from "@/pages/Login"
 import PasswordRecovery from "@/pages/PasswordRecovery"
 import EmailChange from "@/pages/EmailChange"
 import PasswordChange from "@/pages/PasswordChange"
+import AdminPage from "@/pages/AdminPage"
 
 interface IPages {
     path: string
@@ -40,4 +42,5 @@ export const privatePages: IPages[] = [
     { path: CARS_ROUTE + "/:id", component: CarID },
     { path: TIMER_ROUTE, component: TimerPage },
     { path: PROFILE_ROUTE, component: Profile },
+    { path: ADMIN_PAGE_ROUTE, component: AdminPage },
 ]
