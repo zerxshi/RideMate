@@ -1,11 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
-import CarsMenu from "@/modules/Cars/components/CarsMenu";
-import CarsForm from "@/modules/Cars/components/CarsForm";
-import { useSearchParams } from 'react-router-dom';
-import { carsAPI } from "@/modules/Cars/API/carsAPI";
-import CarsSortAndFilter from "@/modules/Cars/components/CarsSortAndFilter";
-import { brandAPI } from "@/modules/Cars/API/brandAPI";
-import { classAPI } from "@/modules/Cars";
+import React, { FC, useEffect, useState } from "react"
+import CarsMenu from "@/modules/Cars/components/CarsMenu"
+import CarsForm from "@/modules/Cars/components/CarsForm"
+import { useSearchParams } from "react-router-dom"
+import { carsAPI } from "@/modules/Cars/API/carsAPI"
+import CarsSortAndFilter from "@/modules/Cars/components/CarsSortAndFilter"
+import { brandAPI } from "@/API/brandAPI"
+import { classAPI } from "@/API/classAPI"
 
 const CarsPage: FC = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -35,12 +35,24 @@ const CarsPage: FC = () => {
                 handleSelectedMenu={handleSelectedMenu}
             />
             <section className={"flex justify-center"}>
-                    <section className={"mt-4 w-[1150px] grid grid-cols-4 gap-4"}>
-                        {cars && cars.rows && brands && brands.rows && carClasses && carClasses.rows &&
-                            <CarsForm cars={cars.rows} brands={brands.rows} carClasses={carClasses.rows}/>
-                        }
-                        <CarsSortAndFilter searchParams={searchParams} setSearchParams={setSearchParams} />
-                    </section>
+                <section className={"mt-4 w-[1150px] grid grid-cols-4 gap-4"}>
+                    {cars &&
+                        cars.rows &&
+                        brands &&
+                        brands.rows &&
+                        carClasses &&
+                        carClasses.rows && (
+                            <CarsForm
+                                cars={cars.rows}
+                                brands={brands.rows}
+                                carClasses={carClasses.rows}
+                            />
+                        )}
+                    <CarsSortAndFilter
+                        searchParams={searchParams}
+                        setSearchParams={setSearchParams}
+                    />
+                </section>
             </section>
         </section>
     )
