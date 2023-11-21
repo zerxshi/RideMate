@@ -4,7 +4,6 @@ import {
     LOGIN_ROUTE,
     MAIN_PAGE_ROUTE,
     PROFILE_ROUTE,
-    TIMER_ROUTE,
     RECOVERY_ROUTE,
     EMAIL_CHANGE_ROUTE,
     PASSWORD_CHANGE_ROUTE,
@@ -13,7 +12,6 @@ import {
 import MainPage from "@/pages/MainPage"
 import Cars from "@/pages/Cars"
 import CarID from "@/pages/CarID"
-import TimerPage from "@/pages/TimerPage"
 import Profile from "@/pages/Profile"
 import Login from "@/pages/Login"
 import PasswordRecovery from "@/pages/PasswordRecovery"
@@ -40,7 +38,6 @@ export const privatePages: IPages[] = [
     { path: MAIN_PAGE_ROUTE, component: MainPage },
     { path: CARS_ROUTE, component: Cars },
     { path: CARS_ROUTE + "/:id", component: CarID },
-    { path: TIMER_ROUTE, component: TimerPage },
     { path: PROFILE_ROUTE, component: Profile },
     { path: ADMIN_PAGE_ROUTE, component: AdminPage },
 ]
