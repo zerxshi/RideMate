@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { ICar } from "@/modules/AdminPanel/types"
 import { IBrand, IClass } from "@/types"
-import AdminCarCard from "./AdminCarCard"
+import AdminCarCard from "@/modules/AdminPanel/components/AdminCarCard"
 
 interface CarsListProps {
     cars: ICar[]
