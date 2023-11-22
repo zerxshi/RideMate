@@ -7,9 +7,10 @@ interface CarsListProps {
     cars: ICar[]
     brands: IBrand[]
     classes: IClass[]
+    removeCar: (carId: number) => Promise<void>
 }
 
-const CarsList: FC<CarsListProps> = ({ cars, brands, classes }) => {
+const CarsList: FC<CarsListProps> = ({ cars, brands, classes, removeCar }) => {
     const findBrandName = (brandId: number): string | undefined => {
         const brand = brands.find((brand) => brand.id === brandId)
         return brand?.name
@@ -30,6 +31,7 @@ const CarsList: FC<CarsListProps> = ({ cars, brands, classes }) => {
                     model={car.model}
                     brand={findBrandName(car.brandId)}
                     carClass={findClassName(car.classId)}
+                    removeCar={removeCar}
                 />
             ))}
         </section>

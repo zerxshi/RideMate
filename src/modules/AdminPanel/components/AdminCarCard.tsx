@@ -7,6 +7,7 @@ interface AdminCarCardProps {
     model: string
     brand: string | undefined
     carClass: string | undefined
+    removeCar: (carId: number) => Promise<void>
 }
 
 const AdminCarCard: FC<AdminCarCardProps> = ({
@@ -15,6 +16,7 @@ const AdminCarCard: FC<AdminCarCardProps> = ({
     model,
     brand,
     carClass,
+    removeCar,
 }) => {
     return (
         <article className="flex gap-5 p-4 shadow-xl bg-zinc-700 rounded-xl w-[630px]">
@@ -40,6 +42,7 @@ const AdminCarCard: FC<AdminCarCardProps> = ({
                 </div>
 
                 <button
+                    onClick={() => removeCar(carId)}
                     className="self-end h-8 px-2 text-lg font-bold rounded-lg w-max bg-my-blue text-my-dark"
                     type="button"
                 >
