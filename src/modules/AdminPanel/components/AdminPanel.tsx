@@ -1,9 +1,10 @@
 import React, { useState } from "react"
-import CarsList from "./CarsList"
+import CarsList from "@/modules/AdminPanel/components/CarsList"
 import { adminCarsAPI } from "@/modules/AdminPanel"
 import { brandAPI } from "@/API/brandAPI"
 import { classAPI } from "@/API/classAPI"
-import BrandsList from "./BrandsList"
+import BrandsList from "@/modules/AdminPanel/components/BrandsList"
+import ClassesList from "@/modules/AdminPanel/components/ClassesList"
 
 const AdminPanel = () => {
     const { data: cars } = adminCarsAPI.useGetAllCarsQuery()
@@ -71,6 +72,9 @@ const AdminPanel = () => {
 
             {isBrandsList && brands && brands.rows && (
                 <BrandsList brands={brands.rows} />
+            )}
+            {isClassesList && classes && classes.rows && (
+                <ClassesList classes={classes.rows} />
             )}
         </section>
     )
