@@ -3,6 +3,7 @@ import CarsList from "./CarsList"
 import { adminCarsAPI } from "@/modules/AdminPanel"
 import { brandAPI } from "@/API/brandAPI"
 import { classAPI } from "@/API/classAPI"
+import BrandsList from "./BrandsList"
 
 const AdminPanel = () => {
     const { data: cars } = adminCarsAPI.useGetAllCarsQuery()
@@ -10,8 +11,8 @@ const AdminPanel = () => {
     const { data: classes } = classAPI.useGetAllClassesQuery()
 
     const [isCarsList, setIsCarsList] = useState<boolean>(true)
-    const [isBrandsList, setIsBrandsList] = useState<boolean>(true)
-    const [isClassesList, setIsClassesList] = useState<boolean>(true)
+    const [isBrandsList, setIsBrandsList] = useState<boolean>(false)
+    const [isClassesList, setIsClassesList] = useState<boolean>(false)
 
     const handleCarsList = (): void => {
         setIsCarsList(true)
@@ -53,6 +54,7 @@ const AdminPanel = () => {
                     Classes
                 </button>
             </div>
+
             {isCarsList &&
                 cars &&
                 cars.rows &&
@@ -66,6 +68,10 @@ const AdminPanel = () => {
                         classes={classes.rows}
                     />
                 )}
+
+            {isBrandsList && brands && brands.rows && (
+                <BrandsList brands={brands.rows} />
+            )}
         </section>
     )
 }
