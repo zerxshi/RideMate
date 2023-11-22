@@ -1,6 +1,10 @@
 import React, { useState } from "react"
 import CarsList from "@/modules/AdminPanel/components/CarsList"
-import { adminCarsAPI } from "@/modules/AdminPanel"
+import {
+    adminCarsAPI,
+    brandDeletionAPI,
+    classDeletionAPI,
+} from "@/modules/AdminPanel"
 import { brandAPI } from "@/API/brandAPI"
 import { classAPI } from "@/API/classAPI"
 import BrandsList from "@/modules/AdminPanel/components/BrandsList"
@@ -11,9 +15,25 @@ const AdminPanel = () => {
     const { data: brands } = brandAPI.useGetAllBrandsQuery()
     const { data: classes } = classAPI.useGetAllClassesQuery()
 
+    const [removeCar] = adminCarsAPI.useDeleteCarMutation()
+    const [removeBrand] = brandDeletionAPI.useDeleteBrandMutation()
+    const [removeClass] = classDeletionAPI.useDeleteClassMutation()
+
     const [isCarsList, setIsCarsList] = useState<boolean>(true)
     const [isBrandsList, setIsBrandsList] = useState<boolean>(false)
     const [isClassesList, setIsClassesList] = useState<boolean>(false)
+
+    const handleRemoveCar = async (carId: number): Promise<void> => {
+        await removeCar({ carId })
+    }
+
+    const handleRemoveBrand = async (brandId: number): Promise<void> => {
+        await removeBrand({ brandId })
+    }
+
+    const handleRemoveClass = async (classId: number): Promise<void> => {
+        await removeClass({ classId })
+    }
 
     const handleCarsList = (): void => {
         setIsCarsList(true)
@@ -67,14 +87,21 @@ const AdminPanel = () => {
                         cars={cars?.rows}
                         brands={brands.rows}
                         classes={classes.rows}
+                        removeCar={handleRemoveCar}
                     />
                 )}
 
             {isBrandsList && brands && brands.rows && (
-                <BrandsList brands={brands.rows} />
+                <BrandsList
+                    brands={brands.rows}
+                    removeBrand={handleRemoveBrand}
+                />
             )}
             {isClassesList && classes && classes.rows && (
-                <ClassesList classes={classes.rows} />
+                <ClassesList
+                    classes={classes.rows}
+                    removeClass={handleRemoveClass}
+                />
             )}
         </section>
     )
