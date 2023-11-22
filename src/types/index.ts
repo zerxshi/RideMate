@@ -21,3 +21,23 @@ export interface IChangeDataResponse {
 export interface IAutoLoginRes {
     token: string
 }
+
+export interface IBrand {
+    id: number
+    name: string
+}
+
+export interface IResponseBrand {
+    count: number
+    rows: IBrand[]
+}
+
+export interface IClass {
+    id: number
+    name: string
+}
+
+export interface IResponseClass {
+    count: number
+    rows: IClass[]
+}
