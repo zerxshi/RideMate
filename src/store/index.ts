@@ -14,7 +14,7 @@ import { passwordRecoveryAPI } from "@/modules/PasswordRecovery"
 import { rentalHistoryAPI } from "@/modules/UserProfile"
 import { brandDeletionAPI } from "@/modules/AdminPanel"
 import { classDeletionAPI } from "@/modules/AdminPanel"
-import { carDeletionAPI } from "@/modules/AdminPanel"
+import { adminCarsAPI } from "@/modules/AdminPanel"
 
 const rootReducer = combineReducers({
     userReducer: userSlice,
@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
     [rentalHistoryAPI.reducerPath]: rentalHistoryAPI.reducer,
     [brandDeletionAPI.reducerPath]: brandDeletionAPI.reducer,
     [classDeletionAPI.reducerPath]: classDeletionAPI.reducer,
-    [carDeletionAPI.reducerPath]: carDeletionAPI.reducer,
+    [adminCarsAPI.reducerPath]: adminCarsAPI.reducer,
 })
 
 export const store = configureStore({
@@ -53,7 +53,7 @@ export const store = configureStore({
             rentalHistoryAPI.middleware,
             brandDeletionAPI.middleware,
             classDeletionAPI.middleware,
-            carDeletionAPI.middleware,
+            adminCarsAPI.middleware,
         ),
 })
 
