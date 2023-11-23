@@ -1,0 +1,19 @@
+{
+    "buttons": {
+        "cars": "Автомобили",
+        "brands": "Бренды",
+        "classes": "Классы",
+        "removeCar": "Убрать автомобиль",
+        "createCar": "Создать новый автомобиль",
+        "createBrand": "Создать новый бренд"
+    },
+    "lists": {
+        "carId": "ID автомобиля",
+        "segment": "Сегмент",
+        "brand": "Бренд",
+        "brandId": "ID бренда",
+        "brandName": "Название бренда",
+        "classId": "ID класса",
+        "className": "Название класса"
+    }
+}

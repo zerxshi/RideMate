@@ -9,8 +9,11 @@ import { brandAPI } from "@/API/brandAPI"
 import { classAPI } from "@/API/classAPI"
 import BrandsList from "@/modules/AdminPanel/components/BrandsList"
 import ClassesList from "@/modules/AdminPanel/components/ClassesList"
+import { useTranslation } from "react-i18next"
 
 const AdminPanel = () => {
+    const { t } = useTranslation("adminPanelPage")
+
     const { data: cars } = adminCarsAPI.useGetAllCarsQuery()
     const { data: brands } = brandAPI.useGetAllBrandsQuery()
     const { data: classes } = classAPI.useGetAllClassesQuery()
@@ -60,19 +63,19 @@ const AdminPanel = () => {
                     onClick={handleCarsList}
                     className="text-2xl font-bold rounded-lg h-9 w-52 text-my-dark bg-my-blue active:scale-99"
                 >
-                    Cars
+                    {t("buttons.cars")}
                 </button>
                 <button
                     onClick={handleBrandsList}
                     className="text-2xl font-bold rounded-lg h-9 w-52 text-my-dark bg-my-blue active:scale-99"
                 >
-                    Brands
+                    {t("buttons.brands")}
                 </button>
                 <button
                     onClick={handleClassesList}
                     className="text-2xl font-bold rounded-lg h-9 w-52 text-my-dark bg-my-blue active:scale-99"
                 >
-                    Classes
+                    {t("buttons.classes")}
                 </button>
             </div>
 

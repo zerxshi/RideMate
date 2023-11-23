@@ -1,0 +1,19 @@
+{
+    "buttons": {
+        "cars": "Cars",
+        "brands": "Brands",
+        "classes": "Classes",
+        "removeCar": "Remove the car",
+        "createCar": "Create new car",
+        "createBrand": "Create new brand"
+    },
+    "lists": {
+        "carId": "Car ID",
+        "segment": "Segment",
+        "brand": "Brand",
+        "brandId": "Brand ID",
+        "brandName": "Brand name",
+        "classId": "Class ID",
+        "className": "Class name"
+    }
+}
