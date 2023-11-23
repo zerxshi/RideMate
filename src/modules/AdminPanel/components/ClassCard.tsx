@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+import { useTranslation } from "react-i18next"
 
 interface ClassCardProps {
     classId: number
@@ -7,14 +8,16 @@ interface ClassCardProps {
 }
 
 const ClassCard: FC<ClassCardProps> = ({ classId, className, removeClass }) => {
+    const { t } = useTranslation("adminPanelPage")
+
     return (
         <article className="flex flex-col  p-4 shadow-xl bg-zinc-700 rounded-xl w-[630px]">
             <dl className="flex gap-1 text-lg font-bold">
-                <dt>Class ID:</dt>
+                <dt>{t("lists.classId")}:</dt>
                 <dd>{classId}</dd>
             </dl>
             <dl className="flex gap-1 text-lg font-bold">
-                <dt>Class name:</dt>
+                <dt>{t("lists.className")}:</dt>
                 <dd>{className}</dd>
             </dl>
             <button

@@ -1,5 +1,6 @@
 import { BASE_SERVER_URL } from "@/utils/consts"
 import React, { FC } from "react"
+import { useTranslation } from "react-i18next"
 
 interface AdminCarCardProps {
     carId: number
@@ -18,6 +19,8 @@ const AdminCarCard: FC<AdminCarCardProps> = ({
     carClass,
     removeCar,
 }) => {
+    const { t } = useTranslation("adminPanelPage")
+
     return (
         <article className="flex gap-5 p-4 shadow-xl bg-zinc-700 rounded-xl w-[630px]">
             <img src={BASE_SERVER_URL + img} className="w-64 rounded-lg" />
@@ -28,15 +31,15 @@ const AdminCarCard: FC<AdminCarCardProps> = ({
                         {brand} {model}
                     </b>
                     <dl className="flex flex-wrap gap-1 text-lg font-bold">
-                        <dt>Car ID:</dt>
+                        <dt>{t("lists.carId")}:</dt>
                         <dd>{carId}</dd>
                     </dl>
                     <dl className="flex gap-1 text-lg font-bold">
-                        <dt>Segment:</dt>
+                        <dt>{t("lists.segment")}:</dt>
                         <dd>{carClass}</dd>
                     </dl>
                     <dl className="flex gap-1 text-lg font-bold">
-                        <dt>Brand:</dt>
+                        <dt>{t("lists.brand")}:</dt>
                         <dd>{brand}</dd>
                     </dl>
                 </div>
@@ -46,7 +49,7 @@ const AdminCarCard: FC<AdminCarCardProps> = ({
                     className="self-end h-8 px-2 text-lg font-bold rounded-lg w-max bg-my-blue text-my-dark"
                     type="button"
                 >
-                    Remove the car
+                    {t("buttons.removeCar")}
                 </button>
             </div>
         </article>
