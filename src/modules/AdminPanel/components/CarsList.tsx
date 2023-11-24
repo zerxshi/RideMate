@@ -1,7 +1,10 @@
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import { ICar } from "@/modules/AdminPanel/types"
 import { IBrand, IClass } from "@/types"
 import AdminCarCard from "@/modules/AdminPanel/components/AdminCarCard"
+import { useTranslation } from "react-i18next"
+import CarCreationForm from "@/modules/AdminPanel/components/CarCreationForm"
+import { findName } from "@/modules/AdminPanel/helpers/findById"
 
 interface CarsListProps {
     cars: ICar[]
@@ -11,26 +14,35 @@ interface CarsListProps {
 }
 
 const CarsList: FC<CarsListProps> = ({ cars, brands, classes, removeCar }) => {
-    const findBrandName = (brandId: number): string | undefined => {
-        const brand = brands.find((brand) => brand.id === brandId)
-        return brand?.name
-    }
+    const { t } = useTranslation("adminPanelPage")
 
-    const findClassName = (classId: number): string | undefined => {
-        const carClass = classes.find((carClass) => carClass.id === classId)
-        return carClass?.name
+    const [isFormVisible, setIsFormVisible] = useState<boolean>(false)
+
+    const toggleFormVisibility = () => {
+        setIsFormVisible((prev) => !isFormVisible)
     }
 
     return (
         <section className="flex flex-col gap-4">
+            <button
+                onClick={toggleFormVisibility}
+                className="self-end h-8 px-2 text-2xl font-bold rounded-lg w-max bg-my-blue text-my-dark"
+                type="button"
+            >
+                {t("buttons.createCar")}
+            </button>
+            {isFormVisible && (
+                <CarCreationForm brands={brands} classes={classes} />
+            )}
+
             {cars.map((car) => (
                 <AdminCarCard
                     key={car.id}
                     carId={car.id}
                     img={car.img}
                     model={car.model}
-                    brand={findBrandName(car.brandId)}
-                    carClass={findClassName(car.classId)}
+                    brand={findName(brands, car.brandId)}
+                    carClass={findName(classes, car.classId)}
                     removeCar={removeCar}
                 />
             ))}
