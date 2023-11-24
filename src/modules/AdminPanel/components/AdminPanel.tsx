@@ -57,7 +57,7 @@ const AdminPanel = () => {
     }
 
     return (
-        <section className="flex gap-14 w-1150">
+        <section className="flex gap-11 w-1150">
             <div className="flex flex-col gap-4">
                 <button
                     onClick={handleCarsList}
