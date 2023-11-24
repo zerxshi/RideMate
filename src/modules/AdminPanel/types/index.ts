@@ -11,6 +11,7 @@ export interface ICar {
     isActive: boolean
     classId: number
     brandId: number
+    fuelConsumption: number
 }
 
 export interface IGetCarsRes {
