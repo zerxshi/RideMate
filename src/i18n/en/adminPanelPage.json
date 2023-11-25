@@ -15,5 +15,30 @@
         "brandName": "Brand name",
         "classId": "Class ID",
         "className": "Class name"
+    },
+    "inputs": {
+        "model": "Model",
+        "carImage": "Car image",
+        "price": "Price",
+        "fuelConsumption": "Fuel consumption",
+        "mileage": "Mileage"
+    },
+    "selects": {
+        "selectBrand": "Select brand",
+        "selectClass": "Select class"
+    },
+    "headers": {
+        "allBrands": "All car brands",
+        "allClasses": "All car classes",
+        "allCars": "All cars",
+        "activeCars": "Active cars",
+        "deactivatedCars": "Deactivated cars"
+    },
+    "carSegments": {
+        "B-segment": "B-segment",
+        "E-segment": "E-segment",
+        "F-segment": "F-segment",
+        "S-segment": "S-segment",
+        "Crossovers": "Crossovers"
     }
 }
