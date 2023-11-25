@@ -1,6 +1,6 @@
 import { IClass } from "@/types"
 import React, { FC } from "react"
-import ClassCard from "@/modules/AdminPanel/components/ClassCard"
+import ClassCard from "@/modules/AdminPanel/components/carClasses/ClassCard"
 
 interface ClassesListProps {
     classes: IClass[]

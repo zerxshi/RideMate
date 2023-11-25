@@ -7,7 +7,7 @@ import {
 import { brandAPI } from "@/API/brandAPI"
 import { classAPI } from "@/API/classAPI"
 import BrandsList from "@/modules/AdminPanel/components/brands/BrandsList"
-import ClassesList from "@/modules/AdminPanel/components/ClassesList"
+import ClassesList from "@/modules/AdminPanel/components/carClasses/ClassesList"
 import { useTranslation } from "react-i18next"
 import CarsPanel from "@/modules/AdminPanel/components/cars/CarsPanel"
 
