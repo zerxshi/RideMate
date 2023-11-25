@@ -4,10 +4,9 @@ import BrandCard from "@/modules/AdminPanel/components/brands/BrandCard"
 
 interface BrandsListProps {
     brands: IBrand[]
-    removeBrand: (brandId: number) => Promise<void>
 }
 
-const BrandsList: FC<BrandsListProps> = ({ brands, removeBrand }) => {
+const BrandsList: FC<BrandsListProps> = ({ brands }) => {
     return (
         <section className="flex flex-col gap-4">
             {brands.map((brand) => (
@@ -15,7 +14,6 @@ const BrandsList: FC<BrandsListProps> = ({ brands, removeBrand }) => {
                     key={brand.id}
                     brandId={brand.id}
                     brandName={brand.name}
-                    removeBrand={removeBrand}
                 />
             ))}
         </section>

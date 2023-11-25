@@ -4,10 +4,9 @@ import ClassCard from "@/modules/AdminPanel/components/carClasses/ClassCard"
 
 interface ClassesListProps {
     classes: IClass[]
-    removeClass: (classId: number) => Promise<void>
 }
 
-const ClassesList: FC<ClassesListProps> = ({ classes, removeClass }) => {
+const ClassesList: FC<ClassesListProps> = ({ classes }) => {
     return (
         <section className="flex flex-col gap-4">
             {classes.map((carClass) => (
@@ -15,7 +14,6 @@ const ClassesList: FC<ClassesListProps> = ({ classes, removeClass }) => {
                     key={carClass.id}
                     classId={carClass.id}
                     className={carClass.name}
-                    removeClass={removeClass}
                 />
             ))}
         </section>

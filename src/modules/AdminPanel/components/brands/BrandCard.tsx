@@ -4,10 +4,9 @@ import { useTranslation } from "react-i18next"
 interface BrandCardProps {
     brandId: number
     brandName: string
-    removeBrand: (brandId: number) => Promise<void>
 }
 
-const BrandCard: FC<BrandCardProps> = ({ brandId, brandName, removeBrand }) => {
+const BrandCard: FC<BrandCardProps> = ({ brandId, brandName }) => {
     const { t } = useTranslation("adminPanelPage")
 
     return (
@@ -20,13 +19,6 @@ const BrandCard: FC<BrandCardProps> = ({ brandId, brandName, removeBrand }) => {
                 <dt>{t("lists.brandName")}:</dt>
                 <dd>{brandName}</dd>
             </dl>
-            <button
-                onClick={() => removeBrand(brandId)}
-                className="self-end h-8 px-2 text-lg font-bold rounded-lg w-max bg-my-blue text-my-dark"
-                type="button"
-            >
-                Remove the brand
-            </button>
         </article>
     )
 }
