@@ -1,8 +1,7 @@
-import InputBlock from "@/components/InputBlock"
 import React, { ChangeEvent, FC, useEffect, useState } from "react"
 import { toSelect } from "@/modules/AdminPanel/helpers/toSelect"
 import { IBrand, IClass } from "@/types"
-import { adminCarsAPI } from "../API/carsAPI"
+import { adminCarsAPI } from "@/modules/AdminPanel"
 
 interface CarCreationFormProps {
     classes: IClass[]

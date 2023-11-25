@@ -4,10 +4,9 @@ import { useTranslation } from "react-i18next"
 interface ClassCardProps {
     classId: number
     className: string
-    removeClass: (classId: number) => Promise<void>
 }
 
-const ClassCard: FC<ClassCardProps> = ({ classId, className, removeClass }) => {
+const ClassCard: FC<ClassCardProps> = ({ classId, className }) => {
     const { t } = useTranslation("adminPanelPage")
 
     return (
@@ -20,13 +19,6 @@ const ClassCard: FC<ClassCardProps> = ({ classId, className, removeClass }) => {
                 <dt>{t("lists.className")}:</dt>
                 <dd>{className}</dd>
             </dl>
-            <button
-                onClick={() => removeClass(classId)}
-                className="self-end h-8 px-2 text-lg font-bold rounded-lg w-max bg-my-blue text-my-dark"
-                type="button"
-            >
-                Remove the class
-            </button>
         </article>
     )
 }

@@ -1,21 +1,20 @@
 import { IBrand } from "@/types"
 import React, { FC } from "react"
-import BrandCard from "@/modules/AdminPanel/components/BrandCard"
+import BrandCard from "@/modules/AdminPanel/components/brands/BrandCard"
 
 interface BrandsListProps {
     brands: IBrand[]
-    removeBrand: (brandId: number) => Promise<void>
 }
 
-const BrandsList: FC<BrandsListProps> = ({ brands, removeBrand }) => {
+const BrandsList: FC<BrandsListProps> = ({ brands }) => {
     return (
         <section className="flex flex-col gap-4">
+            <h1 className="text-4xl font-bold text-center">All car brands</h1>
             {brands.map((brand) => (
                 <BrandCard
                     key={brand.id}
                     brandId={brand.id}
                     brandName={brand.name}
-                    removeBrand={removeBrand}
                 />
             ))}
         </section>

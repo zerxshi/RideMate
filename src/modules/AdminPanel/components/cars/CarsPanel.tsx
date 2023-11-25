@@ -1,19 +1,23 @@
 import React, { FC, useState } from "react"
 import { ICar } from "@/modules/AdminPanel/types"
 import { IBrand, IClass } from "@/types"
-import AdminCarCard from "@/modules/AdminPanel/components/AdminCarCard"
 import { useTranslation } from "react-i18next"
-import CarCreationForm from "@/modules/AdminPanel/components/CarCreationForm"
-import { findName } from "@/modules/AdminPanel/helpers/findById"
+import CarCreationForm from "@/modules/AdminPanel/components/cars/CarCreationForm"
+import CarsList from "@/modules/AdminPanel/components/cars/CarsList"
 
-interface CarsListProps {
+interface CarsPanelProps {
     cars: ICar[]
     brands: IBrand[]
     classes: IClass[]
     removeCar: (carId: number) => Promise<void>
 }
 
-const CarsList: FC<CarsListProps> = ({ cars, brands, classes, removeCar }) => {
+const CarsPanel: FC<CarsPanelProps> = ({
+    cars,
+    brands,
+    classes,
+    removeCar,
+}) => {
     const { t } = useTranslation("adminPanelPage")
 
     const [isFormVisible, setIsFormVisible] = useState<boolean>(false)
@@ -34,20 +38,14 @@ const CarsList: FC<CarsListProps> = ({ cars, brands, classes, removeCar }) => {
             {isFormVisible && (
                 <CarCreationForm brands={brands} classes={classes} />
             )}
-
-            {cars.map((car) => (
-                <AdminCarCard
-                    key={car.id}
-                    carId={car.id}
-                    img={car.img}
-                    model={car.model}
-                    brand={findName(brands, car.brandId)}
-                    carClass={findName(classes, car.classId)}
-                    removeCar={removeCar}
-                />
-            ))}
+            <CarsList
+                cars={cars}
+                brands={brands}
+                classes={classes}
+                removeCar={removeCar}
+            />
         </section>
     )
 }
 
-export default CarsList
+export default CarsPanel

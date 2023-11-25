@@ -12,8 +12,6 @@ import { codeCheckAPI } from "@/API/codeCheckAPI"
 import { changePasswordAPI } from "@/modules/PasswordChange"
 import { passwordRecoveryAPI } from "@/modules/PasswordRecovery"
 import { rentalHistoryAPI } from "@/modules/UserProfile"
-import { brandDeletionAPI } from "@/modules/AdminPanel"
-import { classDeletionAPI } from "@/modules/AdminPanel"
 import { adminCarsAPI } from "@/modules/AdminPanel"
 
 const rootReducer = combineReducers({
@@ -30,8 +28,6 @@ const rootReducer = combineReducers({
     [changePasswordAPI.reducerPath]: changePasswordAPI.reducer,
     [passwordRecoveryAPI.reducerPath]: passwordRecoveryAPI.reducer,
     [rentalHistoryAPI.reducerPath]: rentalHistoryAPI.reducer,
-    [brandDeletionAPI.reducerPath]: brandDeletionAPI.reducer,
-    [classDeletionAPI.reducerPath]: classDeletionAPI.reducer,
     [adminCarsAPI.reducerPath]: adminCarsAPI.reducer,
 })
 
@@ -51,8 +47,6 @@ export const store = configureStore({
             changePasswordAPI.middleware,
             passwordRecoveryAPI.middleware,
             rentalHistoryAPI.middleware,
-            brandDeletionAPI.middleware,
-            classDeletionAPI.middleware,
             adminCarsAPI.middleware,
         ),
 })

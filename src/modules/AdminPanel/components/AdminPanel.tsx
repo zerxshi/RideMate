@@ -1,15 +1,11 @@
 import React, { useState } from "react"
-import CarsList from "@/modules/AdminPanel/components/CarsList"
-import {
-    adminCarsAPI,
-    brandDeletionAPI,
-    classDeletionAPI,
-} from "@/modules/AdminPanel"
+import { adminCarsAPI } from "@/modules/AdminPanel"
 import { brandAPI } from "@/API/brandAPI"
 import { classAPI } from "@/API/classAPI"
-import BrandsList from "@/modules/AdminPanel/components/BrandsList"
-import ClassesList from "@/modules/AdminPanel/components/ClassesList"
+import BrandsList from "@/modules/AdminPanel/components/brands/BrandsList"
+import ClassesList from "@/modules/AdminPanel/components/carClasses/ClassesList"
 import { useTranslation } from "react-i18next"
+import CarsPanel from "@/modules/AdminPanel/components/cars/CarsPanel"
 
 const AdminPanel = () => {
     const { t } = useTranslation("adminPanelPage")
@@ -19,8 +15,6 @@ const AdminPanel = () => {
     const { data: classes } = classAPI.useGetAllClassesQuery()
 
     const [removeCar] = adminCarsAPI.useDeleteCarMutation()
-    const [removeBrand] = brandDeletionAPI.useDeleteBrandMutation()
-    const [removeClass] = classDeletionAPI.useDeleteClassMutation()
 
     const [isCarsList, setIsCarsList] = useState<boolean>(true)
     const [isBrandsList, setIsBrandsList] = useState<boolean>(false)
@@ -28,14 +22,6 @@ const AdminPanel = () => {
 
     const handleRemoveCar = async (carId: number): Promise<void> => {
         await removeCar({ carId })
-    }
-
-    const handleRemoveBrand = async (brandId: number): Promise<void> => {
-        await removeBrand({ brandId })
-    }
-
-    const handleRemoveClass = async (classId: number): Promise<void> => {
-        await removeClass({ classId })
     }
 
     const handleCarsList = (): void => {
@@ -86,7 +72,7 @@ const AdminPanel = () => {
                 brands.rows &&
                 classes &&
                 classes.rows && (
-                    <CarsList
+                    <CarsPanel
                         cars={cars?.rows}
                         brands={brands.rows}
                         classes={classes.rows}
@@ -95,16 +81,10 @@ const AdminPanel = () => {
                 )}
 
             {isBrandsList && brands && brands.rows && (
-                <BrandsList
-                    brands={brands.rows}
-                    removeBrand={handleRemoveBrand}
-                />
+                <BrandsList brands={brands.rows} />
             )}
             {isClassesList && classes && classes.rows && (
-                <ClassesList
-                    classes={classes.rows}
-                    removeClass={handleRemoveClass}
-                />
+                <ClassesList classes={classes.rows} />
             )}
         </section>
     )
