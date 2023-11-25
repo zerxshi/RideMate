@@ -9,6 +9,7 @@ interface ClassesListProps {
 const ClassesList: FC<ClassesListProps> = ({ classes }) => {
     return (
         <section className="flex flex-col gap-4">
+            <h1 className="text-4xl font-bold text-center">All car classes</h1>
             {classes.map((carClass) => (
                 <ClassCard
                     key={carClass.id}
