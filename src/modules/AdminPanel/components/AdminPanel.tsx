@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import CarsList from "@/modules/AdminPanel/components/CarsList"
+import CarsList from "@/modules/AdminPanel/components/cars/CarsList"
 import {
     adminCarsAPI,
     brandDeletionAPI,

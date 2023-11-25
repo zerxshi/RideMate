@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react"
 import { ICar } from "@/modules/AdminPanel/types"
 import { IBrand, IClass } from "@/types"
-import AdminCarCard from "@/modules/AdminPanel/components/AdminCarCard"
+import AdminCarCard from "@/modules/AdminPanel/components/cars/AdminCarCard"
 import { useTranslation } from "react-i18next"
-import CarCreationForm from "@/modules/AdminPanel/components/CarCreationForm"
+import CarCreationForm from "@/modules/AdminPanel/components/cars/CarCreationForm"
 import { findName } from "@/modules/AdminPanel/helpers/findById"
 
 interface CarsListProps {
