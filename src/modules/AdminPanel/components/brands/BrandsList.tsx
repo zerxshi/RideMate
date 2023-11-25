@@ -1,6 +1,6 @@
 import { IBrand } from "@/types"
 import React, { FC } from "react"
-import BrandCard from "@/modules/AdminPanel/components/BrandCard"
+import BrandCard from "@/modules/AdminPanel/components/brands/BrandCard"
 
 interface BrandsListProps {
     brands: IBrand[]
