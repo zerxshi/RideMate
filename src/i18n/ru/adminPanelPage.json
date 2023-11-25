@@ -15,5 +15,30 @@
         "brandName": "Название бренда",
         "classId": "ID класса",
         "className": "Название класса"
+    },
+    "inputs": {
+        "model": "Модель",
+        "carImage": "Изображение авто",
+        "price": "Цена",
+        "fuelConsumption": "Потребление топлива",
+        "mileage": "Пробег"
+    },
+    "selects": {
+        "selectBrand": "Выберите бренд",
+        "selectClass": "Выберите класс"
+    },
+    "headers": {
+        "allBrands": "Все бренды автомобилей",
+        "allClasses": "Все классы автомобилей",
+        "allCars": "Все автомобили",
+        "activeCars": "Активные автомобили",
+        "deactivatedCars": "Деактивированные автомобили"
+    },
+    "carSegments": {
+        "B-segment": "B-сегмент",
+        "E-segment": "E-сегмент",
+        "F-segment": "F-сегмент",
+        "S-segment": "S-сегмент",
+        "Crossovers": "Кроссоверы"
     }
 }
