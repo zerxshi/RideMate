@@ -37,7 +37,7 @@ const InputBlock: FC<InputBlockProps> = ({
                 {t(`inputs.${inputId}`)}
             </label>
             <input
-                className="p-2 text-2xl font-bold bg-transparent border-4 h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"
+                className="p-2 text-2xl font-bold bg-transparent border-4 outline-none h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"
                 value={inputValue}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setInputValue(inputId, e.target.value)

@@ -18,3 +18,8 @@ export interface IGetCarsRes {
     count: number
     rows: ICar[]
 }
+
+export interface ISelectOption {
+    name: string
+    id: number
+}
