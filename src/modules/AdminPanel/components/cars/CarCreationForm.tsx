@@ -2,18 +2,19 @@ import React, { ChangeEvent, FC, useEffect, useState } from "react"
 import { toSelect } from "@/modules/AdminPanel/helpers/toSelect"
 import { IBrand, IClass } from "@/types"
 import { adminCarsAPI } from "@/modules/AdminPanel"
+import AdminInputBlock from "@/modules/AdminPanel/components/AdminInputBlock"
+import AdminSelectBlock from "@/modules/AdminPanel/components/AdminSelectBlock"
+import { useTranslation } from "react-i18next"
+import { ISelectOption } from "@/modules/AdminPanel/types"
 
 interface CarCreationFormProps {
     classes: IClass[]
     brands: IBrand[]
 }
 
-interface selectOption {
-    name: string
-    id: number
-}
-
 const CarCreationForm: FC<CarCreationFormProps> = ({ classes, brands }) => {
+    const { t } = useTranslation("adminPanelPage")
+
     const [createCar, { isError, error }] = adminCarsAPI.useCreateCarMutation()
 
     const [modelValue, setModelValue] = useState<string>("")
@@ -22,8 +23,8 @@ const CarCreationForm: FC<CarCreationFormProps> = ({ classes, brands }) => {
     const [fuelConsumptionValue, setFuelConsumptionValue] = useState<string>("")
     const [priceValue, setPriceValue] = useState<string>("")
 
-    const [selectClasses, setSelectClasses] = useState<selectOption[]>([])
-    const [selectBrands, setSelectBrands] = useState<selectOption[]>([])
+    const [selectClasses, setSelectClasses] = useState<ISelectOption[]>([])
+    const [selectBrands, setSelectBrands] = useState<ISelectOption[]>([])
     const [selectedClass, setSelectedClass] = useState<string>("")
     const [selectedBrand, setSelectedBrand] = useState<string>("")
 
@@ -47,7 +48,6 @@ const CarCreationForm: FC<CarCreationFormProps> = ({ classes, brands }) => {
         const carClass = selectClasses.find(
             (carClass) => carClass.name === selectedClass,
         )
-        console.log(carClass)
 
         if (imageValue) {
             const result = await createCar({
@@ -70,79 +70,55 @@ const CarCreationForm: FC<CarCreationFormProps> = ({ classes, brands }) => {
                     e.preventDefault()
                 }
             >
-                <input
-                    className="p-2 text-xl font-bold bg-transparent border-4 h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"
-                    value={modelValue}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setModelValue(e.target.value)
-                    }
-                    type="text"
-                    placeholder="Model"
+                <AdminInputBlock
+                    inputId="model"
+                    inputType="text"
+                    inputValue={modelValue}
+                    setInputValue={setModelValue}
+                    setImage={null}
                 />
-                <input
-                    className="p-2 text-xl font-bold bg-transparent border-4 h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"
-                    onChange={handleImageChange}
-                    type="file"
-                    accept="image/*"
-                    placeholder="Car image"
+                <AdminInputBlock
+                    inputId="carImage"
+                    inputType="file"
+                    inputValue=""
+                    setImage={handleImageChange}
+                    setInputValue={null}
                 />
 
-                <select
-                    name="brands"
-                    id="brands"
-                    value={selectedBrand}
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                        setSelectedBrand(e.target.value)
-                    }
-                >
-                    {selectBrands.map((brand) => (
-                        <option key={brand.id} value={brand.name}>
-                            {brand.name}
-                        </option>
-                    ))}
-                </select>
-
-                <select
-                    name="classes"
-                    id="classes"
-                    value={selectedClass}
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                        setSelectedClass(e.target.value)
-                    }
-                >
-                    {selectClasses.map((carClass) => (
-                        <option key={carClass.id} value={carClass.name}>
-                            {carClass.name}
-                        </option>
-                    ))}
-                </select>
-
-                <input
-                    className="p-2 text-xl font-bold bg-transparent border-4 h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"
-                    value={priceValue}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setPriceValue(e.target.value)
-                    }
-                    type="number"
-                    placeholder="Price"
+                <AdminSelectBlock
+                    selectId="brands"
+                    selectValue={selectedBrand}
+                    setSelectValue={setSelectedBrand}
+                    selectValues={selectBrands}
                 />
-                <input
-                    className="p-2 text-xl font-bold bg-transparent border-4 h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"
-                    value={fuelConsumptionValue}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setFuelConsumptionValue(e.target.value)
-                    }
-                    type="number"
-                    placeholder="Fuel consumption"
+
+                <AdminSelectBlock
+                    selectId="classes"
+                    selectValue={selectedClass}
+                    setSelectValue={setSelectedClass}
+                    selectValues={selectClasses}
                 />
-                <input
-                    className="p-2 text-xl font-bold bg-transparent border-4 h-14 rounded-2xl border-my-dark text-my-dark placeholder:text-my-dark"
-                    value={mileageValue}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setMileageValue(e.target.value)
-                    }
-                    type="number"
-                    placeholder="Mileage"
+
+                <AdminInputBlock
+                    inputId="price"
+                    inputType="number"
+                    inputValue={priceValue}
+                    setInputValue={setPriceValue}
+                    setImage={null}
+                />
+                <AdminInputBlock
+                    inputId="fuelConsumption"
+                    inputType="number"
+                    inputValue={fuelConsumptionValue}
+                    setInputValue={setFuelConsumptionValue}
+                    setImage={null}
+                />
+                <AdminInputBlock
+                    inputId="mileage"
+                    inputType="number"
+                    inputValue={mileageValue}
+                    setInputValue={setMileageValue}
+                    setImage={null}
                 />
 
                 <button
