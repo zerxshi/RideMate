@@ -90,6 +90,7 @@ const CarCreationForm: FC<CarCreationFormProps> = ({ classes, brands }) => {
                     selectValue={selectedBrand}
                     setSelectValue={setSelectedBrand}
                     selectValues={selectBrands}
+                    selectLabel="selectBrand"
                 />
 
                 <AdminSelectBlock
@@ -97,6 +98,7 @@ const CarCreationForm: FC<CarCreationFormProps> = ({ classes, brands }) => {
                     selectValue={selectedClass}
                     setSelectValue={setSelectedClass}
                     selectValues={selectClasses}
+                    selectLabel="selectClass"
                 />
 
                 <AdminInputBlock
