@@ -1,4 +1,4 @@
-export interface IDataDeletionRes {
+export interface ICarStatusChangeRes {
     message: string
 }
 
