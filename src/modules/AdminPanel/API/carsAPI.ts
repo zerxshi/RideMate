@@ -1,5 +1,9 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
-import { ICar, IDataDeletionRes, IGetCarsRes } from "@/modules/AdminPanel/types"
+import {
+    ICar,
+    ICarStatusChangeRes,
+    IGetCarsRes,
+} from "@/modules/AdminPanel/types"
 import { baseQueryWithReauth } from "@/helpers/baseQueryWithReauth"
 
 export const adminCarsAPI = createApi({
@@ -14,9 +18,17 @@ export const adminCarsAPI = createApi({
             }),
             providesTags: ["cars"],
         }),
-        deleteCar: build.mutation<IDataDeletionRes, { carId: number }>({
+        deleteCar: build.mutation<ICarStatusChangeRes, { carId: number }>({
             query: (body) => ({
                 url: "cars",
+                method: "PUT",
+                body,
+            }),
+            invalidatesTags: ["cars"],
+        }),
+        restoreCar: build.mutation<ICarStatusChangeRes, { carId: number }>({
+            query: (body) => ({
+                url: "cars/recover",
                 method: "PUT",
                 body,
             }),
