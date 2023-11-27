@@ -1,4 +1,14 @@
 {
+    "common": {
+        "B-segment": "B-сегмент",
+        "E-segment": "E-сегмент",
+        "F-segment": "F-сегмент",
+        "S-segment": "S-сегмент",
+        "Crossovers": "Кроссоверы",
+        "allCars": "Все автомобили",
+        "activeCars": "Активные автомобили",
+        "deactivatedCars": "Деактивированные автомобили"
+    },
     "buttons": {
         "cars": "Автомобили",
         "brands": "Бренды",
@@ -25,20 +35,11 @@
     },
     "selects": {
         "selectBrand": "Выберите бренд",
-        "selectClass": "Выберите класс"
+        "selectClass": "Выберите класс",
+        "filterBy": "Отфильтровать по"
     },
     "headers": {
         "allBrands": "Все бренды автомобилей",
-        "allClasses": "Все классы автомобилей",
-        "allCars": "Все автомобили",
-        "activeCars": "Активные автомобили",
-        "deactivatedCars": "Деактивированные автомобили"
-    },
-    "carSegments": {
-        "B-segment": "B-сегмент",
-        "E-segment": "E-сегмент",
-        "F-segment": "F-сегмент",
-        "S-segment": "S-сегмент",
-        "Crossovers": "Кроссоверы"
+        "allClasses": "Все классы автомобилей"
     }
 }
