@@ -1,4 +1,14 @@
 {
+    "common": {
+        "B-segment": "B-segment",
+        "E-segment": "E-segment",
+        "F-segment": "F-segment",
+        "S-segment": "S-segment",
+        "Crossovers": "Crossovers",
+        "allCars": "All cars",
+        "activeCars": "Active cars",
+        "deactivatedCars": "Deactivated cars"
+    },
     "buttons": {
         "cars": "Cars",
         "brands": "Brands",
@@ -25,20 +35,11 @@
     },
     "selects": {
         "selectBrand": "Select brand",
-        "selectClass": "Select class"
+        "selectClass": "Select class",
+        "filterBy": "Filter by"
     },
     "headers": {
         "allBrands": "All car brands",
-        "allClasses": "All car classes",
-        "allCars": "All cars",
-        "activeCars": "Active cars",
-        "deactivatedCars": "Deactivated cars"
-    },
-    "carSegments": {
-        "B-segment": "B-segment",
-        "E-segment": "E-segment",
-        "F-segment": "F-segment",
-        "S-segment": "S-segment",
-        "Crossovers": "Crossovers"
+        "allClasses": "All car classes"
     }
 }

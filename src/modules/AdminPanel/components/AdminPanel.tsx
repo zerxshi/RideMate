@@ -44,7 +44,7 @@ const AdminPanel = () => {
 
     return (
         <section className="flex gap-11 w-1150">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 mt-14">
                 <button
                     onClick={handleCarsList}
                     className="text-2xl font-bold rounded-lg h-9 w-52 text-my-dark bg-my-blue active:scale-99"

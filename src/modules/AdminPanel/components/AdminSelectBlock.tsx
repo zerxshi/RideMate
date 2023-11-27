@@ -7,6 +7,7 @@ interface SelectBlockProps {
     setSelectValue: (val: string) => void
     selectValues: ISelectOption[]
     selectId: string
+    selectLabel: string
 }
 
 const AdminSelectBlock: FC<SelectBlockProps> = ({
@@ -14,12 +15,14 @@ const AdminSelectBlock: FC<SelectBlockProps> = ({
     setSelectValue,
     selectValues,
     selectId,
+    selectLabel,
 }) => {
-    const { t } = useTranslation("adminPanelPage")
+    const { t, i18n } = useTranslation("adminPanelPage")
+
     return (
         <div className="flex flex-col gap-1">
             <label htmlFor={selectId} className="text-xl font-bold">
-                {t("selects.selectClass")}:
+                {t(`selects.${selectLabel}`)}:
             </label>
 
             <select
@@ -37,7 +40,9 @@ const AdminSelectBlock: FC<SelectBlockProps> = ({
                         value={val.name}
                         className="text-lg bg-zinc-700"
                     >
-                        {val.name}
+                        {i18n.exists(`adminPanelPage:common.${val.name}`)
+                            ? t(`common.${val.name}`)
+                            : val.name}
                     </option>
                 ))}
             </select>
