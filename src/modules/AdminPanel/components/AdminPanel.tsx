@@ -15,6 +15,7 @@ const AdminPanel = () => {
     const { data: classes } = classAPI.useGetAllClassesQuery()
 
     const [removeCar] = adminCarsAPI.useDeleteCarMutation()
+    const [restoreCar] = adminCarsAPI.useRestoreCarMutation()
 
     const [isCarsList, setIsCarsList] = useState<boolean>(true)
     const [isBrandsList, setIsBrandsList] = useState<boolean>(false)
@@ -22,6 +23,10 @@ const AdminPanel = () => {
 
     const handleRemoveCar = async (carId: number): Promise<void> => {
         await removeCar({ carId })
+    }
+
+    const handleRestoreCar = async (carId: number): Promise<void> => {
+        await restoreCar({ carId })
     }
 
     const handleCarsList = (): void => {
@@ -77,6 +82,7 @@ const AdminPanel = () => {
                         brands={brands.rows}
                         classes={classes.rows}
                         removeCar={handleRemoveCar}
+                        restoreCar={handleRestoreCar}
                     />
                 )}
 
