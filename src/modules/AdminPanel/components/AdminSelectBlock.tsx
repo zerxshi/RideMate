@@ -21,7 +21,7 @@ const AdminSelectBlock: FC<SelectBlockProps> = ({
 
     return (
         <div className="flex flex-col gap-1">
-            <label htmlFor={selectId} className="text-xl font-bold">
+            <label htmlFor={selectId} className="text-xl font-bold sr-only">
                 {t(`selects.${selectLabel}`)}:
             </label>
 
@@ -32,8 +32,11 @@ const AdminSelectBlock: FC<SelectBlockProps> = ({
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                     setSelectValue(e.target.value)
                 }
-                className="text-lg bg-transparent outline-none"
+                className="text-xl bg-transparent outline-none"
             >
+                <option className="text-lg bg-zinc-700" value="" disabled>
+                    {t(`selects.${selectLabel}`)}:
+                </option>
                 {selectValues.map((val) => (
                     <option
                         key={val.id}
