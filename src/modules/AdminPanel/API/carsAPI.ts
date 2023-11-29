@@ -28,7 +28,7 @@ export const adminCarsAPI = createApi({
         }),
         restoreCar: build.mutation<ICarStatusChangeRes, { carId: number }>({
             query: (body) => ({
-                url: "cars/recover",
+                url: "cars/restore",
                 method: "PUT",
                 body,
             }),

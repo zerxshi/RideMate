@@ -9,6 +9,8 @@ interface AdminCarCardProps {
     brand: string | undefined
     carClass: string | undefined
     removeCar: (carId: number) => Promise<void>
+    isActive: boolean
+    restoreCar: (carId: number) => Promise<void>
 }
 
 const AdminCarCard: FC<AdminCarCardProps> = ({
@@ -18,6 +20,8 @@ const AdminCarCard: FC<AdminCarCardProps> = ({
     brand,
     carClass,
     removeCar,
+    isActive,
+    restoreCar,
 }) => {
     const { t } = useTranslation("adminPanelPage")
 
@@ -44,13 +48,23 @@ const AdminCarCard: FC<AdminCarCardProps> = ({
                     </dl>
                 </div>
 
-                <button
-                    onClick={() => removeCar(carId)}
-                    className="self-end h-8 px-2 text-lg font-bold rounded-lg w-max bg-my-blue text-my-dark"
-                    type="button"
-                >
-                    {t("buttons.removeCar")}
-                </button>
+                {isActive ? (
+                    <button
+                        onClick={() => removeCar(carId)}
+                        className="self-end h-8 px-2 text-lg font-bold rounded-lg w-max bg-my-blue text-my-dark"
+                        type="button"
+                    >
+                        {t("buttons.removeCar")}
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => restoreCar(carId)}
+                        className="self-end h-8 px-2 text-lg font-bold rounded-lg w-max bg-my-blue text-my-dark"
+                        type="button"
+                    >
+                        {t("buttons.restoreCar")}
+                    </button>
+                )}
             </div>
         </article>
     )

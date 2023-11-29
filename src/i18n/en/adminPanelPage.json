@@ -15,7 +15,8 @@
         "classes": "Classes",
         "removeCar": "Remove the car",
         "createCar": "Create new car",
-        "createBrand": "Create new brand"
+        "createBrand": "Create new brand",
+        "restoreCar": "Restore the car"
     },
     "lists": {
         "carId": "Car ID",

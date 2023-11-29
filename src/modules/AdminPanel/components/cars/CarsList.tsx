@@ -9,9 +9,16 @@ interface CarsListProps {
     brands: IBrand[]
     classes: IClass[]
     removeCar: (carId: number) => Promise<void>
+    restoreCar: (carId: number) => Promise<void>
 }
 
-const CarsList: FC<CarsListProps> = ({ cars, brands, classes, removeCar }) => {
+const CarsList: FC<CarsListProps> = ({
+    cars,
+    brands,
+    classes,
+    removeCar,
+    restoreCar,
+}) => {
     return (
         <section className="flex flex-col gap-4">
             {cars &&
@@ -24,6 +31,8 @@ const CarsList: FC<CarsListProps> = ({ cars, brands, classes, removeCar }) => {
                         brand={findName(brands, car.brandId)}
                         carClass={findName(classes, car.classId)}
                         removeCar={removeCar}
+                        isActive={car.isActive}
+                        restoreCar={restoreCar}
                     />
                 ))}
         </section>

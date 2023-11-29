@@ -11,6 +11,7 @@ interface CarsPanelProps {
     brands: IBrand[]
     classes: IClass[]
     removeCar: (carId: number) => Promise<void>
+    restoreCar: (carId: number) => Promise<void>
 }
 
 const CarsPanel: FC<CarsPanelProps> = ({
@@ -18,6 +19,7 @@ const CarsPanel: FC<CarsPanelProps> = ({
     brands,
     classes,
     removeCar,
+    restoreCar,
 }) => {
     const { t } = useTranslation("adminPanelPage", { useSuspense: false })
 
@@ -66,6 +68,7 @@ const CarsPanel: FC<CarsPanelProps> = ({
                     brands={brands}
                     classes={classes}
                     removeCar={removeCar}
+                    restoreCar={restoreCar}
                 />
             </div>
 
