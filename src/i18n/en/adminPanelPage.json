@@ -32,7 +32,8 @@
         "carImage": "Car image",
         "price": "Price",
         "fuelConsumption": "Fuel consumption",
-        "mileage": "Mileage"
+        "mileage": "Mileage",
+        "brandName": "Brand name"
     },
     "selects": {
         "selectBrand": "Select brand",

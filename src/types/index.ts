@@ -32,6 +32,11 @@ export interface IResponseBrand {
     rows: IBrand[]
 }
 
+export interface ICreateBrandRes {
+    id: number
+    name: string
+}
+
 export interface IClass {
     id: number
     name: string

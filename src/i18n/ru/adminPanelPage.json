@@ -32,7 +32,8 @@
         "carImage": "Изображение авто",
         "price": "Цена",
         "fuelConsumption": "Потребление топлива",
-        "mileage": "Пробег"
+        "mileage": "Пробег",
+        "brandName": "Название бренда"
     },
     "selects": {
         "selectBrand": "Выберите бренд",
