@@ -11,7 +11,7 @@ import { deleteUser } from "@/store/slice/userSlice"
 const Header: FC = () => {
     const location = useLocation()
     const { t } = useTranslation("header")
-    const { isAuth, name } = useAppSelector((state) => state.userReducer)
+    const { isAuth, name, role } = useAppSelector((state) => state.userReducer)
     const dispatch = useAppDispatch()
     const [logout, {}] = authAPI.useLogoutMutation()
 
@@ -46,12 +46,13 @@ const Header: FC = () => {
                         <CarsDropdownMenu />
                     </div>
 
-                    <Link to="/admin" className="">
-                        {" "}
-                        <b className="text-xl font-normal font-russo text-my-blue">
-                            ADMIN PANEL
-                        </b>
-                    </Link>
+                    {role === "ADMIN" && (
+                        <Link to="/admin" className="">
+                            <b className="text-xl font-normal font-russo text-my-blue">
+                                {t("buttons.adminPanel")}
+                            </b>
+                        </Link>
+                    )}
 
                     {isAuth ? (
                         <UserDropdownMenu
