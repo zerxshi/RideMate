@@ -21,7 +21,7 @@ const CarsPanel: FC<CarsPanelProps> = ({
     removeCar,
     restoreCar,
 }) => {
-    const { t } = useTranslation("adminPanelPage", { useSuspense: false })
+    const { t } = useTranslation("adminPanelPage")
 
     const [selectedFilter, setSelectedFilter] = useState<string>("allCars")
     const [isFormVisible, setIsFormVisible] = useState<boolean>(false)
