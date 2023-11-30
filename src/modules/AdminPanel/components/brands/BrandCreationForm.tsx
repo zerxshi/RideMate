@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import AdminInputBlock from "@/modules/AdminPanel/components/AdminInputBlock"
 import { useTranslation } from "react-i18next"
 import { brandAPI } from "@/API/brandAPI"
 import FormValidationBlock from "@/modules/AdminPanel/components/FormValidationBlock"
 import { IError } from "@/types"
 
-const BrandCreationForm = () => {
+const BrandCreationForm: FC = () => {
     const { t } = useTranslation("common")
 
     const [
@@ -26,6 +26,7 @@ const BrandCreationForm = () => {
         }
         if (!validationError) {
             await createBrand({ name: brandNameValue })
+            setBrandNameValue("")
         }
     }
 
@@ -35,7 +36,7 @@ const BrandCreationForm = () => {
     }, [brandNameValue])
 
     return (
-        <div>
+        <div className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fixed z-50 w-[630px]">
             <form
                 className="flex flex-col gap-4 p-4 bg-zinc-700 rounded-xl"
                 onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
