@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import { adminCarsAPI } from "@/modules/AdminPanel"
 import { brandAPI } from "@/API/brandAPI"
 import { classAPI } from "@/API/classAPI"
-import BrandsList from "@/modules/AdminPanel/components/brands/BrandsList"
 import ClassesList from "@/modules/AdminPanel/components/carClasses/ClassesList"
 import { useTranslation } from "react-i18next"
 import CarsPanel from "@/modules/AdminPanel/components/cars/CarsPanel"
+import BrandsPanel from "@/modules/AdminPanel/components/brands/BrandsPanel"
 
 const AdminPanel = () => {
     const { t } = useTranslation("adminPanelPage")
@@ -87,7 +87,7 @@ const AdminPanel = () => {
                 )}
 
             {isBrandsList && brands && brands.rows && (
-                <BrandsList brands={brands.rows} />
+                <BrandsPanel brands={brands.rows} />
             )}
             {isClassesList && classes && classes.rows && (
                 <ClassesList classes={classes.rows} />
