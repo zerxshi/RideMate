@@ -6,12 +6,14 @@ import { baseQueryWithReauth } from "@/helpers/baseQueryWithReauth"
 export const brandAPI = createApi({
     reducerPath: "brandAPI",
     baseQuery: baseQueryWithReauth,
+    tagTypes: ["brands"],
     endpoints: (build) => ({
         getAllBrands: build.query<IResponseBrand, void>({
             query: () => ({
                 url: "/brand",
                 method: "GET",
             }),
+            providesTags: ["brands"],
         }),
         createBrand: build.mutation<ICreateBrandRes, { name: string }>({
             query: (body) => ({
@@ -19,6 +21,7 @@ export const brandAPI = createApi({
                 method: "POST",
                 body,
             }),
+            invalidatesTags: ["brands"],
         }),
     }),
 })
