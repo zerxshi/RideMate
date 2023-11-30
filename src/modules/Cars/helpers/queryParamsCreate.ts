@@ -22,9 +22,14 @@ export const queryParamsCreate = (stringParams: string): URLSearchParams => {
     if (params.get("page")) {
         queryParams.set("page", params.get("page")!)
     }
+    if (params.get("sort") && params.get("sortBy")) {
+        queryParams.set("sort", params.get("sort")!)
+        queryParams.set("sortBy", params.get("sortBy")!)
+    }
 
-    if (params.get("dates[]")) {
-        queryParams.set("dates", params.get("dates[]")!)
+    if (params.get("startDate") && params.get("endDate")) {
+        queryParams.set("startDate", params.get("startDate")!)
+        queryParams.set("endDate", params.get("endDate")!)
     }
 
     return queryParams
