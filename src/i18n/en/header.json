@@ -4,6 +4,7 @@
         "signIn": "SIGN IN"
     },
     "buttons": {
-        "logout": "Logout"
+        "logout": "Logout",
+        "adminPanel": "Admin panel"
     }
 }

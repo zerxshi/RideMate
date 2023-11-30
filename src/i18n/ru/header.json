@@ -4,6 +4,7 @@
         "signIn": "ВОЙТИ"
     },
     "buttons": {
-        "logout": "Выйти"
+        "logout": "Выйти",
+        "adminPanel": "Панель администратора"
     }
 }
