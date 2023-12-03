@@ -51,20 +51,18 @@ const CarsFilter: FC<Props> = ({searchParams, setSearchParams}) => {
     }, [endDate]);
 
     useEffect(() => {
-        if (searchParams.getAll("dates")) {
-            searchParams.forEach((value, key) => {
-                searchParams.delete(key, value)
-            })
+        if (searchParams.get("startDate") || searchParams.get("endDate")) {
+            searchParams.delete("startDate")
+            searchParams.delete("endDate")
         }
-        if (selectedDates) {
+        if (startDate && endDate) {
             setSearchParams(params => {
-                selectedDates.forEach(date => {
-                    params.append('dates', toStringDate(date));
-                });
+                params.append('startDate', toStringDate(startDate));
+                params.append('endDate', toStringDate(endDate));
                 return params
             })
         }
-    }, [selectedDates]);
+    }, [endDate]);
 
     const toStringDate = (date: Date) => {
         const year = date.getFullYear()
